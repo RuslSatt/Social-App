@@ -1,12 +1,14 @@
 import './App.css';
 import './normalize.css'
 import './fonts.css'
-import {StartPage} from "./components/StartPage/StartPage";
+// import {StartPage} from "./components/StartPage/StartPage";
+import {HomePage} from "./components/HomePage/HomePage";
 
 function App() {
     return (
         <div className="App">
-            <StartPage/>
+            {/*<StartPage/>*/}
+            <HomePage/>
         </div>
     );
 }

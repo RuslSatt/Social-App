@@ -1,0 +1,40 @@
+.Search {
+    min-height: 61px;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+}
+
+.input {
+    width: 100%;
+    max-width: 17.6875rem;
+    background: #F3F5F7;
+    border-radius: 30px;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    position: relative;
+}
+
+.input__text {
+    max-width: 17.6875rem;
+    background: #F3F5F7;
+    border-radius: 30px;
+}
+
+.search__icon {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+}
+
+.send {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    margin-left: 1rem;
+    background: #F6F7F9;
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
