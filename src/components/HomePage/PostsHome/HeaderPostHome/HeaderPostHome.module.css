@@ -1,0 +1,26 @@
+.HeaderPost {
+    min-height: 3.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF;
+    padding: 10px 15px;
+    border-radius: 10px 10px 0 0;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user p {
+    color: #242424;
+    font-size: 1rem;
+    line-height: 150%;
+    font-weight: 600;
+}
+
+.time {
+    color: #BDBDBD;
+    font-size: 0.875rem;
+}

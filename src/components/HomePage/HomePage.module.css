@@ -1,3 +1,8 @@
 .HomePage {
-
+    background: #F6F7F9;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.Posts {
+    padding: 20px;
 }

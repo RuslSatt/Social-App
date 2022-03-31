@@ -1,0 +1,31 @@
+.Nav {
+    display: flex;
+    align-items: center;
+    padding: 0.95rem;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border-radius: 0 0 10px 10px;
+}
+
+.comments__likes {
+    display: flex;
+    gap: 0.625rem;
+}
+
+.comments {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #828282;
+    font-size: 14px;
+    line-height: 150%;
+}
+
+.likes {
+    font-size: 14px;
+    line-height: 150%;
+    color: #828282;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}

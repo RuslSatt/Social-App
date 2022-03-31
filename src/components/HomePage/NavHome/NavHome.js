@@ -1,8 +1,8 @@
 import React from 'react';
-import NavHomePageStyle from './NavHomePage.module.css'
+import NavHomePageStyle from './NavHome.module.css'
 import {NavLink} from "react-router-dom";
 
-const NavHomePage = () => {
+const NavHome = () => {
     return (
         <div className={NavHomePageStyle.NavHome}>
             <NavLink className={`${NavHomePageStyle.button} ${NavHomePageStyle.active__button}`} to='/Popular'>
@@ -24,4 +24,4 @@ const NavHomePage = () => {
     );
 };
 
-export {NavHomePage};
+export {NavHome};
