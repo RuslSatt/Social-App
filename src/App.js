@@ -4,11 +4,11 @@ import './fonts.css'
 // import {StartPage} from "./components/StartPage/StartPage";
 import {HomePage} from "./components/HomePage/HomePage";
 
-function App() {
+function App(props) {
     return (
         <div className="App">
             {/*<StartPage/>*/}
-            <HomePage/>
+            <HomePage postState={props.appState.HomePage.Posts}/>
         </div>
     );
 }

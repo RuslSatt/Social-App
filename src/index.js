@@ -10,7 +10,7 @@ let render = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App/>
+                <App appState={state}/>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')

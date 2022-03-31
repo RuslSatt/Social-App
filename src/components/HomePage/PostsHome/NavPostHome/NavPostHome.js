@@ -4,20 +4,20 @@ import {ReactComponent as PlusIcon} from '../../../../assets/images/plus.svg'
 import {ReactComponent as ChatIcon} from '../../../../assets/images/Chat.svg'
 import {ReactComponent as HeartIcon} from '../../../../assets/images/heart.svg'
 
-const NavPostHome = () => {
+const NavPostHome = (props) => {
     return (
         <div className={NavPostHomeStyle.Nav}>
             <PlusIcon/>
             <div className={NavPostHomeStyle.comments__likes}>
                 <div className={NavPostHomeStyle.comments}>
                     <p>
-                        20
+                        {props.countComment}
                     </p>
                     <ChatIcon/>
                 </div>
                 <div className={NavPostHomeStyle.likes}>
                     <p>
-                        120
+                        {props.countLikes}
                     </p>
                     <HeartIcon/>
                 </div>

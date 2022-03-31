@@ -5,13 +5,20 @@ import {Search} from "../Search/Search";
 import {NavHome} from "./NavHome/NavHome";
 import {PostsHome} from "./PostsHome/PostsHome";
 
-const HomePage = () => {
+
+
+const HomePage = (props) => {
+    const Posts = props.postState.map (elem => <PostsHome
+        name={elem.name}
+        time={elem.time}
+        countComment={elem.countComment}
+        countLikes={elem.countLikes} key={elem.id}/>)
     return (
         <div className={HomePageStyle.HomePage}>
             <Search/>
             <NavHome/>
             <div className={HomePageStyle.Posts}>
-                <PostsHome/>
+                {Posts}
             </div>
             <Footer/>
         </div>
