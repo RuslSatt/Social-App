@@ -2,6 +2,15 @@
     background: #F6F7F9;
     min-height: 100vh;
     overflow: hidden;
+    animation: home 1s ease-in-out;
+}
+@keyframes home {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 .Posts {
     padding: 20px;

@@ -1,14 +1,17 @@
 import './App.css';
 import './normalize.css'
 import './fonts.css'
-// import {StartPage} from "./components/StartPage/StartPage";
+import {Routes, Route} from 'react-router-dom';
+import {StartPage} from "./components/StartPage/StartPage";
 import {HomePage} from "./components/HomePage/HomePage";
 
 function App(props) {
     return (
         <div className="App">
-            {/*<StartPage/>*/}
-            <HomePage postState={props.appState.HomePage.Posts}/>
+            <Routes>
+                <Route path='/social-app' element={<StartPage/>}/>
+                <Route path='home' element={<HomePage postState={props.appState.HomePage.Posts}/>}/>
+            </Routes>
         </div>
     );
 }

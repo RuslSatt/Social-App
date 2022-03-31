@@ -65,6 +65,15 @@
     .images img:nth-child(1) {
         top: 0;
         left: 70px;
+        background: url("../../assets/images/back-mask.png") 7px top no-repeat;
+    }
+    @keyframes image1 {
+        from {
+            top: -20px;
+        }
+        to {
+            top: 0px;
+        }
     }
 }
 .images img:nth-child(2) {
@@ -84,6 +93,14 @@
         top: 75px;
         left: 5px;
     }
+    @keyframes image2 {
+        from {
+            left: 25px;
+        }
+        to {
+            left: 5px;
+        }
+    }
 }
 .images img:nth-child(3) {
     position: relative;
@@ -101,6 +118,14 @@
     .images img:nth-child(3) {
         bottom: 65px;
         left: -5px;
+    }
+    @keyframes image3 {
+        from {
+            left: -25px;
+        }
+        to {
+            left: -5px;
+        }
     }
 }
 .images img:nth-child(4) {
@@ -122,6 +147,15 @@
     .images img:nth-child(4) {
         top: 10px;
         left: -70px;
+        background: url("../../assets/images/back-mask.png") 7px bottom no-repeat;
+    }
+    @keyframes image4 {
+        from {
+            top: 30px;
+        }
+        to {
+            top: 10px;
+        }
     }
 }
 

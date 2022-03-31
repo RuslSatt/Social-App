@@ -4,6 +4,7 @@ import Images1 from '../../assets/images/mask-group-1.png'
 import Images2 from '../../assets/images/mask-group-2.png'
 import Images3 from '../../assets/images/mask-group-3.png'
 import Images4 from '../../assets/images/mask-group-4.png'
+import {NavLink} from "react-router-dom";
 
 
 const StartPage = () => {
@@ -19,9 +20,11 @@ const StartPage = () => {
                 <img src={Images4} alt=""/>
             </div>
             <p className={WelcomePageStyle.caption}>SHARE - INSPIRE - CONNECT</p>
-            <button className={WelcomePageStyle.button}>
-                GET STARTED
-            </button>
+            <NavLink to='/home'>
+                <button className={WelcomePageStyle.button}>
+                    GET STARTED
+                </button>
+            </NavLink>
         </div>
     );
 };
