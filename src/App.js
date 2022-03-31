@@ -5,6 +5,7 @@ import {Routes, Route} from 'react-router-dom';
 import {StartPage} from "./components/StartPage/StartPage";
 import {HomePage} from "./components/HomePage/HomePage";
 import {Post} from "./components/Post/Post";
+import {Message} from "./components/Message/Message";
 
 function App(props) {
     return (
@@ -14,7 +15,10 @@ function App(props) {
                 <Route path='home' element={<HomePage postState={props.appState.HomePage.Posts}/>}/>
                 <Route path='post' element={<Post postState={props.appState.HomePage.Posts[0]}
                                                   newTextComment={props.appState.newTextComment}
-                                                  dispatch={props.dispatch} dataComments={props.appState.HomePage.dataComments}/>}/>
+                                                  dispatch={props.dispatch}
+                                                  dataComments={props.appState.HomePage.dataComments}/>}/>
+                <Route path='message' element={<Message messageState={props.appState.Message}/>}/>
+                <Route path='user-chat'/>
             </Routes>
         </div>
     );
