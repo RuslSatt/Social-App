@@ -6,6 +6,7 @@ import {StartPage} from "./components/StartPage/StartPage";
 import {HomePage} from "./components/HomePage/HomePage";
 import {Post} from "./components/Post/Post";
 import {Message} from "./components/Message/Message";
+import {ChatMessage} from "./components/Message/ChatMessage/ChatMessage";
 
 function App(props) {
     return (
@@ -18,7 +19,8 @@ function App(props) {
                                                   dispatch={props.dispatch}
                                                   dataComments={props.appState.HomePage.dataComments}/>}/>
                 <Route path='message' element={<Message messageState={props.appState.Message}/>}/>
-                <Route path='user-chat'/>
+                <Route path='user-chat' element={<ChatMessage dispatch={props.dispatch}
+                                                              newMessage={props.appState.newMessage} />}/>
             </Routes>
         </div>
     );

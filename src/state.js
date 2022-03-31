@@ -1,5 +1,6 @@
 const addCommentActionType = 'ADD-COMMENT';
 const updateCommentActionType = 'UPDATE-COMMENT';
+const updateTypeMessage = 'UPDATE-MESSAGE'
 
 let store = {
     _state: {
@@ -43,7 +44,8 @@ let store = {
             {id: 6, name: 'Tomas', time: '1 hour ago', countMessage: 9,
                 textMessage: 'Hello, I really like your photo about...'
             },
-        ]
+        ],
+        newMessage: '',
     },
     _render() {
 
@@ -68,6 +70,9 @@ let store = {
         } else if (action.type === updateCommentActionType) {
             this._state.newTextComment = action.text;
             this._render(this._state)
+        } else if (action.type === updateTypeMessage) {
+            this._state.newMessage = action.message;
+            this._render(this._state)
         }
     }
 }
@@ -81,5 +86,10 @@ const updateCommentActionCreator = (text) => ({
     text: text
 })
 
+const updateTypeMessageActionCreator = (message) => ({
+    type: updateTypeMessage,
+    message: message,
+})
 
-export {store, addCommentActionCreator, updateCommentActionCreator};
+
+export {store, addCommentActionCreator, updateCommentActionCreator, updateTypeMessageActionCreator};

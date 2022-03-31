@@ -1,0 +1,8 @@
+.Chat {
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.body__user {
+    margin: 50px 0;
+}

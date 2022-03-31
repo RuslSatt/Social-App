@@ -1,0 +1,39 @@
+.Message {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.avatar {
+    order: 2;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    margin-left: 0.65rem;
+}
+
+.block__message {
+    padding: 0.65rem;
+    background: #F1F1FE;
+    border-radius: 10px 10px 0 10px;
+    max-width: 243px;
+}
+
+.block__message p:first-child {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    display: flex;
+    align-items: flex-end;
+    letter-spacing: -0.2px;
+    color: #242424;
+}
+
+.block__message p:last-child {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #828282;
+    text-align: right;
+}
