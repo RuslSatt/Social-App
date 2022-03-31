@@ -1,0 +1,25 @@
+.Nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.78125rem 3.53125rem;
+    color: #828282;
+    line-height: 150%;
+}
+
+.watch {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.comment {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}

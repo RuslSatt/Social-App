@@ -1,0 +1,26 @@
+.AddComment {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: #FFFFFF;
+}
+
+.comment {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.comment {
+    width: 100%;
+}
+
+.btn {
+    background: linear-gradient(270.95deg, #888BF4 0%, #5151C6 100%);
+    border-radius: 30px;
+    padding: 0.31rem 0.625rem;
+    color: #FFFFFF;
+    line-height: 150%;
+}

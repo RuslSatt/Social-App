@@ -8,7 +8,7 @@ import {NavLink} from "react-router-dom";
 const PostsHome = (props) => {
     return (
         <div className={PostsHomeStyle.Post}>
-            <NavLink to='/Post'>
+            <NavLink to='/post'>
                 <HeaderPostHome name={props.name} time={props.time}/>
             </NavLink>
             <PosterPostHome/>
