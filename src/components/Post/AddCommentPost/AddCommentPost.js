@@ -27,7 +27,7 @@ const AddCommentPost = (props) => {
                 <img src={Avatar} alt=""/>
                 <input onChange={updateComment} type="text"
                        ref={inputCommentValue}
-                       value={props.newTextComment}
+                       value={props.newCommentText}
                        placeholder='Add a comment'/>
             </div>
             <button onClick={addComment} className={AddCommentPostStyle.btn}>

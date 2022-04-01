@@ -5,15 +5,18 @@ import {TypeMessage} from "./TypeMessage/TypeMessage";
 import {UserMessageChat} from "./UserMessageChat/UserMessageChat";
 
 const ChatMessage = (props) => {
+
+    let userMessageChat = props.dataMessage.map (elem => <UserMessageChat time={elem.time}
+                                                                          message={elem.message}
+                                                                          key={elem.id}/>)
+
     return (
         <div className={ChatMessageStyle.Chat}>
             <HeaderChat/>
             <div className={ChatMessageStyle.body__user}>
-                <UserMessageChat/>
-                <UserMessageChat/>
-                <UserMessageChat/>
+                {userMessageChat}
             </div>
-            <TypeMessage dispatch={props.dispatch} newMessage={props.newMessage}/>
+            <TypeMessage dispatch={props.dispatch} newMessageText={props.newMessageText}/>
 
         </div>
     );

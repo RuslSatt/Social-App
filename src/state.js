@@ -1,6 +1,7 @@
 const addCommentActionType = 'ADD-COMMENT';
 const updateCommentActionType = 'UPDATE-COMMENT';
-const updateTypeMessage = 'UPDATE-MESSAGE'
+const updateTypeMessage = 'UPDATE-MESSAGE';
+const addMessage = 'ADD-MESSAGE';
 
 let store = {
     _state: {
@@ -21,7 +22,7 @@ let store = {
             ],
             dataComments: []
         },
-        newTextComment: '',
+        newCommentText: '',
         Message: [
             {id: 0, name: 'Tomas', time: '10 mins ago', countMessage: 20,
                 textMessage: 'Hello, I really like your photo about...'
@@ -45,7 +46,8 @@ let store = {
                 textMessage: 'Hello, I really like your photo about...'
             },
         ],
-        newMessage: '',
+        newMessageText: '',
+        dataMessage: [],
     },
     _render() {
 
@@ -61,18 +63,27 @@ let store = {
             const newComment = {
                 id: 0,
                 name: this._state.HomePage.Posts[0].name,
-                comment: this._state.newTextComment,
+                comment: this._state.newCommentText,
                 time: this._state.HomePage.Posts[0].time,
             }
             this._state.HomePage.dataComments.push(newComment);
-            this._state.newTextComment = '';
+            this._state.newCommentText = '';
             this._render(this._state);
         } else if (action.type === updateCommentActionType) {
-            this._state.newTextComment = action.text;
+            this._state.newCommentText = action.text;
             this._render(this._state)
         } else if (action.type === updateTypeMessage) {
-            this._state.newMessage = action.message;
+            this._state.newMessageText = action.message;
             this._render(this._state)
+        } else if (action.type === addMessage) {
+            const newMessage = {
+                id: 0,
+                message: this._state.newMessageText,
+                time: this._state.HomePage.Posts[0].time,
+            }
+            this._state.dataMessage.push(newMessage);
+            this._state.newMessageText = '';
+            this._render(this._state);
         }
     }
 }
@@ -86,10 +97,17 @@ const updateCommentActionCreator = (text) => ({
     text: text
 })
 
+const addMessageActionCreator = () => ({
+    type: addMessage,
+})
+
 const updateTypeMessageActionCreator = (message) => ({
     type: updateTypeMessage,
     message: message,
 })
 
 
-export {store, addCommentActionCreator, updateCommentActionCreator, updateTypeMessageActionCreator};
+export {store, addCommentActionCreator,
+    updateCommentActionCreator,
+    updateTypeMessageActionCreator,
+    addMessageActionCreator};

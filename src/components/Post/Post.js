@@ -28,7 +28,7 @@ const Post = (props) => {
             <div className={PostsStyle.comments}>
                 {commentPosts}
             </div>
-            <AddCommentPost newTextComment={props.newTextComment} dispatch={props.dispatch}/>
+            <AddCommentPost newCommentText={props.newCommentText} dispatch={props.dispatch}/>
         </div>
     );
 };
