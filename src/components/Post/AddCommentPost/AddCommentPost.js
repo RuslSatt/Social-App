@@ -16,8 +16,8 @@ const AddCommentPost = (props) => {
         }
     }
 
-    let updateComment = () => {
-        let text = inputCommentValue.current.value;
+    let updateComment = (e) => {
+        let text = e.target.value;
         props.dispatch(updateCommentActionCreator(text));
     }
 

@@ -5,9 +5,8 @@ import IconAdd from '../../../../assets/images/Send.svg'
 import {addMessageActionCreator, updateTypeMessageActionCreator} from "../../../../state";
 
 const TypeMessage = (props) => {
-    let inputValue = useRef();
-    let updateMessage = () => {
-        let message = inputValue.current.value;
+    let updateMessage = (e) => {
+        let message = e.target.value;
         props.dispatch(updateTypeMessageActionCreator(message))
     }
     let addMessage = () => {
@@ -15,7 +14,7 @@ const TypeMessage = (props) => {
     }
     return (
         <div className={TypeMessageStyle.Type}>
-            <input onChange={updateMessage} ref={inputValue}
+            <input onChange={updateMessage}
                    type="text"
                    value={props.newMessageText}
                    placeholder='Type something'/>
