@@ -13,15 +13,15 @@ function App(props) {
         <div className="App">
             <Routes>
                 <Route path='/social-app' element={<StartPage/>}/>
-                <Route path='home' element={<HomePage postState={props.appState.HomePage.Posts}/>}/>
-                <Route path='post' element={<Post postState={props.appState.HomePage.Posts[0]}
-                                                  newCommentText={props.appState.HomePage.newCommentText}
+                <Route path='home' element={<HomePage postState={props.appState.homePage.Posts}/>}/>
+                <Route path='post' element={<Post postState={props.appState.homePage.Posts[0]}
+                                                  newCommentText={props.appState.homePage.newCommentText}
                                                   dispatch={props.dispatch}
-                                                  newComment={props.appState.HomePage.newComment}/>}/>
-                <Route path='message' element={<Message messageState={props.appState.MessagePage.Message}/>}/>
+                                                  newComment={props.appState.homePage.newComment}/>}/>
+                <Route path='message' element={<Message messageState={props.appState.messagePage.Message}/>}/>
                 <Route path='user-chat' element={<ChatMessage dispatch={props.dispatch}
-                                                              newMessageText={props.appState.MessagePage.newMessageText}
-                                                              newMessage={props.appState.MessagePage.newMessage}/>}/>
+                                                              newMessageText={props.appState.messagePage.newMessageText}
+                                                              newMessage={props.appState.messagePage.newMessage}/>}/>
             </Routes>
         </div>
     );

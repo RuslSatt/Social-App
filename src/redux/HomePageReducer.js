@@ -1,16 +1,28 @@
 const addCommentActionType = 'ADD-COMMENT';
 const updateCommentActionType = 'UPDATE-COMMENT';
 
-const addCommentActionCreator = () => ({
-    type: addCommentActionType
-});
 
-const updateCommentActionCreator = (text) => ({
-    type: updateCommentActionType,
-    text: text
-})
 
-const homePageReducer = (state, action) => {
+let initialState = {
+    Posts: [
+        {
+            id: 0, name: 'Tomas', time: '1 hour ago', countComment: 20,
+            countLikes: 158, countWatch: 352, title: 'Street portrait',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
+                '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
+                '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
+                '                neque cursus risus.'
+        },
+        {id: 1, name: 'Lukas', time: '3 hour ago', countComment: 12, countLikes: 125, countWatch: 352,},
+        {id: 2, name: 'Mark', time: '5 hour ago', countComment: 28, countLikes: 86, countWatch: 352,},
+        {id: 3, name: 'Andrew', time: '12 hour ago', countComment: 5, countLikes: 331, countWatch: 352,},
+        {id: 4, name: 'Jaden', time: '15 hour ago', countComment: 3, countLikes: 56, countWatch: 352,},
+    ],
+    newComment: [],
+    newCommentText: '',
+}
+
+const homePageReducer = (state = initialState, action) => {
     switch (action.type) {
         case addCommentActionType:
             const newComment = {
@@ -31,3 +43,12 @@ const homePageReducer = (state, action) => {
 }
 
 export {homePageReducer, addCommentActionCreator, updateCommentActionCreator};
+
+const addCommentActionCreator = () => ({
+    type: addCommentActionType
+});
+
+const updateCommentActionCreator = (text) => ({
+    type: updateCommentActionType,
+    text: text
+})
