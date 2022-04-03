@@ -11,7 +11,7 @@ import {CommentsPost} from "./CommentsPost/CommentsPost";
 
 const Post = (props) => {
 
-    let commentPosts = props.dataComments.map(elem => <CommentsPost name={elem.name}
+    let commentPosts = props.newComment.map(elem => <CommentsPost name={elem.name}
                                                                     comment={elem.comment}
                                                                     time={elem.time}
                                                                     key={elem.id}/>)

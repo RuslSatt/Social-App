@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import AddCommentPostStyle from './AddCommentPost.module.css'
 import Avatar from '../../../assets/images/ava-192.png'
-import {addCommentActionCreator, updateCommentActionCreator} from "../../../state";
+import {addCommentActionCreator, updateCommentActionCreator} from "../../../redux/HomePageReducer";
 
 
 

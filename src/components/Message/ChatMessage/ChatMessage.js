@@ -6,7 +6,7 @@ import {UserMessageChat} from "./UserMessageChat/UserMessageChat";
 
 const ChatMessage = (props) => {
 
-    let userMessageChat = props.dataMessage.map (elem => <UserMessageChat time={elem.time}
+    let userMessageChat = props.newMessage.map (elem => <UserMessageChat time={elem.time}
                                                                           message={elem.message}
                                                                           key={elem.id}/>)
 

@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import TypeMessageStyle from './TypeMessage.module.css'
 import IconImage from '../../../../assets/images/addImage.svg'
 import IconAdd from '../../../../assets/images/Send.svg'
-import {addMessageActionCreator, updateTypeMessageActionCreator} from "../../../../state";
+import {addMessageActionCreator, updateTypeMessageActionCreator} from "../../../../redux/MessagePageReducer";
 
 const TypeMessage = (props) => {
     let updateMessage = (e) => {

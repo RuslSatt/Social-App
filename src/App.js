@@ -15,13 +15,13 @@ function App(props) {
                 <Route path='/social-app' element={<StartPage/>}/>
                 <Route path='home' element={<HomePage postState={props.appState.HomePage.Posts}/>}/>
                 <Route path='post' element={<Post postState={props.appState.HomePage.Posts[0]}
-                                                  newCommentText={props.appState.newCommentText}
+                                                  newCommentText={props.appState.HomePage.newCommentText}
                                                   dispatch={props.dispatch}
-                                                  dataComments={props.appState.HomePage.dataComments}/>}/>
-                <Route path='message' element={<Message messageState={props.appState.Message}/>}/>
+                                                  newComment={props.appState.HomePage.newComment}/>}/>
+                <Route path='message' element={<Message messageState={props.appState.MessagePage.Message}/>}/>
                 <Route path='user-chat' element={<ChatMessage dispatch={props.dispatch}
-                                                              newMessageText={props.appState.newMessageText}
-                                                              dataMessage={props.appState.dataMessage}/>}/>
+                                                              newMessageText={props.appState.MessagePage.newMessageText}
+                                                              newMessage={props.appState.MessagePage.newMessage}/>}/>
             </Routes>
         </div>
     );
