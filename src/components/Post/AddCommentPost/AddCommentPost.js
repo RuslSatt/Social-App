@@ -1,7 +1,6 @@
 import React, {useRef} from 'react';
 import AddCommentPostStyle from './AddCommentPost.module.css'
 import Avatar from '../../../assets/images/ava-192.png'
-import {addCommentActionCreator, updateCommentActionCreator} from "../../../redux/HomePageReducer";
 
 
 
@@ -12,13 +11,13 @@ const AddCommentPost = (props) => {
     let addComment = () => {
         let text = inputCommentValue.current.value;
         if (text !== '') {
-            props.dispatch(addCommentActionCreator());
+            props.addComment();
         }
     }
 
     let updateComment = (e) => {
         let text = e.target.value;
-        props.dispatch(updateCommentActionCreator(text));
+        props.updateComment(text);
     }
 
     return (

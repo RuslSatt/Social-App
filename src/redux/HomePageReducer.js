@@ -1,8 +1,6 @@
 const addCommentActionType = 'ADD-COMMENT';
 const updateCommentActionType = 'UPDATE-COMMENT';
 
-
-
 let initialState = {
     Posts: [
         {

@@ -1,14 +1,14 @@
 import React from 'react';
 import ChatMessageStyle from './ChatMessage.module.css'
 import {HeaderChat} from "./HeaderChat/HeaderChat";
-import {TypeMessage} from "./TypeMessage/TypeMessage";
 import {UserMessageChat} from "./UserMessageChat/UserMessageChat";
+import {TypeMessageContainer} from "./TypeMessage/TypeMessageContainer";
 
 const ChatMessage = (props) => {
 
-    let userMessageChat = props.newMessage.map (elem => <UserMessageChat time={elem.time}
-                                                                          message={elem.message}
-                                                                          key={elem.id}/>)
+    let userMessageChat = props.newMessage.map(elem => <UserMessageChat time={elem.time}
+                                                                        message={elem.message}
+                                                                        key={elem.id}/>)
 
     return (
         <div className={ChatMessageStyle.Chat}>
@@ -16,8 +16,7 @@ const ChatMessage = (props) => {
             <div className={ChatMessageStyle.body__user}>
                 {userMessageChat}
             </div>
-            <TypeMessage dispatch={props.dispatch} newMessageText={props.newMessageText}/>
-
+            <TypeMessageContainer store={props.store}/>
         </div>
     );
 };

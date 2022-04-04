@@ -5,8 +5,8 @@ import {HeaderPostHome} from "../HomePage/PostsHome/HeaderPostHome/HeaderPostHom
 import {PosterPostHome} from "../HomePage/PostsHome/PosterPostHome/PosterPostHome";
 import {NavPost} from "./NavPost/NavPost";
 import {DescriptionPost} from "./DescriptionPost/DescriptionPost";
-import {AddCommentPost} from "./AddCommentPost/AddCommentPost";
 import {CommentsPost} from "./CommentsPost/CommentsPost";
+import {AddCommentPostContainer} from "./AddCommentPost/AddCommentPostContainer";
 
 
 const Post = (props) => {
@@ -28,7 +28,7 @@ const Post = (props) => {
             <div className={PostsStyle.comments}>
                 {commentPosts}
             </div>
-            <AddCommentPost newCommentText={props.newCommentText} dispatch={props.dispatch}/>
+            <AddCommentPostContainer store={props.store}/>
         </div>
     );
 };
