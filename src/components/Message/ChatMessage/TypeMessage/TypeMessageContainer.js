@@ -1,22 +1,25 @@
 import React from 'react';
 import {addMessageActionCreator, updateTypeMessageActionCreator} from "../../../../redux/MessagePageReducer";
 import {TypeMessage} from "./TypeMessage";
+import {connect} from "react-redux";
 
-const TypeMessageContainer = (props) => {
-    let state = props.store.getState();
+const mapStateToProps = (state) => {
+    return {
+        newMessageText: state.messagePage.newMessageText,
+    }
+}
 
-    let updateMessage = (message) => {
-        props.store.dispatch(updateTypeMessageActionCreator(message))
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateMessage: (message) => {
+            dispatch(updateTypeMessageActionCreator(message));
+        },
+        addMessage: () => {
+            dispatch(addMessageActionCreator());
+        }
     }
-    let addMessage = () => {
-        props.store.dispatch(addMessageActionCreator());
-    }
-    return (
-        <TypeMessage newMessageText={state.messagePage.newMessageText}
-                     updateMessage={updateMessage}
-                     addMessage={addMessage}
-        />
-    );
-};
+}
+
+const TypeMessageContainer = connect(mapStateToProps, mapDispatchToProps)(TypeMessage);
 
 export {TypeMessageContainer};

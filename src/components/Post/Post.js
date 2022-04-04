@@ -28,7 +28,7 @@ const Post = (props) => {
             <div className={PostsStyle.comments}>
                 {commentPosts}
             </div>
-            <AddCommentPostContainer store={props.store}/>
+            <AddCommentPostContainer/>
         </div>
     );
 };

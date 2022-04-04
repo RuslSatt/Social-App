@@ -15,7 +15,6 @@ function App(props) {
                 <Route path='/social-app' element={<StartPage/>}/>
                 <Route path='home' element={<HomePage postState={props.appState.homePage.Posts}/>}/>
                 <Route path='post' element={<Post postState={props.appState.homePage.Posts[0]}
-                                                  store={props.store}
                                                   newComment={props.appState.homePage.newComment}/>}/>
                 <Route path='message' element={<Message messageState={props.appState.messagePage.Message}/>}/>
                 <Route path='user-chat' element={<ChatMessage store={props.store}

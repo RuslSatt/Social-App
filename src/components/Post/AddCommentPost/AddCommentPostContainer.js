@@ -1,25 +1,27 @@
 import React from 'react';
 import {addCommentActionCreator, updateCommentActionCreator} from "../../../redux/HomePageReducer";
 import {AddCommentPost} from "./AddCommentPost";
+import {connect} from "react-redux";
 
 
-const AddCommentPostContainer = (props) => {
-    let state = props.store.getState();
-
-    let addComment = () => {
-        props.store.dispatch(addCommentActionCreator());
+const mapStateToProps = (state) => {
+    return {
+        newCommentText: state.homePage.newCommentText
     }
+}
 
-    let updateComment = (text) => {
-        props.store.dispatch(updateCommentActionCreator(text));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addComment: () => {
+            dispatch(addCommentActionCreator());
+            },
+        updateComment: (text) => {
+            dispatch(updateCommentActionCreator(text));
+        },
     }
+}
 
-    return (
-        <AddCommentPost addComment={addComment}
-                        updateComment={updateComment}
-                        newCommentText={state.homePage.newCommentText}
-        />
-    );
-};
+
+const AddCommentPostContainer = connect(mapStateToProps, mapDispatchToProps)(AddCommentPost);
 
 export {AddCommentPostContainer};
