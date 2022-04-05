@@ -16,7 +16,7 @@ const ChatMessage = (props) => {
             <div className={ChatMessageStyle.body__user}>
                 {userMessageChat}
             </div>
-            <TypeMessageContainer store={props.store}/>
+            <TypeMessageContainer/>
         </div>
     );
 };

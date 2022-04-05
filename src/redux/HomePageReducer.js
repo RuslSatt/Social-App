@@ -29,12 +29,15 @@ const homePageReducer = (state = initialState, action) => {
                 comment: state.newCommentText,
                 time: state.Posts[0].time,
             }
-            state.newComment.push(newComment);
-            state.newCommentText = '';
-            return state;
+            let stateCopy = {...state};
+            stateCopy.newComment = [...state.newComment];
+            stateCopy.newComment.push(newComment);
+            stateCopy.newCommentText = '';
+            return stateCopy;
         case updateCommentActionType:
-            state.newCommentText = action.text;
-            return state;
+            let stateCopySecond = {...state};
+            stateCopySecond.newCommentText = action.text;
+            return stateCopySecond;
         default:
             return state;
     }
