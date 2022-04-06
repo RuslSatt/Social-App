@@ -1,6 +1,15 @@
 const updateTypeMessage = 'UPDATE-MESSAGE';
 const addMessage = 'ADD-MESSAGE';
 
+const addMessageActionCreator = () => ({
+    type: addMessage,
+})
+
+const updateTypeMessageActionCreator = (message) => ({
+    type: updateTypeMessage,
+    message: message,
+})
+
 let initialState = {
     Message: [
         {
@@ -38,18 +47,22 @@ let initialState = {
 
 const messagePageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case updateTypeMessage:
-            state.newMessageText = action.message;
-            return state;
         case addMessage:
             const newMessage = {
                 id: 0,
                 message: state.newMessageText,
                 time: '2 mins ago',
             }
-            state.newMessage.push(newMessage);
-            state.newMessageText = '';
-            return state;
+            return {
+                ...state,
+                newMessage: [...state.newMessage, newMessage],
+                newMessageText: '',
+            }
+        case updateTypeMessage:
+            return {
+                ...state,
+                newMessageText: action.message,
+            }
         default:
             return state;
     }
@@ -59,12 +72,3 @@ export {
     messagePageReducer, updateTypeMessageActionCreator,
     addMessageActionCreator
 };
-
-const addMessageActionCreator = () => ({
-    type: addMessage,
-})
-
-const updateTypeMessageActionCreator = (message) => ({
-    type: updateTypeMessage,
-    message: message,
-})

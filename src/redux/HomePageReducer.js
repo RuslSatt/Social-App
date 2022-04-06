@@ -1,6 +1,15 @@
 const addCommentActionType = 'ADD-COMMENT';
 const updateCommentActionType = 'UPDATE-COMMENT';
 
+const addCommentActionCreator = () => ({
+    type: addCommentActionType
+});
+
+const updateCommentActionCreator = (text) => ({
+    type: updateCommentActionType,
+    text: text
+})
+
 let initialState = {
     Posts: [
         {
@@ -29,27 +38,20 @@ const homePageReducer = (state = initialState, action) => {
                 comment: state.newCommentText,
                 time: state.Posts[0].time,
             }
-            let stateCopy = {...state};
-            stateCopy.newComment = [...state.newComment];
-            stateCopy.newComment.push(newComment);
-            stateCopy.newCommentText = '';
-            return stateCopy;
+            return {
+                ...state,
+                newCommentText: '',
+                newComment: [...state.newComment, newComment],
+            }
+
         case updateCommentActionType:
-            let stateCopySecond = {...state};
-            stateCopySecond.newCommentText = action.text;
-            return stateCopySecond;
+            return {
+                ...state,
+                newCommentText: action.text,
+            }
         default:
             return state;
     }
 }
 
 export {homePageReducer, addCommentActionCreator, updateCommentActionCreator};
-
-const addCommentActionCreator = () => ({
-    type: addCommentActionType
-});
-
-const updateCommentActionCreator = (text) => ({
-    type: updateCommentActionType,
-    text: text
-})
