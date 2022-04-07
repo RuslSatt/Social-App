@@ -23,7 +23,7 @@ const Footer = () => {
             <NavLink to='/iconly'>
                 <IconLy/>
             </NavLink>
-            <NavLink to='/profile'>
+            <NavLink to='/user-profile'>
                 <ProfileIcon/>
             </NavLink>
 

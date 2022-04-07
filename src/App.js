@@ -7,6 +7,7 @@ import {HomePageContainer} from "./components/HomePage/HomePageContainer";
 import {PostContainer} from "./components/Post/PostContainer";
 import {MessageContainer} from "./components/Message/MessageContainer";
 import {ChatMessageContainer} from "./components/Message/ChatMessage/ChatMessageContainer";
+import {UserProfileContainer} from "./components/UserProfile/UserProfileContainer";
 
 function App(props) {
     return (
@@ -17,6 +18,7 @@ function App(props) {
                 <Route path='post' element={<PostContainer/>}/>
                 <Route path='message' element={<MessageContainer/>}/>
                 <Route path='user-chat' element={<ChatMessageContainer/>}/>
+                <Route path='user-profile' element={<UserProfileContainer/>}/>
             </Routes>
         </div>
     );
