@@ -9,14 +9,14 @@ const HeaderUserProfile = (props) => {
     return (
         <header className={HeaderUserProfileStyle.header}>
             <div className={HeaderUserProfileStyle.header__body}>
-                <div className={HeaderUserProfileStyle.teg}>
-                    {props.teg}
+                <div className={HeaderUserProfileStyle.tag}>
+                    {props.tag}
                 </div>
                 <NavLink className={HeaderUserProfileStyle.icon_settings} to='/settings'>
                     <img src={Setting} alt="setting"/>
                 </NavLink>
             </div>
-            <img className={HeaderUserProfileStyle.back_image} src={HeaderBack} alt=""/>
+            <img className={HeaderUserProfileStyle.back_image} src={HeaderBack} alt="background"/>
         </header>
     );
 };

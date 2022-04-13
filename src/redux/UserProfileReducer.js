@@ -7,13 +7,16 @@ const userProfileCreator = () => ({
 let initialState = {
     userData: {
         id: 0,
-        teg: '@RusDarth',
+        tag: '@RusDarth',
         name: 'Ruslan',
-        gps: 'Russia, Ufa',
+        location: 'Russia, Ufa',
         followers: 150,
         following: 100,
-        shots: 0,
-        collections: 0,
+        shots: [
+        ],
+        collections: [
+
+        ],
         linkWeb: '',
         linkInst: '',
         linkFace: '',

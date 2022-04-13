@@ -5,11 +5,13 @@ import {UserProfile} from "./UserProfile";
 
 const mapStateToProps = (state) => {
     return {
-        teg: state.userProfile.userData.teg,
+        tag: state.userProfile.userData.tag,
         name: state.userProfile.userData.name,
-        gps: state.userProfile.userData.gps,
+        location: state.userProfile.userData.location,
         followers: state.userProfile.userData.followers,
         following: state.userProfile.userData.following,
+        shots: state.userProfile.userData.shots,
+        collections: state.userProfile.userData.collections,
     }
 }
 
