@@ -12,7 +12,13 @@ const HomePage = (props) => {
         name={elem.name}
         time={elem.time}
         countComment={elem.countComment}
-        countLikes={elem.countLikes} key={elem.id}/>)
+        countLikes={elem.countLikes}
+        key={elem.id}
+        id={elem.id}
+        avatar={elem.avatar}
+        poster={elem.poster}
+        getPostId={props.getPostId}
+    />)
     return (
         <div className={HomePageStyle.HomePage}>
             <Search/>

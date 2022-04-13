@@ -13,6 +13,11 @@
     align-items: center;
     gap: 10px;
 }
+.user img {
+    max-width: 30px;
+    border-radius: 50%;
+}
+
 .user p {
     color: #242424;
     font-size: 1rem;

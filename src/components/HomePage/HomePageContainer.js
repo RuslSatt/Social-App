@@ -1,6 +1,6 @@
-import React from 'react';
 import {HomePage} from "./HomePage";
 import {connect} from "react-redux";
+import {postIdActionCreator} from "../../redux/HomePageReducer";
 
 const mapStateToProps = (state) => {
     return {
@@ -8,6 +8,14 @@ const mapStateToProps = (state) => {
     }
 };
 
-const HomePageContainer = connect(mapStateToProps)(HomePage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getPostId: (postId) => {
+            dispatch(postIdActionCreator(postId))
+        }
+    }
+}
+
+const HomePageContainer = connect(mapStateToProps, mapDispatchToProps)(HomePage);
 
 export {HomePageContainer};

@@ -17,7 +17,9 @@ const TabsUserProfile = (props) => {
                     shots
                 </span>
             </div>
-            <div className={TabsUserProfileStyle.collections}>
+            <div className={TabsUserProfileStyle.collections} onClick={() => {
+                collections.background = '#F1F1FE';
+            }}>
                 <span>
                     {collections.length > 0 ? <div>
                         {collections.length}

@@ -19,12 +19,12 @@ const Post = (props) => {
     return (
         <div className={PostsStyle.Posts}>
             <HeaderPost/>
-            <HeaderPostHome name={props.postState.name} time={props.postState.time}/>
-            <PosterPostHome/>
-            <NavPost countWatch={props.postState.countWatch}
-                     countComment={props.postState.countComment}
-                     countLikes={props.postState.countLikes}/>
-            <DescriptionPost title={props.postState.title} description={props.postState.description}/>
+            <HeaderPostHome avatar={props.avatar} name={props.name} time={props.time}/>
+            <PosterPostHome poster={props.poster}/>
+            <NavPost countWatch={props.countWatch}
+                     countComment={props.countComment}
+                     countLikes={props.countLikes}/>
+            <DescriptionPost title={props.title} description={props.description}/>
             <div className={PostsStyle.comments}>
                 {commentPosts}
             </div>
