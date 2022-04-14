@@ -44,6 +44,9 @@ let initialState = {
                 '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
                 '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
                 '                neque cursus risus.',
+            newComment: [
+
+            ],
         },
         {
             open: false,
@@ -57,7 +60,10 @@ let initialState = {
             countWatch: 352,
             title: 'Street portrait',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
-                '                neque.'
+                '                neque.',
+            newComment: [
+
+            ],
         },
         {
             open: false,
@@ -73,7 +79,10 @@ let initialState = {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
                 '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
                 '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus.'
+                '                neque cursus risus.',
+            newComment: [
+
+            ],
         },
         {
             open: false,
@@ -89,7 +98,10 @@ let initialState = {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
                 '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
                 '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus.'
+                '                neque cursus risus.',
+            newComment: [
+
+            ],
         },
         {
             open: false,
@@ -105,10 +117,12 @@ let initialState = {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
                 '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
                 '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus.'
+                '                neque cursus risus.',
+            newComment: [
+
+            ],
         },
     ],
-    newComment: [],
     newCommentText: '',
 }
 
@@ -124,7 +138,15 @@ const homePageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 newCommentText: '',
-                newComment: [...state.newComment, newComment],
+                Posts: state.Posts.map(elem => {
+                    if (elem.open === true) {
+                        return  {
+                            ...elem, newComment: [...elem.newComment, newComment]
+                        }
+                    } else {
+                        return elem;
+                    }
+                })
             }
         case updateCommentActionType:
             return {

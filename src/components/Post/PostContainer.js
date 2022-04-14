@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
         countLikes: Posts[0].countLikes,
         title: Posts[0].title,
         description: Posts[0].description,
-        newComment: state.homePage.newComment,
+        newComment: Posts[0].newComment,
     }
 };
 

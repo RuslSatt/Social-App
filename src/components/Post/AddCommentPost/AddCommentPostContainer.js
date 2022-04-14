@@ -1,4 +1,3 @@
-import React from 'react';
 import {addCommentActionCreator, updateCommentActionCreator} from "../../../redux/HomePageReducer";
 import {AddCommentPost} from "./AddCommentPost";
 import {connect} from "react-redux";
