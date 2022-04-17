@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/ReduxStore";
 import {Provider} from "react-redux";
+import "./data/firebase";
+
 
 ReactDOM.render(
     <React.StrictMode>

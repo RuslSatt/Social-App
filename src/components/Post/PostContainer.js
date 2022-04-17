@@ -1,5 +1,6 @@
 import {connect} from "react-redux";
 import {Post} from "./Post";
+import {setCommentAC} from "../../redux/HomePageReducer";
 
 
 const mapStateToProps = (state) => {
@@ -15,9 +16,18 @@ const mapStateToProps = (state) => {
         title: Posts[0].title,
         description: Posts[0].description,
         newComment: Posts[0].newComment,
+        Posts: state.homePage.Posts,
     }
 };
 
-const PostContainer = connect(mapStateToProps)(Post);
+const mapToDispatchProps = (dispatch) => {
+    return {
+        setComment (comment) {
+            dispatch(setCommentAC(comment))
+        }
+    }
+}
+
+const PostContainer = connect(mapStateToProps, mapToDispatchProps)(Post);
 
 export {PostContainer};

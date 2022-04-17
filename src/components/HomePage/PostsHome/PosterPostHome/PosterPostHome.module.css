@@ -1,7 +1,14 @@
 .Poster {
 }
 .Poster img {
-   max-height: 250px;
    width: 100%;
+   min-height: 50vh;
+   max-height: 60vh;
    object-fit: cover;
+}
+
+@media (max-width: 500px) {
+   .Poster img {
+      min-height: 40vh;
+   }
 }

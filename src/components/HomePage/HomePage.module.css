@@ -1,5 +1,5 @@
 .HomePage {
-    background: #F6F7F9;
+    background: rgba(136, 139, 244, 0);
     min-height: 100vh;
     overflow: hidden;
     animation: home 1s ease-in-out;

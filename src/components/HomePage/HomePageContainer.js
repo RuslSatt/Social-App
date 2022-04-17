@@ -1,6 +1,6 @@
 import {HomePage} from "./HomePage";
 import {connect} from "react-redux";
-import {postIdActionCreator} from "../../redux/HomePageReducer";
+import {postIdActionCreator, getPostAC} from "../../redux/HomePageReducer";
 
 const mapStateToProps = (state) => {
     return {
@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getPostId: (postId) => {
             dispatch(postIdActionCreator(postId))
+        },
+        setPost: (post) => {
+            dispatch(getPostAC(post))
         }
     }
 }

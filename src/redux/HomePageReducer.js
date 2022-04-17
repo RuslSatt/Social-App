@@ -1,17 +1,10 @@
-import AvatarOne from '../assets/images/posts/Post-4.png';
-import AvatarTwo from '../assets/images/posts/Post-3.png';
-import AvatarThree from '../assets/images/posts/Post-2.png';
-import AvatarFour from '../assets/images/posts/Post-1.png';
-import AvatarFive from '../assets/images/posts/Post-6.png';
-import PostOne from '../assets/images/posts/Post-1.png';
-import PostTwo from '../assets/images/posts/Post-2.png';
-import PostThree from '../assets/images/posts/Post-3.png';
-import PostFour from '../assets/images/posts/Post-4.png';
-import PostFive from '../assets/images/posts/Post-5.png';
+import {arrayUnion, doc, getFirestore, updateDoc} from "firebase/firestore";
 
 const addCommentActionType = 'ADD-COMMENT';
 const updateCommentActionType = 'UPDATE-COMMENT';
-const postIdActionType = 'POST-ID'
+const postIdActionType = 'POST-ID';
+const getPostAT = 'URL-IMAGE';
+const setCommentAT = 'SET-COMMENT'
 
 const addCommentActionCreator = () => ({
     type: addCommentActionType
@@ -20,108 +13,40 @@ const addCommentActionCreator = () => ({
 const updateCommentActionCreator = (text) => ({
     type: updateCommentActionType,
     text: text
-})
+});
 
 const postIdActionCreator = (postId) => ({
     type: postIdActionType,
     postId: postId,
 });
 
+const getPostAC = (post) => ({
+    type: getPostAT,
+    post: post,
+});
+
+const setCommentAC = (comment) => ({
+    type: setCommentAT,
+    comment: comment,
+});
+
 let initialState = {
     Posts: [
-        {
-            open: false,
-            id: 0,
-            avatar: AvatarOne,
-            poster: PostOne,
-            name: 'Tomas',
-            time: '1 hour ago',
-            countComment: 20,
-            countLikes: 158,
-            countWatch: 352,
-            title: 'Street portrait',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
-                '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus.',
-            newComment: [
-
-            ],
-        },
-        {
-            open: false,
-            id: 1,
-            avatar: AvatarTwo,
-            poster: PostTwo,
-            name: 'Lukas',
-            time: '3 hour ago',
-            countComment: 12,
-            countLikes: 125,
-            countWatch: 352,
-            title: 'Street portrait',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
-                '                neque.',
-            newComment: [
-
-            ],
-        },
-        {
-            open: false,
-            id: 2,
-            avatar: AvatarThree,
-            poster: PostThree,
-            name: 'Mark',
-            time: '5 hour ago',
-            countComment: 28,
-            countLikes: 86,
-            countWatch: 352,
-            title: 'Street portrait',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
-                '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus.',
-            newComment: [
-
-            ],
-        },
-        {
-            open: false,
-            id: 3,
-            avatar: AvatarFour,
-            poster: PostFour,
-            name: 'Andrew',
-            time: '12 hour ago',
-            countComment: 5,
-            countLikes: 331,
-            countWatch: 352,
-            title: 'Street portrait',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
-                '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus.',
-            newComment: [
-
-            ],
-        },
-        {
-            open: false,
-            id: 4,
-            avatar: AvatarFive,
-            poster: PostFive,
-            name: 'Jaden',
-            time: '15 hour ago',
-            countComment: 3,
-            countLikes: 56,
-            countWatch: 352,
-            title: 'Street portrait',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
-                '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus. Eget dictumst vitae enim, felis morbi. Quis risus,\n' +
-                '                neque cursus risus.',
-            newComment: [
-
-            ],
-        },
+        // {
+        //     open: false,
+        //     id: 1,
+        //     avatar: AvatarTwo,
+        //     poster: PostTwo,
+        //     name: 'Lukas',
+        //     time: '3 hour ago',
+        //     countComment: 12,
+        //     countLikes: 125,
+        //     countWatch: 352,
+        //     title: 'Street portrait',
+        //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
+        //         '                neque.',
+        //     newComment: [],
+        // },
     ],
     newCommentText: '',
 }
@@ -135,12 +60,22 @@ const homePageReducer = (state = initialState, action) => {
                 comment: state.newCommentText,
                 time: state.Posts[0].time,
             }
+            state.Posts.map (elem => {
+                if (elem.open === true) {
+                    const db = getFirestore();
+                    const commentRef = doc(db, "users", "ZjcJsvXX2pqK9cbqNDuQ");
+
+                    updateDoc(commentRef, {
+                        newComment: arrayUnion(newComment)
+                    })
+                }
+            })
             return {
                 ...state,
                 newCommentText: '',
                 Posts: state.Posts.map(elem => {
                     if (elem.open === true) {
-                        return  {
+                        return {
                             ...elem, newComment: [...elem.newComment, newComment]
                         }
                     } else {
@@ -168,9 +103,36 @@ const homePageReducer = (state = initialState, action) => {
                     }
                 }),
             }
+        case getPostAT:
+            const addPost = () => {
+                state.Posts.map(elem => {
+                    if (elem.id === action.post.id) {
+                        state.Posts.splice(elem.id);
+                    }
+                })
+            }
+            addPost();
+            return {
+                ...state,
+                Posts: [...state.Posts, action.post]
+            }
+
+        case setCommentAT:
+            return {
+                ...state,
+                Posts: state.Posts.map(elem => {
+                    if (elem.open === true) {
+                        return {
+                            ...elem, newComment: [...elem.newComment, action.comment]
+                        }
+                    } else {
+                        return elem;
+                    }
+                })
+            }
         default:
             return state;
     }
 }
 
-export {homePageReducer, addCommentActionCreator, updateCommentActionCreator, postIdActionCreator};
+export {homePageReducer, addCommentActionCreator, updateCommentActionCreator, postIdActionCreator, getPostAC, setCommentAC};

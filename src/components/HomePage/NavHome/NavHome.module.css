@@ -5,6 +5,7 @@
     justify-content: space-between;
     padding: 0.4rem;
     background: #FFFFFF;
+    border-radius: 5px;
 }
 
 .button {

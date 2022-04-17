@@ -7,30 +7,47 @@ import {NavPost} from "./NavPost/NavPost";
 import {DescriptionPost} from "./DescriptionPost/DescriptionPost";
 import {CommentsPost} from "./CommentsPost/CommentsPost";
 import {AddCommentPostContainer} from "./AddCommentPost/AddCommentPostContainer";
+import {doc, onSnapshot, getFirestore} from "firebase/firestore";
 
 
-const Post = (props) => {
+class Post extends React.Component {
 
-    let commentPosts = props.newComment.map(elem => <CommentsPost name={elem.name}
-                                                                    comment={elem.comment}
-                                                                    time={elem.time}
-                                                                    key={elem.id}/>)
+    componentDidMount() {
+        this.props.Posts.map (elem => {
+            if (elem.open === true) {
+                const db = getFirestore();
+                const unsub = onSnapshot(doc(db, "users", "ZjcJsvXX2pqK9cbqNDuQ"), (doc) => {
+                    this.props.setComment(doc.data().newComment);
+                });
+            }
+        })
+    }
 
-    return (
-        <div className={PostsStyle.Posts}>
-            <HeaderPost/>
-            <HeaderPostHome avatar={props.avatar} name={props.name} time={props.time}/>
-            <PosterPostHome poster={props.poster}/>
-            <NavPost countWatch={props.countWatch}
-                     countComment={props.countComment}
-                     countLikes={props.countLikes}/>
-            <DescriptionPost title={props.title} description={props.description}/>
-            <div className={PostsStyle.comments}>
-                {commentPosts}
+
+    render () {
+        let commentPosts = this.props.newComment.map(elem => <CommentsPost name={elem.name}
+                                                                      comment={elem.comment}
+                                                                      time={elem.time}
+                                                                      key={elem.id}/>)
+
+
+        return (
+            <div className={PostsStyle.Posts}>
+                <HeaderPost/>
+                <HeaderPostHome avatar={this.props.avatar} name={this.props.name} time={this.props.time}/>
+                <PosterPostHome poster={this.props.poster}/>
+                <NavPost countWatch={this.props.countWatch}
+                         countComment={this.props.countComment}
+                         countLikes={this.props.countLikes}/>
+                <DescriptionPost title={this.props.title} description={this.props.description}/>
+                <div className={PostsStyle.comments}>
+                    {commentPosts}
+                </div>
+                <AddCommentPostContainer/>
             </div>
-            <AddCommentPostContainer/>
-        </div>
-    );
-};
+        );
+    };
+    }
+
 
 export {Post};

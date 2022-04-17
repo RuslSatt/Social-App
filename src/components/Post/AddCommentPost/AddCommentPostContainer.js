@@ -5,7 +5,8 @@ import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
     return {
-        newCommentText: state.homePage.newCommentText
+        newCommentText: state.homePage.newCommentText,
+        Posts: state.homePage.Posts
     }
 }
 

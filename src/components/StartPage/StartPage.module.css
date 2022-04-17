@@ -24,7 +24,6 @@
 .images {
     max-width: 345px;
     margin: 0 auto;
-
 }
 @media (max-width: 371px) {
     .images {

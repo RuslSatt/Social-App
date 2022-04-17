@@ -6,6 +6,7 @@
     justify-content: space-between;
     padding: 0.75rem 1rem;
     background: #FFFFFF;
+    max-width: 768px;
 }
 
 .comment {

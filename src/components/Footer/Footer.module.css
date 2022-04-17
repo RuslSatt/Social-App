@@ -1,4 +1,5 @@
 .Footer {
+    max-width: 768px;
     background: url("../../assets/images/Surface.svg") center no-repeat;
     background-size: cover;
     box-shadow: 0 -1px 30px rgba(138, 149, 158, 0.2);
@@ -10,8 +11,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 25px;
+    border-radius: 20px 20px 0 0 ;
 }
 
 .btnAdd {
     transform: translate( 0, -35%);
+    height: 100px;
+    width: 100px;
 }
