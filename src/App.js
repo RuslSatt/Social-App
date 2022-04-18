@@ -2,12 +2,12 @@ import './App.css';
 import './normalize.css'
 import './fonts.css'
 import {Routes, Route} from 'react-router-dom';
-import {StartPage} from "./components/StartPage/StartPage";
 import {HomePageContainer} from "./components/HomePage/HomePageContainer";
 import {PostContainer} from "./components/Post/PostContainer";
 import {MessageContainer} from "./components/Message/MessageContainer";
 import {ChatMessageContainer} from "./components/Message/ChatMessage/ChatMessageContainer";
 import {UserProfileContainer} from "./components/UserProfile/UserProfileContainer";
+import {StartPage} from "./components/StartPage/StartPage";
 
 function App(props) {
     return (

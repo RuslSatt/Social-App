@@ -7,16 +7,20 @@ import {NavPost} from "./NavPost/NavPost";
 import {DescriptionPost} from "./DescriptionPost/DescriptionPost";
 import {CommentsPost} from "./CommentsPost/CommentsPost";
 import {AddCommentPostContainer} from "./AddCommentPost/AddCommentPostContainer";
-import {doc, onSnapshot, getFirestore} from "firebase/firestore";
+import {doc, onSnapshot, getFirestore, getDocs, collection} from "firebase/firestore";
 
 
 class Post extends React.Component {
 
-    componentDidMount() {
-        this.props.Posts.map (elem => {
+    async componentDidMount() {
+        const db = getFirestore();
+        const data = await getDocs(collection(db, "users"));
+        this.props.setPost(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+
+        this.props.Posts.map(elem => {
             if (elem.open === true) {
                 const db = getFirestore();
-                const unsub = onSnapshot(doc(db, "users", "ZjcJsvXX2pqK9cbqNDuQ"), (doc) => {
+                const unsubOne = onSnapshot(doc(db, "users", elem.id), (doc) => {
                     this.props.setComment(doc.data().newComment);
                 });
             }
@@ -24,30 +28,35 @@ class Post extends React.Component {
     }
 
 
-    render () {
-        let commentPosts = this.props.newComment.map(elem => <CommentsPost name={elem.name}
-                                                                      comment={elem.comment}
-                                                                      time={elem.time}
-                                                                      key={elem.id}/>)
-
-
+    render() {
         return (
-            <div className={PostsStyle.Posts}>
-                <HeaderPost/>
-                <HeaderPostHome avatar={this.props.avatar} name={this.props.name} time={this.props.time}/>
-                <PosterPostHome poster={this.props.poster}/>
-                <NavPost countWatch={this.props.countWatch}
-                         countComment={this.props.countComment}
-                         countLikes={this.props.countLikes}/>
-                <DescriptionPost title={this.props.title} description={this.props.description}/>
-                <div className={PostsStyle.comments}>
-                    {commentPosts}
-                </div>
-                <AddCommentPostContainer/>
+            <div>
+                {
+                    this.props.Posts.map (post => {
+                        if (post.open === true) {
+                            return (
+                                <div key={post.id} className={PostsStyle.Posts}>
+                                    <HeaderPost/>
+                                    <HeaderPostHome avatar={post.avatar} name={post.name} time={post.time}/>
+                                    <PosterPostHome poster={post.poster}/>
+                                    <NavPost countWatch={post.countWatch}
+                                             countComment={post.countComment}
+                                             countLikes={post.countLikes}/>
+                                    <DescriptionPost title={post.title} description={post.description}/>
+                                    <div className={PostsStyle.comments}>
+                                        <CommentsPost newComment={post.newComment}/>
+                                    </div>
+                                    <AddCommentPostContainer/>
+                                </div>
+                            )
+                        }
+                    })
+                }
             </div>
+
         );
     };
-    }
+}
 
 
 export {Post};

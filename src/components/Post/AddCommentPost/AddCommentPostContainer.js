@@ -1,4 +1,4 @@
-import {addCommentActionCreator, updateCommentActionCreator} from "../../../redux/HomePageReducer";
+import {addCommentActionCreator, setCommentAC, updateCommentActionCreator} from "../../../redux/HomePageReducer";
 import {AddCommentPost} from "./AddCommentPost";
 import {connect} from "react-redux";
 
@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch) => {
         updateComment: (text) => {
             dispatch(updateCommentActionCreator(text));
         },
+        setComment (comment) {
+            dispatch(setCommentAC(comment))
+        }
     }
 }
 

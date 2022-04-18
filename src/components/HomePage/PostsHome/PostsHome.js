@@ -5,20 +5,29 @@ import {PosterPostHome} from "./PosterPostHome/PosterPostHome";
 import {NavPostHome} from "./NavPostHome/NavPostHome";
 import {NavLink} from "react-router-dom";
 
-const PostsHome = (props) => {
-    const getId = () => {
-        const postId = props.id;
-        props.getPostId(postId);
+class PostsHome extends React.Component {
+
+    render() {
+        const getId = (id) => {
+            this.props.getPostId(id);
+        }
+
+        return (
+            <div>
+                {this.props.Posts.map(post => {
+                    return (
+                        <div onClick={ () => {getId(post.id)}} key={post.id} className={PostsHomeStyle.Post}>
+                            <NavLink to='/post'>
+                                <HeaderPostHome avatar={post.avatar} name={post.name} time={post.time}/>
+                            </NavLink>
+                            <PosterPostHome poster={post.poster}/>
+                            <NavPostHome countComment={post.countComment} countLikes={post.countLikes}/>
+                        </div>
+                    )
+                })}
+            </div>
+        );
     }
-    return (
-        <div onClick={getId} className={PostsHomeStyle.Post}>
-            <NavLink   to='/post'>
-                <HeaderPostHome avatar={props.avatar} name={props.name} time={props.time}/>
-            </NavLink>
-            <PosterPostHome poster={props.poster}/>
-            <NavPostHome countComment={props.countComment} countLikes={props.countLikes}/>
-        </div>
-    );
-};
+}
 
 export {PostsHome};

@@ -7,7 +7,9 @@ import Images4 from '../../assets/images/mask-group-4.png'
 import {NavLink} from "react-router-dom";
 
 
-const StartPage = () => {
+
+const StartPage = (props) => {
+
     return (
         <div className={WelcomePageStyle.body}>
             <p className={WelcomePageStyle.title}>

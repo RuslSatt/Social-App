@@ -1,7 +1,6 @@
 import React, {useRef} from 'react';
 import AddCommentPostStyle from './AddCommentPost.module.css'
 import Avatar from '../../../assets/images/ava-192.png'
-import {doc, getFirestore, updateDoc, arrayUnion, arrayRemove} from "firebase/firestore";
 
 
 const AddCommentPost = (props) => {

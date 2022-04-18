@@ -10,12 +10,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        setPost: (post) => {
+            dispatch(getPostAC(post))
+        },
         getPostId: (postId) => {
             dispatch(postIdActionCreator(postId))
         },
-        setPost: (post) => {
-            dispatch(getPostAC(post))
-        }
     }
 }
 

@@ -4,43 +4,26 @@ import {Footer} from "../Footer/Footer";
 import {Search} from "../Search/Search";
 import {NavHome} from "./NavHome/NavHome";
 import {PostsHome} from "./PostsHome/PostsHome";
-import {getFirestore, collection, getDocs, addDoc} from "firebase/firestore";
-// import {ref, getStorage, getDownloadURL} from 'firebase/storage'
+import {getFirestore, collection, getDocs} from "firebase/firestore";
 
 
 class HomePage extends React.Component {
 
     async componentDidMount() {
         const db = getFirestore();
-        const querySnapshot = await getDocs(collection(db, "users"));
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            this.props.setPost(data);
-        });
+        const data = await getDocs(collection(db, "users"));
+        this.props.setPost(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
     }
 
 
     render() {
-
-        const Posts = this.props.postState.map(elem => <PostsHome
-            name={elem.name}
-            time={elem.time}
-            countComment={elem.countComment}
-            countLikes={elem.countLikes}
-            key={elem.id}
-            id={elem.id}
-            avatar={elem.avatar}
-            poster={elem.poster}
-            getPostId={this.props.getPostId}
-        />)
         return (
             <div className={HomePageStyle.HomePage}>
                 <Search/>
                 <NavHome/>
                 <div className={HomePageStyle.Posts}>
-                    {Posts}
+                    <PostsHome getPostId={this.props.getPostId} Posts={this.props.postState}/>
                 </div>
-
                 <Footer/>
             </div>
         );

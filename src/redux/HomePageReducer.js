@@ -31,45 +31,43 @@ const setCommentAC = (comment) => ({
 });
 
 let initialState = {
-    Posts: [
-        // {
-        //     open: false,
-        //     id: 1,
-        //     avatar: AvatarTwo,
-        //     poster: PostTwo,
-        //     name: 'Lukas',
-        //     time: '3 hour ago',
-        //     countComment: 12,
-        //     countLikes: 125,
-        //     countWatch: 352,
-        //     title: 'Street portrait',
-        //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis risus,\n' +
-        //         '                neque.',
-        //     newComment: [],
-        // },
-    ],
+    Posts: [],
     newCommentText: '',
 }
 
 const homePageReducer = (state = initialState, action) => {
     switch (action.type) {
         case addCommentActionType:
+            let id = 0
+            const createId = () => {
+                state.Posts.map(elem => {
+                    if (elem.open === true && elem.newComment.length > 0) {
+                        id = elem.newComment.length
+                    }
+
+                })
+            }
+            createId();
             const newComment = {
-                id: 0,
+                id: id,
                 name: state.Posts[0].name,
                 comment: state.newCommentText,
                 time: state.Posts[0].time,
             }
-            state.Posts.map (elem => {
-                if (elem.open === true) {
-                    const db = getFirestore();
-                    const commentRef = doc(db, "users", "ZjcJsvXX2pqK9cbqNDuQ");
+            const addPostToDb = () => {
+                state.Posts.map(elem => {
+                    if (elem.open === true) {
 
-                    updateDoc(commentRef, {
-                        newComment: arrayUnion(newComment)
-                    })
-                }
-            })
+                        const db = getFirestore();
+                        const commentRef = doc(db, "users", elem.id);
+
+                        updateDoc(commentRef, {
+                            newComment: arrayUnion(newComment)
+                        })
+                    }
+                })
+            }
+            addPostToDb();
             return {
                 ...state,
                 newCommentText: '',
@@ -77,6 +75,10 @@ const homePageReducer = (state = initialState, action) => {
                     if (elem.open === true) {
                         return {
                             ...elem, newComment: [...elem.newComment, newComment]
+                        }
+                    } else if (action.type === setCommentAT) {
+                        return {
+                            ...elem, newComment: [...elem.newComment, action.comment]
                         }
                     } else {
                         return elem;
@@ -89,6 +91,25 @@ const homePageReducer = (state = initialState, action) => {
                 newCommentText: action.text,
             }
         case postIdActionType:
+            const updatePostOpen = () => {
+                state.Posts.map(elem => {
+                    if (elem.id === action.postId) {
+                        const db = getFirestore();
+                        const dataOpen = doc(db, "users", elem.id);
+                        updateDoc(dataOpen, {
+                            open: true
+                        })
+                    } else {
+                        const db = getFirestore();
+                        const dataOpen = doc(db, "users", elem.id);
+                        updateDoc(dataOpen, {
+                            open: false
+                        })
+                    }
+                })
+
+            }
+            updatePostOpen();
             return {
                 ...state,
                 Posts: state.Posts.map(elem => {
@@ -104,35 +125,24 @@ const homePageReducer = (state = initialState, action) => {
                 }),
             }
         case getPostAT:
-            const addPost = () => {
-                state.Posts.map(elem => {
-                    if (elem.id === action.post.id) {
-                        state.Posts.splice(elem.id);
-                    }
-                })
+            const cleanPost = () => {
+                state.Posts.length = 0;
             }
-            addPost();
+            cleanPost();
             return {
                 ...state,
-                Posts: [...state.Posts, action.post]
-            }
-
-        case setCommentAT:
-            return {
-                ...state,
-                Posts: state.Posts.map(elem => {
-                    if (elem.open === true) {
-                        return {
-                            ...elem, newComment: [...elem.newComment, action.comment]
-                        }
-                    } else {
-                        return elem;
-                    }
-                })
+                Posts: [...state.Posts, action.post].flat()
             }
         default:
             return state;
     }
 }
 
-export {homePageReducer, addCommentActionCreator, updateCommentActionCreator, postIdActionCreator, getPostAC, setCommentAC};
+export {
+    homePageReducer,
+    addCommentActionCreator,
+    updateCommentActionCreator,
+    postIdActionCreator,
+    getPostAC,
+    setCommentAC
+};
