@@ -19,3 +19,21 @@
     height: 100px;
     width: 100px;
 }
+@media (max-width: 600px) {
+    .btnAdd {
+        height: 80px;
+        width: 80px;
+    }
+}
+@media (max-width: 500px) {
+    .btnAdd {
+        height: 70px;
+        width: 70px;
+    }
+}
+@media (max-width: 413px) {
+    .btnAdd {
+        height: 60px;
+        width: 60px;
+    }
+}

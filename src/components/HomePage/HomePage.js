@@ -10,9 +10,11 @@ import {getFirestore, collection, getDocs} from "firebase/firestore";
 class HomePage extends React.Component {
 
     async componentDidMount() {
-        const db = getFirestore();
-        const data = await getDocs(collection(db, "users"));
-        this.props.setPost(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+        if (this.props.postState.length === 0) {
+            const db = getFirestore();
+            const data = await getDocs(collection(db, "users"));
+            this.props.setPost(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+        }
     }
 
 

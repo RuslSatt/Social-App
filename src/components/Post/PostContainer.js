@@ -1,10 +1,9 @@
 import {connect} from "react-redux";
-import {Post} from "./Post";
+import {PostApiContainer} from "./PostApiContainer";
 import {getPostAC, setCommentAC} from "../../redux/HomePageReducer";
 
 
 const mapStateToProps = (state) => {
-    const Posts = state.homePage.Posts.filter ( elem => elem.open === true);
     return {
         Posts: state.homePage.Posts,
     }
@@ -21,6 +20,6 @@ const mapToDispatchProps = (dispatch) => {
     }
 }
 
-const PostContainer = connect(mapStateToProps, mapToDispatchProps)(Post);
+const PostContainer = connect(mapStateToProps, mapToDispatchProps)(PostApiContainer);
 
 export {PostContainer};
