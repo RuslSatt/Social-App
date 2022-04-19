@@ -4,32 +4,25 @@ import {Footer} from "../Footer/Footer";
 import {Search} from "../Search/Search";
 import {NavHome} from "./NavHome/NavHome";
 import {PostsHome} from "./PostsHome/PostsHome";
-import {getFirestore, collection, getDocs} from "firebase/firestore";
+import {Preload} from "../Common/Preload/Preload";
 
 
-class HomePage extends React.Component {
-
-    async componentDidMount() {
-        if (this.props.postState.length === 0) {
-            const db = getFirestore();
-            const data = await getDocs(collection(db, "users"));
-            this.props.setPost(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-        }
-    }
-
-
-    render() {
-        return (
-            <div className={HomePageStyle.HomePage}>
-                <Search/>
-                <NavHome/>
-                <div className={HomePageStyle.Posts}>
-                    <PostsHome getPostId={this.props.getPostId} Posts={this.props.postState}/>
-                </div>
-                <Footer/>
-            </div>
-        );
-    }
+const HomePage = (props) => {
+    return (
+        <div className={HomePageStyle.HomePage}>
+            <Search/>
+            <NavHome/>
+            {
+                props.isFetching ?
+                    <Preload/>
+                    :
+                    <div className={HomePageStyle.Posts}>
+                        <PostsHome getPostId={props.getPostId} Posts={props.Posts}/>
+                    </div>
+            }
+            <Footer/>
+        </div>
+    );
 }
 
 export {HomePage};

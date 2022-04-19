@@ -11,12 +11,13 @@ class PostsHome extends React.Component {
         const getId = (id) => {
             this.props.getPostId(id);
         }
-
         return (
             <div>
                 {this.props.Posts.map(post => {
                     return (
-                        <div onClick={ () => {getId(post.id)}} key={post.id} className={PostsHomeStyle.Post}>
+                        <div onClick={() => {
+                            getId(post.id)
+                        }} key={post.id} className={PostsHomeStyle.Post}>
                             <NavLink to='/post'>
                                 <HeaderPostHome avatar={post.avatar} name={post.name} time={post.time}/>
                             </NavLink>
@@ -26,6 +27,7 @@ class PostsHome extends React.Component {
                     )
                 })}
             </div>
+
         );
     }
 }

@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {getPostAC, setCommentAC} from "../../redux/HomePageReducer";
+import {getPostAC, setCommentAC, updateIsFetchingAC} from "../../redux/HomePageReducer";
 import {doc, onSnapshot, getFirestore, getDocs, collection} from "firebase/firestore";
 import {Post} from "./Post";
+
 
 class PostSecondContainer extends React.Component {
 
@@ -26,6 +27,7 @@ class PostSecondContainer extends React.Component {
     render() {
 
         return <Post Posts={this.props.Posts}/>
+
     };
 }
 

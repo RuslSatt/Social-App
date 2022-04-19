@@ -8,11 +8,11 @@ import {DescriptionPost} from "./DescriptionPost/DescriptionPost";
 import {CommentsPost} from "./CommentsPost/CommentsPost";
 import {AddCommentPostContainer} from "./AddCommentPost/AddCommentPostContainer";
 
+
 const Post = (props) => {
     return (
         <div>
-            {
-                props.Posts.map(post => {
+            {props.Posts.map(post => {
                     if (post.open === true) {
                         return (
                             <div key={post.id} className={PostsStyle.Posts}>

@@ -16,3 +16,16 @@
     padding: 20px;
     margin-bottom: 71px;
 }
+
+.body__img {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    padding-top: 50px;
+    justify-content: center;
+
+}
+.body__img img {
+    width: 50px;
+    height: 50px;
+}

@@ -4,7 +4,8 @@ const addCommentActionType = 'ADD-COMMENT';
 const updateCommentActionType = 'UPDATE-COMMENT';
 const postIdActionType = 'POST-ID';
 const getPostAT = 'URL-IMAGE';
-const setCommentAT = 'SET-COMMENT'
+const setCommentAT = 'SET-COMMENT';
+const updateIsFetchingAT = 'UPDATE-FETCHING'
 
 const addCommentActionCreator = () => ({
     type: addCommentActionType
@@ -30,9 +31,15 @@ const setCommentAC = (comment) => ({
     comment: comment,
 });
 
+const updateIsFetchingAC = (value) => ({
+    type: updateIsFetchingAT,
+    value: value
+})
+
 let initialState = {
     Posts: [],
     newCommentText: '',
+    isFetching: false,
 }
 
 const homePageReducer = (state = initialState, action) => {
@@ -133,6 +140,11 @@ const homePageReducer = (state = initialState, action) => {
                 ...state,
                 Posts: [...state.Posts, action.post].flat()
             }
+        case updateIsFetchingAT:
+            return {
+                ...state,
+                isFetching: action.value
+            }
         default:
             return state;
     }
@@ -144,5 +156,6 @@ export {
     updateCommentActionCreator,
     postIdActionCreator,
     getPostAC,
-    setCommentAC
+    setCommentAC,
+    updateIsFetchingAC
 };
