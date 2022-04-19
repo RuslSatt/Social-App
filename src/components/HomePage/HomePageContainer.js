@@ -1,7 +1,7 @@
 import React from 'react';
 import {HomePage} from "./HomePage";
 import {connect} from "react-redux";
-import {postIdActionCreator, getPostAC, updateIsFetchingAC} from "../../redux/HomePageReducer";
+import {getPostId, setPost, updateFetching} from "../../redux/HomePageReducer";
 import {getFirestore, collection, getDocs} from "firebase/firestore";
 
 
@@ -9,11 +9,11 @@ class HomePageSecondContainer extends React.Component {
 
     async componentDidMount() {
         if (this.props.postState.length === 0) {
-            this.props.setFetching(true);
+            this.props.updateFetching(true);
             const db = getFirestore();
             const data = await getDocs(collection(db, "users"));
             this.props.setPost(data.docs.map(doc => ({...doc.data(), id: doc.id})));
-            this.props.setFetching(false)
+            this.props.updateFetching(false)
         }
     }
 
@@ -34,20 +34,12 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setPost: (post) => {
-            dispatch(getPostAC(post))
-        },
-        getPostId: (postId) => {
-            dispatch(postIdActionCreator(postId))
-        },
-        setFetching: (value) => {
-            dispatch(updateIsFetchingAC(value))
-        }
-    }
-}
-
-const HomePageContainer = connect(mapStateToProps, mapDispatchToProps)(HomePageSecondContainer);
+const HomePageContainer = connect(mapStateToProps,
+    {
+        setPost,
+        getPostId,
+        updateFetching,
+    })
+(HomePageSecondContainer);
 
 export {HomePageContainer};

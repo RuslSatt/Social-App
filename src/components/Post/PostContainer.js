@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {getPostAC, setCommentAC, updateIsFetchingAC} from "../../redux/HomePageReducer";
+import {setPost, setComment} from "../../redux/HomePageReducer";
 import {doc, onSnapshot, getFirestore, getDocs, collection} from "firebase/firestore";
 import {Post} from "./Post";
 
@@ -37,18 +37,10 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapToDispatchProps = (dispatch) => {
-    return {
-        setComment (comment) {
-            dispatch(setCommentAC(comment))
-        },
-        setPost: (post) => {
-            dispatch(getPostAC(post))
-        },
-    }
-}
-
-const PostContainer = connect(mapStateToProps, mapToDispatchProps)(PostSecondContainer);
+const PostContainer = connect(mapStateToProps, {
+    setComment,
+    setPost,
+})(PostSecondContainer);
 
 export {PostContainer};
 

@@ -9,6 +9,7 @@ class PostsHome extends React.Component {
 
     render() {
         const getId = (id) => {
+            window.scrollTo(0, 0)
             this.props.getPostId(id);
         }
         return (

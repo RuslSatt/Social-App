@@ -5,7 +5,6 @@ import Avatar from '../../../assets/images/ava-192.png'
 class CommentsPost extends React.Component {
 
     render() {
-        console.log (this.props.newComment)
         return (
             <div>
                 {this.props.newComment?.map(comment => {

@@ -1,39 +1,39 @@
 import {arrayUnion, doc, getFirestore, updateDoc} from "firebase/firestore";
 
-const addCommentActionType = 'ADD-COMMENT';
-const updateCommentActionType = 'UPDATE-COMMENT';
-const postIdActionType = 'POST-ID';
-const getPostAT = 'URL-IMAGE';
+const addCommentAT = 'ADD-COMMENT';
+const updateTextForCommentAT = 'UPDATE-COMMENT';
+const getPostIdAT = 'POST-ID';
+const setPostAT = 'URL-IMAGE';
 const setCommentAT = 'SET-COMMENT';
-const updateIsFetchingAT = 'UPDATE-FETCHING'
+const updateFetchingAT = 'UPDATE-FETCHING'
 
-const addCommentActionCreator = () => ({
-    type: addCommentActionType
+const addComment = () => ({
+    type: addCommentAT
 });
 
-const updateCommentActionCreator = (text) => ({
-    type: updateCommentActionType,
-    text: text
-});
-
-const postIdActionCreator = (postId) => ({
-    type: postIdActionType,
-    postId: postId,
-});
-
-const getPostAC = (post) => ({
-    type: getPostAT,
-    post: post,
-});
-
-const setCommentAC = (comment) => ({
+const setComment = (comments) => ({
     type: setCommentAT,
-    comment: comment,
+    comments
 });
 
-const updateIsFetchingAC = (value) => ({
-    type: updateIsFetchingAT,
-    value: value
+const updateTextForComment = (text) => ({
+    type: updateTextForCommentAT,
+    text
+});
+
+const setPost = (post) => ({
+    type: setPostAT,
+    post
+});
+
+const getPostId = (postId) => ({
+    type: getPostIdAT,
+    postId
+});
+
+const updateFetching = (value) => ({
+    type: updateFetchingAT,
+    value
 })
 
 let initialState = {
@@ -44,7 +44,7 @@ let initialState = {
 
 const homePageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case addCommentActionType:
+        case addCommentAT:
             let id = 0
             const createId = () => {
                 state.Posts.map(elem => {
@@ -92,12 +92,12 @@ const homePageReducer = (state = initialState, action) => {
                     }
                 })
             }
-        case updateCommentActionType:
+        case updateTextForCommentAT:
             return {
                 ...state,
                 newCommentText: action.text,
             }
-        case postIdActionType:
+        case getPostIdAT:
             const updatePostOpen = () => {
                 state.Posts.map(elem => {
                     if (elem.id === action.postId) {
@@ -131,7 +131,7 @@ const homePageReducer = (state = initialState, action) => {
                     }
                 }),
             }
-        case getPostAT:
+        case setPostAT:
             const cleanPost = () => {
                 state.Posts.length = 0;
             }
@@ -140,7 +140,7 @@ const homePageReducer = (state = initialState, action) => {
                 ...state,
                 Posts: [...state.Posts, action.post].flat()
             }
-        case updateIsFetchingAT:
+        case updateFetchingAT:
             return {
                 ...state,
                 isFetching: action.value
@@ -152,10 +152,10 @@ const homePageReducer = (state = initialState, action) => {
 
 export {
     homePageReducer,
-    addCommentActionCreator,
-    updateCommentActionCreator,
-    postIdActionCreator,
-    getPostAC,
-    setCommentAC,
-    updateIsFetchingAC
+    addComment,
+    updateTextForComment,
+    getPostId,
+    setPost,
+    setComment,
+    updateFetching
 };
