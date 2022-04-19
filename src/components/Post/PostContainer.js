@@ -1,7 +1,33 @@
+import React from 'react';
 import {connect} from "react-redux";
-import {PostApiContainer} from "./PostApiContainer";
 import {getPostAC, setCommentAC} from "../../redux/HomePageReducer";
+import {doc, onSnapshot, getFirestore, getDocs, collection} from "firebase/firestore";
+import {Post} from "./Post";
 
+class PostSecondContainer extends React.Component {
+
+    async componentDidMount() {
+        if (this.props.Posts.length === 0) {
+            const db = getFirestore();
+            const data = await getDocs(collection(db, "users"));
+            this.props.setPost(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+        }
+        if (this.props.Posts.length === 0) {
+            this.props.Posts.map(elem => {
+                if (elem.open === true) {
+                    const db = getFirestore();
+                    const unsubOne = onSnapshot(doc(db, "users", elem.id), (doc) => {
+                        this.props.setComment(doc.data().newComment);
+                    });
+                }
+            })
+        }
+    }
+    render() {
+
+        return <Post Posts={this.props.Posts}/>
+    };
+}
 
 const mapStateToProps = (state) => {
     return {
@@ -20,6 +46,10 @@ const mapToDispatchProps = (dispatch) => {
     }
 }
 
-const PostContainer = connect(mapStateToProps, mapToDispatchProps)(PostApiContainer);
+const PostContainer = connect(mapStateToProps, mapToDispatchProps)(PostSecondContainer);
 
 export {PostContainer};
+
+
+
+
