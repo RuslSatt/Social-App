@@ -16,7 +16,7 @@ function App(props) {
                 <Routes>
                     <Route path='/social-app' element={<StartPage/>}/>
                     <Route path='home' element={<HomePageContainer/>}/>
-                    <Route path='post' element={<PostContainer/>}/>
+                    <Route path='/post/:postId' element={<PostContainer/>}/>
                     <Route path='message' element={<MessageContainer/>}/>
                     <Route path='user-chat' element={<ChatMessageContainer/>}/>
                     <Route path='user-profile' element={<UserProfileContainer/>}/>

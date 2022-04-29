@@ -1,7 +1,7 @@
 import React from 'react';
 import {HomePage} from "./HomePage";
 import {connect} from "react-redux";
-import {getPostId, setPost, updateFetching} from "../../redux/HomePageReducer";
+import {setPost, updateFetching} from "../../redux/HomePageReducer";
 import {getFirestore, collection, getDocs} from "firebase/firestore";
 
 
@@ -21,9 +21,7 @@ class HomePageSecondContainer extends React.Component {
 
     render() {
         return <HomePage
-            getPostId={this.props.getPostId}
             Posts={this.props.postState}
-            isFetching={this.props.isFetching}
         />
     }
 }
@@ -39,7 +37,6 @@ const mapStateToProps = (state) => {
 const HomePageContainer = connect(mapStateToProps,
     {
         setPost,
-        getPostId,
         updateFetching,
     })
 (HomePageSecondContainer);

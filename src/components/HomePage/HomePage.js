@@ -17,7 +17,7 @@ const HomePage = (props) => {
                     <Preload/>
                     :
                     <div className={HomePageStyle.Posts}>
-                        <PostsHome getPostId={props.getPostId} Posts={props.Posts}/>
+                        <PostsHome Posts={props.Posts}/>
                     </div>
             }
             <Footer/>

@@ -8,18 +8,15 @@ import {NavLink} from "react-router-dom";
 class PostsHome extends React.Component {
 
     render() {
-        const getId = (id) => {
+        const scrollTo = () => {
             window.scrollTo(0, 0)
-            this.props.getPostId(id);
         }
         return (
             <div>
                 {this.props.Posts.map(post => {
                     return (
-                        <div onClick={() => {
-                            getId(post.id)
-                        }} key={post.id} className={PostsHomeStyle.Post}>
-                            <NavLink to='/post'>
+                        <div onClick={scrollTo} key={post.id} className={PostsHomeStyle.Post}>
+                            <NavLink to={`/post/` + post.id}>
                                 <HeaderPostHome avatar={post.avatar} name={post.name} time={post.time}/>
                             </NavLink>
                             <PosterPostHome poster={post.poster}/>

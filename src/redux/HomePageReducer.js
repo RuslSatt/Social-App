@@ -2,13 +2,13 @@ import {arrayUnion, doc, getFirestore, updateDoc} from "firebase/firestore";
 
 const addCommentAT = 'ADD-COMMENT';
 const updateTextForCommentAT = 'UPDATE-COMMENT';
-const getPostIdAT = 'POST-ID';
 const setPostAT = 'URL-IMAGE';
 const setCommentAT = 'SET-COMMENT';
 const updateFetchingAT = 'UPDATE-FETCHING'
 
-const addComment = () => ({
-    type: addCommentAT
+const addComment = (postId) => ({
+    type: addCommentAT,
+    postId
 });
 
 const setComment = (comments) => ({
@@ -24,11 +24,6 @@ const updateTextForComment = (text) => ({
 const setPost = (post) => ({
     type: setPostAT,
     post
-});
-
-const getPostId = (postId) => ({
-    type: getPostIdAT,
-    postId
 });
 
 const updateFetching = (value) => ({
@@ -48,7 +43,7 @@ const homePageReducer = (state = initialState, action) => {
             let id = 0
             const createId = () => {
                 state.Posts.map(elem => {
-                    if (elem.open === true && elem.newComment.length > 0) {
+                    if (elem.id === action.postId && elem.newComment.length > 0) {
                         id = elem.newComment.length
                     }
 
@@ -63,7 +58,7 @@ const homePageReducer = (state = initialState, action) => {
             }
             const addPostToDb = () => {
                 state.Posts.map(elem => {
-                    if (elem.open === true) {
+                    if (elem.id === action.postId) {
 
                         const db = getFirestore();
                         const commentRef = doc(db, "users", elem.id);
@@ -79,7 +74,7 @@ const homePageReducer = (state = initialState, action) => {
                 ...state,
                 newCommentText: '',
                 Posts: state.Posts.map(elem => {
-                    if (elem.open === true) {
+                    if (elem.id === action.postId) {
                         return {
                             ...elem, newComment: [...elem.newComment, newComment]
                         }
@@ -96,40 +91,6 @@ const homePageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 newCommentText: action.text,
-            }
-        case getPostIdAT:
-            const updatePostOpen = () => {
-                state.Posts.map(elem => {
-                    if (elem.id === action.postId) {
-                        const db = getFirestore();
-                        const dataOpen = doc(db, "users", elem.id);
-                        updateDoc(dataOpen, {
-                            open: true
-                        })
-                    } else {
-                        const db = getFirestore();
-                        const dataOpen = doc(db, "users", elem.id);
-                        updateDoc(dataOpen, {
-                            open: false
-                        })
-                    }
-                })
-
-            }
-            updatePostOpen();
-            return {
-                ...state,
-                Posts: state.Posts.map(elem => {
-                    if (elem.id === action.postId) {
-                        return {
-                            ...elem, open: true
-                        }
-                    } else {
-                        return {
-                            ...elem, open: false
-                        }
-                    }
-                }),
             }
         case setPostAT:
             const cleanPost = () => {
@@ -154,7 +115,6 @@ export {
     homePageReducer,
     addComment,
     updateTextForComment,
-    getPostId,
     setPost,
     setComment,
     updateFetching
