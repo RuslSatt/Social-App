@@ -7,13 +7,15 @@ import {getFirestore, collection, getDocs} from "firebase/firestore";
 
 class HomePageSecondContainer extends React.Component {
 
-    async componentDidMount() {
+    componentDidMount() {
         if (this.props.postState.length === 0) {
-            this.props.updateFetching(true);
-            const db = getFirestore();
-            const data = await getDocs(collection(db, "users"));
-            this.props.setPost(data.docs.map(doc => ({...doc.data(), id: doc.id})));
-            this.props.updateFetching(false)
+            const fetch = async () => {
+                this.props.updateFetching(true);
+                const db = getFirestore();
+                const data = await getDocs(collection(db, "users"));
+                this.props.setPost(data.docs.map(doc => ({...doc.data(), id: doc.id})));
+            }
+            fetch().then( () => this.props.updateFetching(false));
         }
     }
 

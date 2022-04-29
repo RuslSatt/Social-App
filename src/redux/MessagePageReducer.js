@@ -1,12 +1,12 @@
-const updateTypeMessage = 'UPDATE-MESSAGE';
-const addMessage = 'ADD-MESSAGE';
+const updateMessageAT = 'UPDATE-MESSAGE';
+const addMessageAT = 'ADD-MESSAGE';
 
-const addMessageActionCreator = () => ({
-    type: addMessage,
+const addMessage = () => ({
+    type: addMessageAT,
 })
 
-const updateTypeMessageActionCreator = (message) => ({
-    type: updateTypeMessage,
+const updateMessage = (message) => ({
+    type: updateMessageAT,
     message: message,
 })
 
@@ -47,7 +47,7 @@ let initialState = {
 
 const messagePageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case addMessage:
+        case addMessageAT:
             const newMessage = {
                 id: 0,
                 message: state.newMessageText,
@@ -58,7 +58,7 @@ const messagePageReducer = (state = initialState, action) => {
                 newMessage: [...state.newMessage, newMessage],
                 newMessageText: '',
             }
-        case updateTypeMessage:
+        case updateMessageAT:
             return {
                 ...state,
                 newMessageText: action.message,
@@ -69,6 +69,6 @@ const messagePageReducer = (state = initialState, action) => {
 }
 
 export {
-    messagePageReducer, updateTypeMessageActionCreator,
-    addMessageActionCreator
+    messagePageReducer, updateMessage,
+    addMessage,
 };
