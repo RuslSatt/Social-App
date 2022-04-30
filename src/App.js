@@ -8,12 +8,14 @@ import {MessageContainer} from "./components/Message/MessageContainer";
 import {ChatMessageContainer} from "./components/Message/ChatMessage/ChatMessageContainer";
 import {UserProfileContainer} from "./components/UserProfile/UserProfileContainer";
 import {StartPage} from "./components/StartPage/StartPage";
+import {SignIn} from "./components/Auth/SignIn/SignIn";
 
-function App(props) {
+function App() {
     return (
         <div className="App">
             <div className="App__container">
                 <Routes>
+                    <Route path='/auth' element={<SignIn/>}/>
                     <Route path='/social-app' element={<StartPage/>}/>
                     <Route path='home' element={<HomePageContainer/>}/>
                     <Route path='/post/:postId' element={<PostContainer/>}/>

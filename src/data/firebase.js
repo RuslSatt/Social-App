@@ -1,7 +1,9 @@
-import * as firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
+import {getAuth} from "firebase/auth";
 
 // Initialize Firebase
-firebase.initializeApp({
+
+const app = initializeApp({
     apiKey: "AIzaSyBMjbmlv5aZvs2Uf6T2TJvoORiizuiHxLc",
     authDomain: "social-app-desktop.firebaseapp.com",
     projectId: "social-app-desktop",
@@ -11,3 +13,4 @@ firebase.initializeApp({
     measurementId: "G-BXH41FB0R0"
 })
 
+export const auth  = getAuth(app);

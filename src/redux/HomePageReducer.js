@@ -56,7 +56,7 @@ const homePageReducer = (state = initialState, action) => {
                 comment: state.newCommentText,
                 time: state.Posts[0].time,
             }
-            const addPostToDb = () => {
+            const addCommentToDb = () => {
                 state.Posts.map(elem => {
                     if (elem.id === action.postId) {
 
@@ -69,7 +69,7 @@ const homePageReducer = (state = initialState, action) => {
                     }
                 })
             }
-            addPostToDb();
+            addCommentToDb();
             return {
                 ...state,
                 newCommentText: '',

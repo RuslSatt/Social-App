@@ -1,0 +1,128 @@
+.SignIn {
+    min-height: 100vh;
+    overflow: hidden;
+    background: #FFFFFF;
+    padding-bottom: 56px;
+}
+
+.welcome {
+    width: 100%;
+    min-height: 321px;
+}
+
+.welcome img {
+    object-fit: cover;
+    width: 100%;
+    min-height: 321px;
+}
+
+.sign {
+    background: #FFFFFF;
+    border-radius: 28px 28px 0px 0px;
+    margin-top: -30px;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    padding: 40px 30px;
+}
+
+.sing__input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sing__input input {
+    background: #F3F5F7;
+    border-radius: 30px;
+    width: 315px;
+    padding: 13px 20px;
+}
+
+.sing__input input::placeholder {
+    font-size: 16px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.2px;
+    color: #BDBDBD;
+}
+
+.sing__input:first-child {
+    margin-bottom: 20px;
+}
+
+.sign__forgot_password {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sign__forgot_password button {
+    background: transparent;
+    color: #5252C7;
+    font-size: 14px;
+    line-height: 120%;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+.sing__log_in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.sing__log_in button {
+    width: 315px;
+    padding: 14px 24px;
+    background: linear-gradient(270.95deg, #888BF4 0%, #5151C6 100%);
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.6px;
+    color: #FFFFFF
+}
+
+.other {
+    text-align: center;
+}
+
+.other__title {
+    line-height: 120%;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #606060;
+    margin-bottom: 14px;
+}
+
+.other__providers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.other__providers button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.other__not_account {
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.2px;
+    color: #606060;
+}
+
+.other__not_account span {
+    color: #5252C7;
+    font-weight: 700;
+}
