@@ -2,17 +2,19 @@ import React, {useRef} from 'react';
 import SignInStyle from "../SignIn/SignIn.module.css";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {signUp, signUpUpdate} from "../../../redux/AuthReducer";
+import {errorSign, signUp, signUpUpdate} from "../../../redux/AuthReducer";
+import {createUser} from "../Auth";
 
 
 const FormSignUp = () => {
 
     const signUpDis = useDispatch();
     const signUpDisUpdate = useDispatch()
+    const errorSignDis = useDispatch();
     const userEmailUpdate = useSelector(state => state.auth.userEmailUpdate);
     const userPasswordUpdate = useSelector(state => state.auth.userPasswordUpdate);
     const confirmPasswordUpdate = useSelector(state => state.auth.confirmPasswordUpdate)
-    // const error = useSelector(state => state.auth.error)
+    const error = useSelector(state => state.auth.error)
 
     let emailRef = useRef();
     let passwordRef = useRef()
@@ -25,16 +27,30 @@ const FormSignUp = () => {
     }
     const signUpFunc = async () => {
         if (passwordRef.current.value === confirmPasswordRef.current.value) {
-            signUpDis(signUp(emailRef.current.value, passwordRef.current.value))
+            await createUser(emailRef.current.value, passwordRef.current.value).then(() => {
+                signUpDis(signUp(emailRef.current.value, passwordRef.current.value))
+            }).catch((error) => {
+                errorSignDis(errorSign(error.message))
+            });
         } else {
-            alert('Password is not right')
+            errorSignDis(errorSign('Password is not right'))
         }
+    }
+    const handleSumbit = async (e) => {
+        e.preventDefault()
     }
 
     return (
-        <form onSubmit={(event) => {
-            event.preventDefault()
-        }} className={`${SignInStyle.sign} + ${SignInStyle.signup}`}>
+        <form onSubmit={handleSumbit} className={`${SignInStyle.sign} + ${SignInStyle.signup}`}>
+
+            {
+                error !== '' ?
+                    <div className={SignInStyle.error}>
+                        <span>{error}</span>
+                    </div> :
+                    ''
+            }
+
             <div className={SignInStyle.sing__input}>
                 <input onChange={signUpUpdateFunc}
                        value={userEmailUpdate}
