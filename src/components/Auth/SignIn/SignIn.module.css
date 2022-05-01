@@ -26,10 +26,15 @@
     padding: 40px 30px;
 }
 
+.signup {
+    padding: 40px 30px 5px 30px;
+}
+
 .sing__input {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .sing__input input {
@@ -46,10 +51,6 @@
     align-items: center;
     letter-spacing: -0.2px;
     color: #BDBDBD;
-}
-
-.sing__input:first-child {
-    margin-bottom: 20px;
 }
 
 .sign__forgot_password {
@@ -78,7 +79,11 @@
     text-align: center;
 }
 
-.sing__log_in button {
+.sing__up {
+    margin-top: 40px;
+}
+
+.sing__log_in input {
     width: 315px;
     padding: 14px 24px;
     background: linear-gradient(270.95deg, #888BF4 0%, #5151C6 100%);
@@ -89,6 +94,8 @@
     letter-spacing: 0.6px;
     color: #FFFFFF
 }
+
+
 
 .other {
     text-align: center;
@@ -122,7 +129,42 @@
     color: #606060;
 }
 
+.other__yes_account {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.other__yes_account span {
+    color: #5252C7;
+    font-weight: 500;
+    margin-left: 5px;
+    letter-spacing: 0.2px;
+}
+
 .other__not_account span {
     color: #5252C7;
+    font-weight: 500;
+    margin-left: 5px;
+    letter-spacing: 0.2px;
+}
+
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+}
+
+.error span {
+    padding: 14px 24px;
+    background: linear-gradient(270.95deg, #888BF4 0%, #c41717 100%);
+    border-radius: 30px;
     font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.6px;
+    color: #FFFFFF;
+    width: 315px;
+    text-align: center;
 }

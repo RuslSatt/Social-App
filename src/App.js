@@ -9,6 +9,7 @@ import {ChatMessageContainer} from "./components/Message/ChatMessage/ChatMessage
 import {UserProfileContainer} from "./components/UserProfile/UserProfileContainer";
 import {StartPage} from "./components/StartPage/StartPage";
 import {SignIn} from "./components/Auth/SignIn/SignIn";
+import {SignUp} from "./components/Auth/SignUp/SignUp";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
             <div className="App__container">
                 <Routes>
                     <Route path='/auth' element={<SignIn/>}/>
+                    <Route path='/signup' element={<SignUp/>}/>
                     <Route path='/social-app' element={<StartPage/>}/>
                     <Route path='home' element={<HomePageContainer/>}/>
                     <Route path='/post/:postId' element={<PostContainer/>}/>
