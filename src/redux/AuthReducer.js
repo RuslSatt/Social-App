@@ -1,7 +1,10 @@
+import {createUserAPI} from "../components/Auth/Auth";
+
 const SING_IN_TYPE = 'SING_IN_TYPE';
 const SING_UP_TYPE = 'SING_UP_TYPE';
-const SING_UP_UPDATE = 'SING_UP_UPDATE'
-const ERROR_TYPE = 'ERROR_TYPE'
+const SING_UP_UPDATE = 'SING_UP_UPDATE';
+const ERROR_TYPE = 'ERROR_TYPE';
+const PRELOAD_TYPE = 'PRELOAD_TYPE';
 
 const signIn = (email, password) => ({
     type: SING_IN_TYPE,
@@ -27,6 +30,11 @@ const signUpUpdate = (email, password, confirmPassword) => ({
     confirmPassword
 })
 
+const preload = (value) => ({
+    type: PRELOAD_TYPE,
+    value
+})
+
 let initialState = {
     userEmail: '',
     userPassword: '',
@@ -35,6 +43,7 @@ let initialState = {
     userPasswordUpdate: '',
     confirmPasswordUpdate: '',
     error: '',
+    isPreload: false,
 }
 
 const authReducer = (state = initialState, action) => {
@@ -51,6 +60,7 @@ const authReducer = (state = initialState, action) => {
                 userEmailUpdate: '',
                 userPasswordUpdate: '',
                 confirmPasswordUpdate: '',
+                error: '',
             }
         }
         case SING_UP_UPDATE: {
@@ -59,6 +69,12 @@ const authReducer = (state = initialState, action) => {
                 userEmailUpdate: action.email,
                 userPasswordUpdate: action.password,
                 confirmPasswordUpdate: action.confirmPassword,
+            }
+        }
+        case PRELOAD_TYPE: {
+            return {
+                ...state,
+                isPreload: action.value,
             }
         }
         case ERROR_TYPE: {
@@ -72,4 +88,23 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export {authReducer, signIn, signUp, signUpUpdate, errorSign};
+const createUser = (email, password, passwordConfirm) => {
+    return async (dispatch) => {
+        dispatch(preload(true))
+        if (password === passwordConfirm) {
+            await createUserAPI(email, password).then(() => {
+                dispatch(signUp(email, password))
+                dispatch(preload(false))
+            }).catch((error) => {
+                dispatch(errorSign(error.message))
+                dispatch(preload(false))
+            });
+        } else {
+            dispatch(errorSign('Password is not right'));
+            dispatch(preload(false));
+        }
+    }
+}
+
+
+export {authReducer, signIn, signUp, signUpUpdate, errorSign, createUser};

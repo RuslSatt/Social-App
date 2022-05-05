@@ -3,7 +3,7 @@ import SignInStyle from "./SignIn.module.css";
 
 const FormSign = () => {
     return (
-        <div className={SignInStyle.sign}>
+        <form className={SignInStyle.sign}>
             <div className={SignInStyle.sing__input}>
                 <input type='email' placeholder='Email'>
 
@@ -20,11 +20,9 @@ const FormSign = () => {
                 </button>
             </div>
             <div className={SignInStyle.sing__log_in}>
-                <button>
-                    LOG IN
-                </button>
+                <input type='submit' value='LOG IN' />
             </div>
-        </div>
+        </form>
     );
 };
 

@@ -2,18 +2,20 @@ import React, {useRef} from 'react';
 import SignInStyle from "../SignIn/SignIn.module.css";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {errorSign, signUp, signUpUpdate} from "../../../redux/AuthReducer";
-import {createUser} from "../Auth";
+import {createUser, signUpUpdate} from "../../../redux/AuthReducer";
+import {Preload} from "../../Common/Preload/Preload";
 
 
 const FormSignUp = () => {
 
-    const signUpDis = useDispatch();
+
     const signUpDisUpdate = useDispatch()
-    const errorSignDis = useDispatch();
+    const createUserDis = useDispatch()
+
     const userEmailUpdate = useSelector(state => state.auth.userEmailUpdate);
     const userPasswordUpdate = useSelector(state => state.auth.userPasswordUpdate);
     const confirmPasswordUpdate = useSelector(state => state.auth.confirmPasswordUpdate)
+    const isPreload = useSelector(state => state.auth.isPreload)
     const error = useSelector(state => state.auth.error)
 
     let emailRef = useRef();
@@ -25,24 +27,17 @@ const FormSignUp = () => {
             passwordRef.current.value,
             confirmPasswordRef.current.value))
     }
-    const signUpFunc = async () => {
-        if (passwordRef.current.value === confirmPasswordRef.current.value) {
-            await createUser(emailRef.current.value, passwordRef.current.value).then(() => {
-                signUpDis(signUp(emailRef.current.value, passwordRef.current.value))
-            }).catch((error) => {
-                errorSignDis(errorSign(error.message))
-            });
-        } else {
-            errorSignDis(errorSign('Password is not right'))
-        }
+    const signUpFunc = () => {
+        createUserDis(createUser(emailRef.current.value,
+            passwordRef.current.value,
+            confirmPasswordRef.current.value))
     }
-    const handleSumbit = async (e) => {
+    const handleSumbit = (e) => {
         e.preventDefault()
     }
 
     return (
         <form onSubmit={handleSumbit} className={`${SignInStyle.sign} + ${SignInStyle.signup}`}>
-
             {
                 error !== '' ?
                     <div className={SignInStyle.error}>
@@ -50,7 +45,13 @@ const FormSignUp = () => {
                     </div> :
                     ''
             }
-
+            {
+                isPreload === true ?
+                    <div className={SignInStyle.preload}>
+                        <Preload/>
+                    </div> :
+                    ''
+            }
             <div className={SignInStyle.sing__input}>
                 <input onChange={signUpUpdateFunc}
                        value={userEmailUpdate}
@@ -76,7 +77,7 @@ const FormSignUp = () => {
                 </input>
             </div>
             <div className={`${SignInStyle.sing__log_in} + ${SignInStyle.sing__up}`}>
-                <input type='submit' value='SIGN UP' onClick={signUpFunc} />
+                <input type='submit' disabled={isPreload} value='SIGN UP' onClick={signUpFunc} />
             </div>
             <p className={SignInStyle.other__yes_account}>
                 Already have account?

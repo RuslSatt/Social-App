@@ -168,3 +168,8 @@
     width: 315px;
     text-align: center;
 }
+
+.preload {
+    margin-top: -70px;
+    margin-bottom: 15px;
+}
