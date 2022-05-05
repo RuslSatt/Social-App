@@ -1,7 +1,7 @@
 import React from 'react';
 import {HomePage} from "./HomePage";
 import {connect} from "react-redux";
-import {setPost, updateFetching, getPosts} from "../../redux/HomePageReducer";
+import {getPosts} from "../../redux/HomePageReducer";
 
 
 class HomePageSecondContainer extends React.Component {
@@ -30,8 +30,6 @@ const mapStateToProps = (state) => {
 
 const HomePageContainer = connect(mapStateToProps,
     {
-        setPost,
-        updateFetching,
         getPosts
     })
 (HomePageSecondContainer);

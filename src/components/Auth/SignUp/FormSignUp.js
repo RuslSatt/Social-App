@@ -8,18 +8,18 @@ import {Preload} from "../../Common/Preload/Preload";
 
 const FormSignUp = () => {
 
-    const signUpDisUpdate = useDispatch()
-    const createUserDis = useDispatch()
+    const signUpDisUpdate = useDispatch();
+    const createUserDis = useDispatch();
 
     const userEmailUpdate = useSelector(state => state.auth.userEmailUpdate);
     const userPasswordUpdate = useSelector(state => state.auth.userPasswordUpdate);
-    const confirmPasswordUpdate = useSelector(state => state.auth.confirmPasswordUpdate)
-    const isPreload = useSelector(state => state.auth.isPreload)
-    const error = useSelector(state => state.auth.error)
+    const confirmPasswordUpdate = useSelector(state => state.auth.confirmPasswordUpdate);
+    const isPreload = useSelector(state => state.auth.isPreload);
+    const error = useSelector(state => state.auth.error);
 
     let emailRef = useRef();
-    let passwordRef = useRef()
-    let confirmPasswordRef = useRef()
+    let passwordRef = useRef();
+    let confirmPasswordRef = useRef();
 
     const signUpUpdateFunc = () => {
         signUpDisUpdate(signUpUpdate(emailRef.current.value,
@@ -32,7 +32,7 @@ const FormSignUp = () => {
             confirmPasswordRef.current.value))
     }
     const handleSumbit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
     }
 
     return (
