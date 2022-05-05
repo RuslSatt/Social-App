@@ -22,7 +22,7 @@ const StartPage = (props) => {
                 <img src={Images4} alt=""/>
             </div>
             <p className={WelcomePageStyle.caption}>SHARE - INSPIRE - CONNECT</p>
-            <NavLink to='/auth'>
+            <NavLink to='/home'>
                 <button className={WelcomePageStyle.button}>
                     GET STARTED
                 </button>

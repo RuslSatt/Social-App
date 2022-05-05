@@ -1,4 +1,4 @@
-import {createUserAPI} from "../components/Auth/Auth";
+import {createUserAPI} from "../API/AuthApi";
 
 const SING_IN_TYPE = 'SING_IN_TYPE';
 const SING_UP_TYPE = 'SING_UP_TYPE';

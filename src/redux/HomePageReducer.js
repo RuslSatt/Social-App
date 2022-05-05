@@ -1,4 +1,5 @@
-import {arrayUnion, doc, getFirestore, updateDoc} from "firebase/firestore";
+import {arrayUnion, collection, doc, getDocs, getFirestore, updateDoc} from "firebase/firestore";
+import {getCommentPostsApi, getPostsApi} from "../API/PostsApi";
 
 const addCommentAT = 'ADD-COMMENT';
 const updateTextForCommentAT = 'UPDATE-COMMENT';
@@ -111,11 +112,32 @@ const homePageReducer = (state = initialState, action) => {
     }
 }
 
+const getPosts = () => {
+    return async (dispatch) => {
+        dispatch(updateFetching(true));
+        await getPostsApi().then((data) => {
+            dispatch(setPost(data.docs.map(doc => ({...doc.data(), id: doc.id}))))
+            dispatch(updateFetching(false));
+        })
+    }
+}
+
+const getCommentPosts = (elem) => {
+    return async (dispatch) => {
+        await getCommentPostsApi(elem).then(comments => {
+            dispatch(setComment(comments))
+        })
+    }
+}
+
+
 export {
     homePageReducer,
     addComment,
     updateTextForComment,
     setPost,
     setComment,
-    updateFetching
+    updateFetching,
+    getPosts,
+    getCommentPosts
 };

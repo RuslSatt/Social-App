@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {setPost, setComment} from "../../redux/HomePageReducer";
+import {getPosts, getCommentPosts} from "../../redux/HomePageReducer";
 import {Post} from "./Post";
 
 const mapStateToProps = (state) => {
@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
 };
 
 const PostContainer = connect(mapStateToProps, {
-    setComment,
-    setPost,
+    getPosts,
+    getCommentPosts,
 })(Post);
 
 export {PostContainer};

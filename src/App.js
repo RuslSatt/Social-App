@@ -16,8 +16,8 @@ function App() {
         <div className="App">
             <div className="App__container">
                 <Routes>
-                    <Route path='/auth' element={<SignIn/>}/>
-                    <Route path='/signup' element={<SignUp/>}/>
+                    {/*<Route path='/auth' element={<SignIn/>}/>*/}
+                    {/*<Route path='/signup' element={<SignUp/>}/>*/}
                     <Route path='/social-app' element={<StartPage/>}/>
                     <Route path='home' element={<HomePageContainer/>}/>
                     <Route path='/post/:postId' element={<PostContainer/>}/>
