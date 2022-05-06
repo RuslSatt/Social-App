@@ -13,20 +13,25 @@ const AddCommentPost = (props) => {
     let addComment = () => {
         let text = inputCommentValue.current.value;
         if (text !== '') {
-            props.addComment(postId);
+            props.Posts.map(elem => {
+                if (elem.id === postId) {
+                    props.addNewComment(elem, postId, props.createdComment)
+                }
+            })
         }
     }
 
-    let updateTextForComment = (e) => {
+    let updateTextAndCreateComment = (e) => {
         let text = e.target.value;
         props.updateTextForComment(text);
+        props.createComment(postId);
     }
 
     return (
         <div className={AddCommentPostStyle.AddComment}>
             <div className={AddCommentPostStyle.comment}>
                 <img src={Avatar} alt=""/>
-                <input onChange={updateTextForComment} type="text"
+                <input onChange={updateTextAndCreateComment} type="text"
                        ref={inputCommentValue}
                        value={props.newCommentText}
                        placeholder='Add a comment'/>

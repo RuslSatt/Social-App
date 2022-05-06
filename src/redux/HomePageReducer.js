@@ -1,15 +1,21 @@
-import {arrayUnion, collection, doc, getDocs, getFirestore, updateDoc} from "firebase/firestore";
-import {getCommentPostsApi, getPostsApi} from "../API/PostsApi";
+import {addCommentPostsApi, getCommentPostsApi, getPostsApi} from "../API/PostsApi";
 
 const addCommentAT = 'ADD-COMMENT';
 const updateTextForCommentAT = 'UPDATE-COMMENT';
 const setPostAT = 'URL-IMAGE';
 const setCommentAT = 'SET-COMMENT';
 const updateFetchingAT = 'UPDATE-FETCHING'
+const CREATE_COMMENT = 'CREATE_COMMENT'
 
-const addComment = (postId) => ({
-    type: addCommentAT,
+const createComment = (postId) => ({
+    type: CREATE_COMMENT,
     postId
+})
+
+const addComment = (postId, createdComment) => ({
+    type: addCommentAT,
+    postId,
+    createdComment
 });
 
 const setComment = (comments) => ({
@@ -36,11 +42,12 @@ let initialState = {
     Posts: [],
     newCommentText: '',
     isFetching: false,
+    createdComment: '',
 }
 
 const homePageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case addCommentAT:
+        case CREATE_COMMENT: {
             let id = 0
             const createId = () => {
                 state.Posts.map(elem => {
@@ -57,27 +64,19 @@ const homePageReducer = (state = initialState, action) => {
                 comment: state.newCommentText,
                 time: state.Posts[0].time,
             }
-            const addCommentToDb = () => {
-                state.Posts.map(elem => {
-                    if (elem.id === action.postId) {
-
-                        const db = getFirestore();
-                        const commentRef = doc(db, "users", elem.id);
-
-                        updateDoc(commentRef, {
-                            newComment: arrayUnion(newComment)
-                        })
-                    }
-                })
+            return {
+                ...state,
+                createdComment: newComment
             }
-            addCommentToDb();
+        }
+        case addCommentAT:
             return {
                 ...state,
                 newCommentText: '',
                 Posts: state.Posts.map(elem => {
                     if (elem.id === action.postId) {
                         return {
-                            ...elem, newComment: [...elem.newComment, newComment]
+                            ...elem, newComment: [...elem.newComment, action.createdComment]
                         }
                     } else if (action.type === setCommentAT) {
                         return {
@@ -130,6 +129,14 @@ const getCommentPosts = (elem) => {
     }
 }
 
+const addNewComment = (elem, postId, createdComment) => {
+    return (dispatch) => {
+        addCommentPostsApi(elem, createdComment).then(() => {
+            dispatch(addComment(postId, createdComment))
+        })
+    }
+}
+
 
 export {
     homePageReducer,
@@ -139,5 +146,7 @@ export {
     setComment,
     updateFetching,
     getPosts,
-    getCommentPosts
+    getCommentPosts,
+    createComment,
+    addNewComment
 };

@@ -1,4 +1,4 @@
-import {collection, doc, getDocs, getFirestore, onSnapshot} from "firebase/firestore";
+import {arrayUnion, collection, doc, getDocs, getFirestore, onSnapshot, updateDoc} from "firebase/firestore";
 
 export const getPostsApi =  () => {
     const db = getFirestore();
@@ -12,6 +12,11 @@ export const getCommentPostsApi = (elem) => {
     });
 }
 
-export const addCommentPostsApi = (postId) => {
+export const addCommentPostsApi = (elem, createdComment) => {
+    const db = getFirestore();
+    const commentRef = doc(db, "users", elem.id);
 
+    return updateDoc(commentRef, {
+        newComment: arrayUnion(createdComment)
+    })
 }
