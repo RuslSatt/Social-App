@@ -1,4 +1,4 @@
-import {createUserAPI} from "../API/AuthApi";
+import {authApi} from "../API/API";
 
 const SING_IN_TYPE = 'SING_IN_TYPE';
 const SING_UP_TYPE = 'SING_UP_TYPE';
@@ -92,7 +92,7 @@ const createUser = (email, password, passwordConfirm) => {
     return async (dispatch) => {
         dispatch(preload(true))
         if (password === passwordConfirm) {
-            await createUserAPI(email, password).then(() => {
+            await authApi.createUserDb(email, password).then(() => {
                 dispatch(signUp(email, password))
                 dispatch(preload(false))
             }).catch((error) => {

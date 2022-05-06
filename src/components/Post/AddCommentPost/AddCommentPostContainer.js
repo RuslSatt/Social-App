@@ -1,4 +1,8 @@
-import {addComment, setComment, updateTextForComment, createComment, addNewComment} from "../../../redux/HomePageReducer";
+import {
+    updateTextForComment,
+    createComment,
+    addNewComment
+} from "../../../redux/HomePageReducer";
 import {AddCommentPost} from "./AddCommentPost";
 import {connect} from "react-redux";
 
@@ -13,9 +17,7 @@ const mapStateToProps = (state) => {
 
 
 const AddCommentPostContainer = connect(mapStateToProps, {
-    addComment,
     updateTextForComment,
-    setComment,
     createComment,
     addNewComment
 })(AddCommentPost);

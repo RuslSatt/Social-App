@@ -1,4 +1,4 @@
-import {addCommentPostsApi, getCommentPostsApi, getPostsApi} from "../API/PostsApi";
+import {postApi} from "../API/API";
 
 const addCommentAT = 'ADD-COMMENT';
 const updateTextForCommentAT = 'UPDATE-COMMENT';
@@ -114,7 +114,7 @@ const homePageReducer = (state = initialState, action) => {
 const getPosts = () => {
     return async (dispatch) => {
         dispatch(updateFetching(true));
-        await getPostsApi().then((data) => {
+        await postApi.getPostsDb().then((data) => {
             dispatch(setPost(data.docs.map(doc => ({...doc.data(), id: doc.id}))))
             dispatch(updateFetching(false));
         })
@@ -123,7 +123,7 @@ const getPosts = () => {
 
 const getCommentPosts = (elem) => {
     return async (dispatch) => {
-        await getCommentPostsApi(elem).then(comments => {
+        await postApi.getCommentPostsDb(elem).then(comments => {
             dispatch(setComment(comments))
         })
     }
@@ -131,7 +131,7 @@ const getCommentPosts = (elem) => {
 
 const addNewComment = (elem, postId, createdComment) => {
     return (dispatch) => {
-        addCommentPostsApi(elem, createdComment).then(() => {
+        postApi.addCommentPostsDb(elem, createdComment).then(() => {
             dispatch(addComment(postId, createdComment))
         })
     }
