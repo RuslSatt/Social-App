@@ -1,34 +1,40 @@
 import {authApi} from "../API/API";
 
-const SING_IN_TYPE = 'SING_IN_TYPE';
-const SING_UP_TYPE = 'SING_UP_TYPE';
-const SING_UP_UPDATE = 'SING_UP_UPDATE';
+const LOG_IN_ST = 'LOG_IN_ST';
+const UPDATE_FORM_SIGN_IN = 'UPDATE_FORM_SIGN_IN';
+const CREATE_USER_ST = 'CREATE_USER_ST';
+const UPDATE_FORM_SIGN_UP = 'UPDATE_FORM_SIGN_UP';
 const ERROR_TYPE = 'ERROR_TYPE';
 const PRELOAD_TYPE = 'PRELOAD_TYPE';
 const REGISTER_TYPE = 'REGISTER_TYPE'
+const REMOVE_TYPE = 'REMOVE_TYPE';
 
-const signIn = (email, password) => ({
-    type: SING_IN_TYPE,
+const logInSt = (email, password) => ({
+    type: LOG_IN_ST,
     email,
     password,
 })
 
-const signUp = (email, password) => ({
-    type: SING_UP_TYPE,
+const updateFormSignIn = (email, password) => ({
+    type: UPDATE_FORM_SIGN_IN,
     email,
     password,
 })
 
-const errorSign = (error) => ({
-    type: ERROR_TYPE,
-    error,
+const createUserSt = () => ({
+    type: CREATE_USER_ST,
 })
 
-const signUpUpdate = (email, password, confirmPassword) => ({
-    type: SING_UP_UPDATE,
+const updateFormSignUp = (email, password, confirmPassword) => ({
+    type: UPDATE_FORM_SIGN_UP,
     email,
     password,
     confirmPassword
+})
+
+const errorAuth = (error) => ({
+    type: ERROR_TYPE,
+    error,
 })
 
 const preload = (value) => ({
@@ -36,9 +42,13 @@ const preload = (value) => ({
     value
 })
 
-const register = (valueReg) => ({
-    type : REGISTER_TYPE,
+const registerUser = (valueReg) => ({
+    type: REGISTER_TYPE,
     valueReg
+})
+
+const removeData = () => ({
+    type: REMOVE_TYPE,
 })
 
 let initialState = {
@@ -48,17 +58,41 @@ let initialState = {
     userEmailUpdate: '',
     userPasswordUpdate: '',
     confirmPasswordUpdate: '',
-    error: '',
-    isPreload: false,
     isRegister: false,
+    isLogIn: false,
+    isPreload: false,
+    error: '',
 }
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SING_IN_TYPE: {
-            return [...state];
+        case REMOVE_TYPE: {
+            return {
+                ...state,
+                userEmailUpdate: '',
+                userPasswordUpdate: '',
+                confirmPasswordUpdate: '',
+                error: '',
+            }
         }
-        case SING_UP_TYPE: {
+        case LOG_IN_ST: {
+            return {
+                ...state,
+                userEmail: state.userEmailUpdate,
+                userPassword: state.userPasswordUpdate,
+                userEmailUpdate: '',
+                userPasswordUpdate: '',
+                error: '',
+            }
+        }
+        case UPDATE_FORM_SIGN_IN: {
+            return {
+                ...state,
+                userEmailUpdate: action.email,
+                userPasswordUpdate: action.password,
+            }
+        }
+        case CREATE_USER_ST: {
             return {
                 ...state,
                 userEmail: state.userEmailUpdate,
@@ -70,7 +104,7 @@ const authReducer = (state = initialState, action) => {
                 error: '',
             }
         }
-        case SING_UP_UPDATE: {
+        case UPDATE_FORM_SIGN_UP: {
             return {
                 ...state,
                 userEmailUpdate: action.email,
@@ -106,19 +140,19 @@ const createUser = (email, password, passwordConfirm) => {
         dispatch(preload(true))
         if (password === passwordConfirm) {
             await authApi.createUserDb(email, password).then(() => {
-                dispatch(signUp(email, password))
+                dispatch(createUserSt());
                 dispatch(preload(false));
-                dispatch(register(true));
+                dispatch(registerUser(true));
             }).catch((error) => {
-                dispatch(errorSign(error.message));
+                dispatch(errorAuth(error.message));
                 dispatch(preload(false));
             });
         } else {
-            dispatch(errorSign('Password is not right'));
+            dispatch(errorAuth('Password is not right'));
             dispatch(preload(false));
         }
     }
 }
 
 
-export {authReducer, signIn, signUp, signUpUpdate, errorSign, createUser, register};
+export {authReducer, updateFormSignUp, createUser, registerUser, removeData, updateFormSignIn};

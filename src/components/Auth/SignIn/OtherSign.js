@@ -4,12 +4,12 @@ import Google from "../../../assets/images/google.svg";
 import Facebook from "../../../assets/images/facebook-sign.svg";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {register} from "../../../redux/AuthReducer";
+import {registerUser} from "../../../redux/AuthReducer";
 
 const OtherSign = () => {
-    const isRegisterDis = useDispatch()
+    const isRegisterDispatch = useDispatch()
     const navigate = () => {
-        isRegisterDis(register(false))
+        isRegisterDispatch(registerUser(false))
     }
 
     return (

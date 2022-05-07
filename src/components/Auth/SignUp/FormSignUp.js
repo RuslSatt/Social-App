@@ -2,13 +2,14 @@ import React, {useRef} from 'react';
 import SignInStyle from "../SignIn/SignIn.module.css";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {createUser, signUpUpdate} from "../../../redux/AuthReducer";
+import {createUser, removeData, updateFormSignUp} from "../../../redux/AuthReducer";
 import {Preload} from "../../Common/Preload/Preload";
 
 const FormSignUp = () => {
 
-    const signUpDisUpdate = useDispatch();
-    const createUserDis = useDispatch();
+    const signUpUpdateDispatch = useDispatch();
+    const createUserDispatch = useDispatch();
+    const removeDataDispatch = useDispatch();
 
     const auth = useSelector(state => state.auth)
 
@@ -16,15 +17,18 @@ const FormSignUp = () => {
     let passwordRef = useRef();
     let confirmPasswordRef = useRef();
 
-    const signUpUpdateFunc = () => {
-        signUpDisUpdate(signUpUpdate(emailRef.current.value,
+    const callUpdateForm = () => {
+        signUpUpdateDispatch(updateFormSignUp(emailRef.current.value,
             passwordRef.current.value,
             confirmPasswordRef.current.value))
     }
-    const signUpFunc = () => {
-        createUserDis(createUser(emailRef.current.value,
+    const callCreateUser = () => {
+        createUserDispatch(createUser(emailRef.current.value,
             passwordRef.current.value,
             confirmPasswordRef.current.value))
+    }
+    const callRemoveForm = () => {
+        removeDataDispatch(removeData());
     }
     const handleSumbit = (e) => {
         e.preventDefault();
@@ -47,7 +51,7 @@ const FormSignUp = () => {
                     ''
             }
             <div className={SignInStyle.sing__input}>
-                <input onChange={signUpUpdateFunc}
+                <input onChange={callUpdateForm}
                        value={auth.userEmailUpdate}
                        ref={emailRef}
                        type='email'
@@ -55,7 +59,7 @@ const FormSignUp = () => {
                 </input>
             </div>
             <div className={SignInStyle.sing__input}>
-                <input onChange={signUpUpdateFunc}
+                <input onChange={callUpdateForm}
                        value={auth.userPasswordUpdate}
                        ref={passwordRef}
                        type='password'
@@ -63,7 +67,7 @@ const FormSignUp = () => {
                 </input>
             </div>
             <div className={SignInStyle.sing__input}>
-                <input onChange={signUpUpdateFunc}
+                <input onChange={callUpdateForm}
                        value={auth.confirmPasswordUpdate}
                        ref={confirmPasswordRef}
                        type='password'
@@ -71,12 +75,12 @@ const FormSignUp = () => {
                 </input>
             </div>
             <div className={`${SignInStyle.sing__log_in} + ${SignInStyle.sing__up}`}>
-                <input type='submit' disabled={auth.isPreload} value='SIGN UP' onClick={signUpFunc} />
+                <input type='submit' disabled={auth.isPreload} value='SIGN UP' onClick={callCreateUser} />
             </div>
             <p className={SignInStyle.other__yes_account}>
                 Already have account?
                 <span>
-                    <NavLink to='/auth'>SIGN IN</NavLink>
+                    <NavLink onClick={callRemoveForm} to='/auth'>SIGN IN</NavLink>
                 </span>
             </p>
         </form>
