@@ -5,6 +5,7 @@ const SING_UP_TYPE = 'SING_UP_TYPE';
 const SING_UP_UPDATE = 'SING_UP_UPDATE';
 const ERROR_TYPE = 'ERROR_TYPE';
 const PRELOAD_TYPE = 'PRELOAD_TYPE';
+const REGISTER_TYPE = 'REGISTER_TYPE'
 
 const signIn = (email, password) => ({
     type: SING_IN_TYPE,
@@ -35,6 +36,11 @@ const preload = (value) => ({
     value
 })
 
+const register = (valueReg) => ({
+    type : REGISTER_TYPE,
+    valueReg
+})
+
 let initialState = {
     userEmail: '',
     userPassword: '',
@@ -44,6 +50,7 @@ let initialState = {
     confirmPasswordUpdate: '',
     error: '',
     isPreload: false,
+    isRegister: false,
 }
 
 const authReducer = (state = initialState, action) => {
@@ -77,6 +84,12 @@ const authReducer = (state = initialState, action) => {
                 isPreload: action.value,
             }
         }
+        case REGISTER_TYPE: {
+            return {
+                ...state,
+                isRegister: action.valueReg,
+            }
+        }
         case ERROR_TYPE: {
             return {
                 ...state,
@@ -94,10 +107,11 @@ const createUser = (email, password, passwordConfirm) => {
         if (password === passwordConfirm) {
             await authApi.createUserDb(email, password).then(() => {
                 dispatch(signUp(email, password))
-                dispatch(preload(false))
+                dispatch(preload(false));
+                dispatch(register(true));
             }).catch((error) => {
-                dispatch(errorSign(error.message))
-                dispatch(preload(false))
+                dispatch(errorSign(error.message));
+                dispatch(preload(false));
             });
         } else {
             dispatch(errorSign('Password is not right'));
@@ -107,4 +121,4 @@ const createUser = (email, password, passwordConfirm) => {
 }
 
 
-export {authReducer, signIn, signUp, signUpUpdate, errorSign, createUser};
+export {authReducer, signIn, signUp, signUpUpdate, errorSign, createUser, register};

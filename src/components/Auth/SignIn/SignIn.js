@@ -4,9 +4,6 @@ import {HeaderSign} from "./HeaderSign";
 import {FormSign} from "./FormSign";
 import {OtherSign} from "./OtherSign";
 
-
-
-
 const SignIn = (props) => {
     return (
         <div className={SignInStyle.SignIn}>

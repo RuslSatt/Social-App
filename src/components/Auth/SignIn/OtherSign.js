@@ -3,8 +3,15 @@ import SignInStyle from "./SignIn.module.css";
 import Google from "../../../assets/images/google.svg";
 import Facebook from "../../../assets/images/facebook-sign.svg";
 import {NavLink} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {register} from "../../../redux/AuthReducer";
 
 const OtherSign = () => {
+    const isRegisterDis = useDispatch()
+    const navigate = () => {
+        isRegisterDis(register(false))
+    }
+
     return (
         <div className={SignInStyle.other}>
             <p className={SignInStyle.other__title}>
@@ -21,7 +28,7 @@ const OtherSign = () => {
             <p className={SignInStyle.other__not_account}>
                 Don't have account?
                 <span>
-                    <NavLink to='/signup'>SIGN UP</NavLink>
+                    <NavLink onClick={navigate} to='/signup'>SIGN UP</NavLink>
                 </span>
             </p>
         </div>

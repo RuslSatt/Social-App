@@ -5,17 +5,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {createUser, signUpUpdate} from "../../../redux/AuthReducer";
 import {Preload} from "../../Common/Preload/Preload";
 
-
 const FormSignUp = () => {
 
     const signUpDisUpdate = useDispatch();
     const createUserDis = useDispatch();
 
-    const userEmailUpdate = useSelector(state => state.auth.userEmailUpdate);
-    const userPasswordUpdate = useSelector(state => state.auth.userPasswordUpdate);
-    const confirmPasswordUpdate = useSelector(state => state.auth.confirmPasswordUpdate);
-    const isPreload = useSelector(state => state.auth.isPreload);
-    const error = useSelector(state => state.auth.error);
+    const auth = useSelector(state => state.auth)
 
     let emailRef = useRef();
     let passwordRef = useRef();
@@ -38,14 +33,14 @@ const FormSignUp = () => {
     return (
         <form onSubmit={handleSumbit} className={`${SignInStyle.sign} + ${SignInStyle.signup}`}>
             {
-                error !== '' ?
+                auth.error !== '' ?
                     <div className={SignInStyle.error}>
-                        <span>{error}</span>
+                        <span>{auth.error}</span>
                     </div> :
                     ''
             }
             {
-                isPreload === true ?
+                auth.isPreload === true ?
                     <div className={SignInStyle.preload}>
                         <Preload/>
                     </div> :
@@ -53,7 +48,7 @@ const FormSignUp = () => {
             }
             <div className={SignInStyle.sing__input}>
                 <input onChange={signUpUpdateFunc}
-                       value={userEmailUpdate}
+                       value={auth.userEmailUpdate}
                        ref={emailRef}
                        type='email'
                        placeholder='Email'>
@@ -61,7 +56,7 @@ const FormSignUp = () => {
             </div>
             <div className={SignInStyle.sing__input}>
                 <input onChange={signUpUpdateFunc}
-                       value={userPasswordUpdate}
+                       value={auth.userPasswordUpdate}
                        ref={passwordRef}
                        type='password'
                        placeholder='Password'>
@@ -69,14 +64,14 @@ const FormSignUp = () => {
             </div>
             <div className={SignInStyle.sing__input}>
                 <input onChange={signUpUpdateFunc}
-                       value={confirmPasswordUpdate}
+                       value={auth.confirmPasswordUpdate}
                        ref={confirmPasswordRef}
                        type='password'
                        placeholder='Confirm Password'>
                 </input>
             </div>
             <div className={`${SignInStyle.sing__log_in} + ${SignInStyle.sing__up}`}>
-                <input type='submit' disabled={isPreload} value='SIGN UP' onClick={signUpFunc} />
+                <input type='submit' disabled={auth.isPreload} value='SIGN UP' onClick={signUpFunc} />
             </div>
             <p className={SignInStyle.other__yes_account}>
                 Already have account?
