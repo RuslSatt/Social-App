@@ -2,14 +2,14 @@ import React, {useRef} from 'react';
 import SignInStyle from "../SignIn/SignIn.module.css";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {createUser, removeData, updateFormSignUp} from "../../../redux/AuthReducer";
+import {createUser, cleanForm, updateFormSignUp} from "../../../redux/AuthReducer";
 import {Preload} from "../../Common/Preload/Preload";
 
 const FormSignUp = () => {
 
-    const signUpUpdateDispatch = useDispatch();
+    const updateFormDispatch = useDispatch();
     const createUserDispatch = useDispatch();
-    const removeDataDispatch = useDispatch();
+    const cleanFormDispatch = useDispatch();
 
     const auth = useSelector(state => state.auth)
 
@@ -18,7 +18,7 @@ const FormSignUp = () => {
     let confirmPasswordRef = useRef();
 
     const callUpdateForm = () => {
-        signUpUpdateDispatch(updateFormSignUp(emailRef.current.value,
+        updateFormDispatch(updateFormSignUp(emailRef.current.value,
             passwordRef.current.value,
             confirmPasswordRef.current.value))
     }
@@ -27,8 +27,8 @@ const FormSignUp = () => {
             passwordRef.current.value,
             confirmPasswordRef.current.value))
     }
-    const callRemoveForm = () => {
-        removeDataDispatch(removeData());
+    const callCleanForm = () => {
+        cleanFormDispatch(cleanForm());
     }
     const handleSumbit = (e) => {
         e.preventDefault();
@@ -80,7 +80,7 @@ const FormSignUp = () => {
             <p className={SignInStyle.other__yes_account}>
                 Already have account?
                 <span>
-                    <NavLink onClick={callRemoveForm} to='/auth'>SIGN IN</NavLink>
+                    <NavLink onClick={callCleanForm} to='/auth'>SIGN IN</NavLink>
                 </span>
             </p>
         </form>

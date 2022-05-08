@@ -1,55 +1,29 @@
 import {authApi} from "../API/API";
 
-const LOG_IN_ST = 'LOG_IN_ST';
+const ADD_FORM_SIGN_IN = 'ADD_FORM_SIGN_IN';
 const UPDATE_FORM_SIGN_IN = 'UPDATE_FORM_SIGN_IN';
-const CREATE_USER_ST = 'CREATE_USER_ST';
+const ADD_FORM_SIGN_UP = 'ADD_FORM_SIGN_UP';
 const UPDATE_FORM_SIGN_UP = 'UPDATE_FORM_SIGN_UP';
 const ERROR_TYPE = 'ERROR_TYPE';
 const PRELOAD_TYPE = 'PRELOAD_TYPE';
 const REGISTER_TYPE = 'REGISTER_TYPE'
 const REMOVE_TYPE = 'REMOVE_TYPE';
 
-const logInSt = (email, password) => ({
-    type: LOG_IN_ST,
-    email,
-    password,
-})
+const addFormSignIn = () => ({type: ADD_FORM_SIGN_IN,})
 
-const updateFormSignIn = (email, password) => ({
-    type: UPDATE_FORM_SIGN_IN,
-    email,
-    password,
-})
+const updateFormSignIn = (email, password) => ({type: UPDATE_FORM_SIGN_IN, email, password,})
 
-const createUserSt = () => ({
-    type: CREATE_USER_ST,
-})
+const addFormSignUp = () => ({type: ADD_FORM_SIGN_UP,})
 
-const updateFormSignUp = (email, password, confirmPassword) => ({
-    type: UPDATE_FORM_SIGN_UP,
-    email,
-    password,
-    confirmPassword
-})
+const updateFormSignUp = (email, password, confirmPassword) => ({type: UPDATE_FORM_SIGN_UP, email, password, confirmPassword})
 
-const errorAuth = (error) => ({
-    type: ERROR_TYPE,
-    error,
-})
+const errorAuth = (error) => ({type: ERROR_TYPE, error,})
 
-const preload = (value) => ({
-    type: PRELOAD_TYPE,
-    value
-})
+const preload = (value) => ({type: PRELOAD_TYPE, value})
 
-const registerUser = (valueReg) => ({
-    type: REGISTER_TYPE,
-    valueReg
-})
+const registerUser = (valueReg) => ({type: REGISTER_TYPE, valueReg})
 
-const removeData = () => ({
-    type: REMOVE_TYPE,
-})
+const cleanForm = () => ({type: REMOVE_TYPE,})
 
 let initialState = {
     userEmail: '',
@@ -75,7 +49,7 @@ const authReducer = (state = initialState, action) => {
                 error: '',
             }
         }
-        case LOG_IN_ST: {
+        case ADD_FORM_SIGN_IN: {
             return {
                 ...state,
                 userEmail: state.userEmailUpdate,
@@ -92,7 +66,7 @@ const authReducer = (state = initialState, action) => {
                 userPasswordUpdate: action.password,
             }
         }
-        case CREATE_USER_ST: {
+        case ADD_FORM_SIGN_UP: {
             return {
                 ...state,
                 userEmail: state.userEmailUpdate,
@@ -140,7 +114,7 @@ const createUser = (email, password, passwordConfirm) => {
         dispatch(preload(true))
         if (password === passwordConfirm) {
             await authApi.createUserDb(email, password).then(() => {
-                dispatch(createUserSt());
+                dispatch(addFormSignUp());
                 dispatch(preload(false));
                 dispatch(registerUser(true));
             }).catch((error) => {
@@ -155,4 +129,4 @@ const createUser = (email, password, passwordConfirm) => {
 }
 
 
-export {authReducer, updateFormSignUp, createUser, registerUser, removeData, updateFormSignIn};
+export {authReducer, updateFormSignUp, createUser, registerUser, cleanForm, updateFormSignIn};
