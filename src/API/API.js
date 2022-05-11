@@ -1,4 +1,4 @@
-import {auth} from '../data/firebase';
+import {auth} from "../data/firebase";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {arrayUnion, collection, doc, getDocs, getFirestore, onSnapshot, updateDoc} from "firebase/firestore";
 

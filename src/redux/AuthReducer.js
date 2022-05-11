@@ -1,5 +1,4 @@
 import {authApi} from "../API/API";
-import {onAuthStateChanged} from "firebase/auth";
 import {auth} from '../data/firebase';
 
 const ADD_FORM_SIGN_IN = 'ADD_FORM_SIGN_IN';
@@ -18,7 +17,12 @@ const updateFormSignIn = (email, password) => ({type: UPDATE_FORM_SIGN_IN, email
 
 const addFormSignUp = () => ({type: ADD_FORM_SIGN_UP,})
 
-const updateFormSignUp = (email, password, confirmPassword) => ({type: UPDATE_FORM_SIGN_UP, email, password, confirmPassword})
+const updateFormSignUp = (email, password, confirmPassword) => ({
+    type: UPDATE_FORM_SIGN_UP,
+    email,
+    password,
+    confirmPassword
+})
 
 const errorAuth = (error) => ({type: ERROR_TYPE, error,})
 
@@ -146,15 +150,14 @@ const signIn = (email, password) => {
         dispatch(preload(true))
         await authApi.signInDb(email, password).then(() => {
             dispatch(addFormSignIn());
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    dispatch(getUserId(user.uid))
-                    dispatch(preload(false));
-                } else {
-                    dispatch(errorAuth('Not right login or password'));
-                    dispatch(preload(false));
-                }
-            })
+            const user = auth.currentUser;
+            if (user) {
+                dispatch(getUserId(user.uid))
+                dispatch(preload(false));
+            } else {
+                dispatch(errorAuth('No user is signed in.'));
+                dispatch(preload(false));
+            }
         }).catch(() => {
             dispatch(errorAuth('Not right login or password'));
             dispatch(preload(false));
