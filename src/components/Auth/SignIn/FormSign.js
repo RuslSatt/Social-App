@@ -1,13 +1,15 @@
 import React, {useRef} from 'react';
 import SignInStyle from "./SignIn.module.css";
-import {updateFormSignIn} from "../../../redux/AuthReducer";
+import {signIn, updateFormSignIn} from "../../../redux/AuthReducer";
 import {useDispatch, useSelector} from "react-redux";
+import {Preload} from "../../Common/Preload/Preload";
 
 const FormSign = () => {
 
     const auth = useSelector(state => state.auth);
 
     const updateFormDispatch = useDispatch();
+    const signInDispatch = useDispatch();
 
     let emailRef = useRef();
     let passwordRef = useRef();
@@ -16,8 +18,30 @@ const FormSign = () => {
         updateFormDispatch(updateFormSignIn(emailRef.current.value, passwordRef.current.value))
     }
 
+    const callSignIn = () => {
+        signInDispatch(signIn(emailRef.current.value, passwordRef.current.value))
+    }
+
+    const handleSumbit = (e) => {
+        e.preventDefault();
+    }
+
     return (
-        <form className={SignInStyle.sign}>
+        <form onSubmit={handleSumbit} className={SignInStyle.sign}>
+            {
+                auth.error !== '' ?
+                    <div className={SignInStyle.error}>
+                        <span>{auth.error}</span>
+                    </div> :
+                    ''
+            }
+            {
+                auth.isPreload === true ?
+                    <div className={SignInStyle.preload}>
+                        <Preload/>
+                    </div> :
+                    ''
+            }
             <div className={SignInStyle.sing__input}>
                 <input ref={emailRef} onChange={callUpdateForm} value={auth.userEmailUpdate} type='email' placeholder='Email'>
 
@@ -34,7 +58,7 @@ const FormSign = () => {
                 </button>
             </div>
             <div className={SignInStyle.sing__log_in}>
-                <input type='submit' value='LOG IN' />
+                <input onClick={callSignIn} type='submit' value='LOG IN' />
             </div>
         </form>
     );

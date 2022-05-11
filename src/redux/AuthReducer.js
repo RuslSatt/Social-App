@@ -1,4 +1,6 @@
 import {authApi} from "../API/API";
+import {onAuthStateChanged} from "firebase/auth";
+import {auth} from '../data/firebase';
 
 const ADD_FORM_SIGN_IN = 'ADD_FORM_SIGN_IN';
 const UPDATE_FORM_SIGN_IN = 'UPDATE_FORM_SIGN_IN';
@@ -8,6 +10,7 @@ const ERROR_TYPE = 'ERROR_TYPE';
 const PRELOAD_TYPE = 'PRELOAD_TYPE';
 const REGISTER_TYPE = 'REGISTER_TYPE'
 const REMOVE_TYPE = 'REMOVE_TYPE';
+const GET_USER_ID = 'GET_USER_ID';
 
 const addFormSignIn = () => ({type: ADD_FORM_SIGN_IN,})
 
@@ -25,7 +28,10 @@ const registerUser = (valueReg) => ({type: REGISTER_TYPE, valueReg})
 
 const cleanForm = () => ({type: REMOVE_TYPE,})
 
+const getUserId = (id) => ({type: GET_USER_ID, id})
+
 let initialState = {
+    userId: null,
     userEmail: '',
     userPassword: '',
     confirmPassword: '',
@@ -98,6 +104,13 @@ const authReducer = (state = initialState, action) => {
                 isRegister: action.valueReg,
             }
         }
+        case GET_USER_ID: {
+            debugger
+            return {
+                ...state,
+                userId: action.id,
+            }
+        }
         case ERROR_TYPE: {
             return {
                 ...state,
@@ -128,5 +141,26 @@ const createUser = (email, password, passwordConfirm) => {
     }
 }
 
+const signIn = (email, password) => {
+    return async (dispatch) => {
+        dispatch(preload(true))
+        await authApi.signInDb(email, password).then(() => {
+            dispatch(addFormSignIn());
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    dispatch(getUserId(user.uid))
+                    dispatch(preload(false));
+                } else {
+                    dispatch(errorAuth('Not right login or password'));
+                    dispatch(preload(false));
+                }
+            })
+        }).catch(() => {
+            dispatch(errorAuth('Not right login or password'));
+            dispatch(preload(false));
+        });
 
-export {authReducer, updateFormSignUp, createUser, registerUser, cleanForm, updateFormSignIn};
+    }
+}
+
+export {authReducer, updateFormSignUp, createUser, registerUser, cleanForm, updateFormSignIn, signIn};

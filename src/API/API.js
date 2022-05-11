@@ -1,11 +1,14 @@
-import {createUserWithEmailAndPassword, getAuth} from "firebase/auth";
+import {auth} from '../data/firebase';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {arrayUnion, collection, doc, getDocs, getFirestore, onSnapshot, updateDoc} from "firebase/firestore";
 
 export const authApi = {
     createUserDb (email, password) {
-        const auth = getAuth();
         return createUserWithEmailAndPassword(auth, email, password)
-    }
+    },
+    signInDb (email, password) {
+        return signInWithEmailAndPassword(auth, email, password)
+    },
 }
 
 export const postApi = {
