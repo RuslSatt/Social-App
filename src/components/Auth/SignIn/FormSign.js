@@ -3,6 +3,7 @@ import SignInStyle from "./SignIn.module.css";
 import {signIn, updateFormSignIn} from "../../../redux/AuthReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {Preload} from "../../Common/Preload/Preload";
+import { Navigate } from 'react-router-dom';
 
 const FormSign = () => {
 
@@ -24,6 +25,10 @@ const FormSign = () => {
 
     const handleSumbit = (e) => {
         e.preventDefault();
+    }
+
+    if(auth.userId !== null) {
+        return <Navigate to='/setting-profile'/>
     }
 
     return (

@@ -10,12 +10,15 @@ import {UserProfileContainer} from "./components/UserProfile/UserProfileContaine
 import {StartPage} from "./components/StartPage/StartPage";
 import {SignIn} from "./components/Auth/SignIn/SignIn";
 import {SignUp} from "./components/Auth/SignUp/SignUp";
+import { SettingProfile } from './components/SettingProfile/SettingProfile';
+
 
 function App() {
     return (
         <div className="App">
             <div className="App__container">
                 <Routes>
+                    <Route path='/setting-profile' element={<SettingProfile/>}/>
                     <Route path='/auth' element={<SignIn/>}/>
                     <Route path='/signup' element={<SignUp/>}/>
                     <Route path='/social-app' element={<StartPage/>}/>
