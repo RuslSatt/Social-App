@@ -1,7 +1,7 @@
 .SignIn {
     min-height: 100vh;
     overflow: hidden;
-    background: #FFFFFF;
+    background: #ffffff;
     padding-bottom: 56px;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .sign {
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 28px 28px 0px 0px;
     margin-top: -30px;
     position: relative;
@@ -38,7 +38,7 @@
 }
 
 .sing__input input {
-    background: #F3F5F7;
+    background: #f3f5f7;
     border-radius: 30px;
     width: 315px;
     padding: 13px 20px;
@@ -50,7 +50,7 @@
     display: flex;
     align-items: center;
     letter-spacing: -0.2px;
-    color: #BDBDBD;
+    color: #bdbdbd;
 }
 
 .sign__forgot_password {
@@ -64,13 +64,12 @@
 
 .sign__forgot_password button {
     background: transparent;
-    color: #5252C7;
+    color: #5252c7;
     font-size: 14px;
     line-height: 120%;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
-
 
 .sing__log_in {
     display: flex;
@@ -86,16 +85,14 @@
 .sing__log_in input {
     width: 315px;
     padding: 14px 24px;
-    background: linear-gradient(270.95deg, #888BF4 0%, #5151C6 100%);
+    background: linear-gradient(270.95deg, #888bf4 0%, #5151c6 100%);
     border-radius: 30px;
     font-weight: 700;
     font-size: 16px;
     line-height: 150%;
     letter-spacing: 0.6px;
-    color: #FFFFFF
+    color: #ffffff;
 }
-
-
 
 .other {
     text-align: center;
@@ -135,14 +132,14 @@
 }
 
 .other__yes_account span {
-    color: #5252C7;
+    color: #5252c7;
     font-weight: 500;
     margin-left: 5px;
     letter-spacing: 0.2px;
 }
 
 .other__not_account span {
-    color: #5252C7;
+    color: #5252c7;
     font-weight: 500;
     margin-left: 5px;
     letter-spacing: 0.2px;
@@ -153,18 +150,17 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-
 }
 
 .error span {
     padding: 14px 24px;
-    background: linear-gradient(270.95deg, #888BF4 0%, #c41717 100%);
+    background: linear-gradient(270.95deg, #888bf4 0%, #c41717 100%);
     border-radius: 30px;
     font-weight: 700;
     font-size: 16px;
     line-height: 150%;
     letter-spacing: 0.6px;
-    color: #FFFFFF;
+    color: #ffffff;
     width: 315px;
     text-align: center;
 }
