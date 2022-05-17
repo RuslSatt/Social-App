@@ -41,13 +41,13 @@ const FormSignUp = () => {
     const callCleanForm = () => {
         cleanFormDispatch(cleanForm());
     };
-    const handleSumbit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
     };
 
     return (
         <form
-            onSubmit={handleSumbit}
+            onSubmit={handleSubmit}
             className={`${SignInStyle.sign} + ${SignInStyle.signup}`}
         >
             {auth.error !== "" ? (
@@ -94,12 +94,9 @@ const FormSignUp = () => {
             <div
                 className={`${SignInStyle.sing__log_in} + ${SignInStyle.sing__up}`}
             >
-                <input
-                    type="submit"
-                    disabled={auth.isPreload}
-                    value="SIGN UP"
-                    onClick={callCreateUser}
-                />
+                <button disabled={auth.isPreload} onClick={callCreateUser}>
+                    SIGN UP
+                </button>
             </div>
             <p className={SignInStyle.other__yes_account}>
                 Already have account?

@@ -26,7 +26,7 @@ const FormSign = () => {
         );
     };
 
-    const handleSumbit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
     };
 
@@ -35,7 +35,7 @@ const FormSign = () => {
     }
 
     return (
-        <form onSubmit={handleSumbit} className={SignInStyle.sign}>
+        <form onSubmit={handleSubmit} className={SignInStyle.sign}>
             {auth.error !== "" ? (
                 <div className={SignInStyle.error}>
                     <span>{auth.error}</span>
@@ -72,7 +72,9 @@ const FormSign = () => {
                 <button>FORGOT PASSWORD</button>
             </div>
             <div className={SignInStyle.sing__log_in}>
-                <input onClick={callSignIn} type="submit" value="LOG IN" />
+                <button onClick={callSignIn} type="submit">
+                    LOG IN
+                </button>
             </div>
         </form>
     );

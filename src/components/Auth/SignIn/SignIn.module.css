@@ -82,7 +82,7 @@
     margin-top: 40px;
 }
 
-.sing__log_in input {
+.sing__log_in button {
     width: 315px;
     padding: 14px 24px;
     background: linear-gradient(270.95deg, #888bf4 0%, #5151c6 100%);
