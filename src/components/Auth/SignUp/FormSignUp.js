@@ -3,9 +3,10 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../../redux/AuthReducer";
 import { Preload } from "../../Common/Preload/Preload";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { SignUpForm, HaveAccount, Error, Preloader } from "../AuthStyles";
 import { InputWrapper, ButtonWrapperUp } from "../../Style/StyleForm";
+import { SignUpSchema } from "../../Validate/Validate";
 
 const FormSignUp = () => {
     const createUserDispatch = useDispatch();
@@ -20,6 +21,7 @@ const FormSignUp = () => {
                     password: "",
                     confirmPassword: "",
                 }}
+                validationSchema={SignUpSchema}
                 onSubmit={(values, { setSubmitting }) => {
                     createUserDispatch(
                         createUser(
@@ -31,7 +33,7 @@ const FormSignUp = () => {
                     setSubmitting(false);
                 }}
             >
-                {({ isSubmitting }) => (
+                {({ errors, touched, isSubmitting }) => (
                     <Form>
                         {auth.error !== "" ? (
                             <Error>
@@ -47,25 +49,44 @@ const FormSignUp = () => {
                         ) : (
                             ""
                         )}
-                        <InputWrapper>
+                        <InputWrapper
+                            error={errors.email && touched.email ? true : ""}
+                        >
                             <Field
                                 placeholder="Email"
                                 type="email"
                                 name="email"
                             />
+                            <ErrorMessage name="email" component="div" />
                         </InputWrapper>
-                        <InputWrapper>
+                        <InputWrapper
+                            error={
+                                errors.password && touched.password ? true : ""
+                            }
+                        >
                             <Field
                                 placeholder="Password"
                                 type="password"
                                 name="password"
                             />
+                            <ErrorMessage name="password" component="div" />
                         </InputWrapper>
-                        <InputWrapper>
+                        <InputWrapper
+                            error={
+                                errors.confirmPassword &&
+                                touched.confirmPassword
+                                    ? true
+                                    : ""
+                            }
+                        >
                             <Field
                                 placeholder="Confirm password"
                                 type="password"
                                 name="confirmPassword"
+                            />
+                            <ErrorMessage
+                                name="confirmPassword"
+                                component="div"
                             />
                         </InputWrapper>
                         <ButtonWrapperUp>

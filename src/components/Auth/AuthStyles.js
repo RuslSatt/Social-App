@@ -25,6 +25,9 @@ const SignUpForm = styled.div`
     height: 100%;
     overflow: hidden;
     padding: 40px 30px 5px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const SignInForm = styled(SignUpForm)`
