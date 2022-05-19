@@ -1,16 +1,16 @@
 import React from "react";
-import SignInStyle from "./SignIn.module.css";
 import { HeaderSign } from "./HeaderSign";
 import { FormSign } from "./FormSign";
 import { OtherSign } from "./OtherSign";
+import { AuthWrapper } from "../AuthStyles";
 
 const SignIn = (props) => {
     return (
-        <div className={SignInStyle.SignIn}>
+        <AuthWrapper>
             <HeaderSign />
             <FormSign />
             <OtherSign />
-        </div>
+        </AuthWrapper>
     );
 };
 

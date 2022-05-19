@@ -15,7 +15,7 @@ import styled from "styled-components";
 function App() {
     return (
         <AppWrapper>
-            <AppContainer className="App__container">
+            <AppContainer>
                 <Routes>
                     <Route
                         path="/setting-profile"

@@ -1,10 +1,17 @@
 import React from "react";
-import SignInStyle from "./SignIn.module.css";
 import { signIn } from "../../../redux/AuthReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { Preload } from "../../Common/Preload/Preload";
 import { Navigate, NavLink } from "react-router-dom";
 import { Field, Form, Formik } from "formik";
+import {
+    SignInForm,
+    InputWrapper,
+    ButtonWrapper,
+    Error,
+    Preloader,
+} from "../AuthStyles";
+import styled from "styled-components";
 
 const FormSign = () => {
     const auth = useSelector((state) => state.auth);
@@ -16,7 +23,7 @@ const FormSign = () => {
     }
 
     return (
-        <div className={SignInStyle.sign}>
+        <SignInForm>
             <Formik
                 initialValues={{
                     email: "",
@@ -29,46 +36,60 @@ const FormSign = () => {
                 {() => (
                     <Form>
                         {auth.error !== "" ? (
-                            <div className={SignInStyle.error}>
+                            <Error>
                                 <span>{auth.error}</span>
-                            </div>
+                            </Error>
                         ) : (
                             ""
                         )}
                         {auth.isPreload === true ? (
-                            <div className={SignInStyle.preload}>
+                            <Preloader>
                                 <Preload />
-                            </div>
+                            </Preloader>
                         ) : (
                             ""
                         )}
-                        <div className={SignInStyle.sign__input}>
+                        <InputWrapper>
                             <Field
                                 type="email"
                                 placeholder="Email"
                                 name="email"
                             />
-                        </div>
-                        <div className={SignInStyle.sign__input}>
+                        </InputWrapper>
+                        <InputWrapper>
                             <Field
                                 type="password"
                                 placeholder="Password"
                                 name="password"
                             />
-                        </div>
-                        <div className={SignInStyle.sign__forgot_password}>
+                        </InputWrapper>
+                        <ForgotPassword>
                             <NavLink to="/forgotPassword">
                                 FORGOT PASSWORD
                             </NavLink>
-                        </div>
-                        <div className={SignInStyle.sign__log_in}>
+                        </ForgotPassword>
+                        <ButtonWrapper>
                             <button type="submit">LOG IN</button>
-                        </div>
+                        </ButtonWrapper>
                     </Form>
                 )}
             </Formik>
-        </div>
+        </SignInForm>
     );
 };
+
+const ForgotPassword = styled.div`
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #5252c7;
+    font-size: 14px;
+    line-height: 120%;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+`;
 
 export { FormSign };

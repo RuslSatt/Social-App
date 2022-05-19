@@ -1,12 +1,12 @@
 import React from "react";
-import SignInStyle from "./SignIn.module.css";
 import Back from "../../../assets/images/auth-back.png";
+import { AuthHeader, Image } from "../AuthStyles";
 
 const HeaderSign = () => {
     return (
-        <div className={SignInStyle.welcome}>
-            <img src={Back} alt="back" />
-        </div>
+        <AuthHeader>
+            <Image src={Back} alt="back" />
+        </AuthHeader>
     );
 };
 

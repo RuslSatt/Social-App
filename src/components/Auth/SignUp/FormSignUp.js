@@ -1,10 +1,17 @@
 import React from "react";
-import SignInStyle from "../SignIn/SignIn.module.css";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../../redux/AuthReducer";
 import { Preload } from "../../Common/Preload/Preload";
 import { Formik, Form, Field } from "formik";
+import {
+    SignUpForm,
+    InputWrapper,
+    ButtonWrapperUp,
+    HaveAccount,
+    Error,
+    Preloader,
+} from "../AuthStyles";
 
 const FormSignUp = () => {
     const createUserDispatch = useDispatch();
@@ -12,7 +19,7 @@ const FormSignUp = () => {
     const auth = useSelector((state) => state.auth);
 
     return (
-        <div className={`${SignInStyle.sign} + ${SignInStyle.sign_up}`}>
+        <SignUpForm>
             <Formik
                 initialValues={{
                     email: "",
@@ -33,57 +40,55 @@ const FormSignUp = () => {
                 {({ isSubmitting }) => (
                     <Form>
                         {auth.error !== "" ? (
-                            <div className={SignInStyle.error}>
+                            <Error>
                                 <span>{auth.error}</span>
-                            </div>
+                            </Error>
                         ) : (
                             ""
                         )}
                         {auth.isPreload === true ? (
-                            <div className={SignInStyle.preload}>
+                            <Preloader>
                                 <Preload />
-                            </div>
+                            </Preloader>
                         ) : (
                             ""
                         )}
-                        <div className={SignInStyle.sign__input}>
+                        <InputWrapper>
                             <Field
                                 placeholder="Email"
                                 type="email"
                                 name="email"
                             />
-                        </div>
-                        <div className={SignInStyle.sign__input}>
+                        </InputWrapper>
+                        <InputWrapper>
                             <Field
                                 placeholder="Password"
                                 type="password"
                                 name="password"
                             />
-                        </div>
-                        <div className={SignInStyle.sign__input}>
+                        </InputWrapper>
+                        <InputWrapper>
                             <Field
                                 placeholder="Confirm password"
                                 type="password"
                                 name="confirmPassword"
                             />
-                        </div>
-                        <div
-                            className={`${SignInStyle.sign__log_in} + ${SignInStyle.sign__up}`}
-                        >
+                        </InputWrapper>
+                        <ButtonWrapperUp>
                             <button type="submit" disabled={isSubmitting}>
                                 SIGN UP
                             </button>
-                        </div>
-                        <p className={SignInStyle.other__yes_account}>
+                        </ButtonWrapperUp>
+                        <HaveAccount>
                             Already have account?
                             <span>
                                 <NavLink to="/auth">SIGN IN</NavLink>
                             </span>
-                        </p>
+                        </HaveAccount>
                     </Form>
                 )}
             </Formik>
-        </div>
+        </SignUpForm>
     );
 };
 
