@@ -1,36 +1,53 @@
-import './App.css';
-import './normalize.css'
-import './fonts.css'
-import {Routes, Route} from 'react-router-dom';
-import {HomePageContainer} from "./components/HomePage/HomePageContainer";
-import {PostContainer} from "./components/Post/PostContainer";
-import {MessageContainer} from "./components/Message/MessageContainer";
-import {ChatMessageContainer} from "./components/Message/ChatMessage/ChatMessageContainer";
-import {UserProfileContainer} from "./components/UserProfile/UserProfileContainer";
-import {StartPage} from "./components/StartPage/StartPage";
-import {SignIn} from "./components/Auth/SignIn/SignIn";
-import {SignUp} from "./components/Auth/SignUp/SignUp";
-import { SettingProfile } from './components/SettingProfile/SettingProfile';
-
+import "./normalize.css";
+import "./fonts.css";
+import { Routes, Route } from "react-router-dom";
+import { HomePageContainer } from "./components/HomePage/HomePageContainer";
+import { PostContainer } from "./components/Post/PostContainer";
+import { MessageContainer } from "./components/Message/MessageContainer";
+import { ChatMessageContainer } from "./components/Message/ChatMessage/ChatMessageContainer";
+import { UserProfileContainer } from "./components/UserProfile/UserProfileContainer";
+import { StartPage } from "./components/StartPage/StartPage";
+import { SignIn } from "./components/Auth/SignIn/SignIn";
+import { SignUp } from "./components/Auth/SignUp/SignUp";
+import { SettingProfile } from "./components/SettingProfile/SettingProfile";
+import styled from "styled-components";
 
 function App() {
     return (
-        <div className="App">
-            <div className="App__container">
+        <AppWrapper>
+            <AppContainer className="App__container">
                 <Routes>
-                    <Route path='/setting-profile' element={<SettingProfile/>}/>
-                    <Route path='/auth' element={<SignIn/>}/>
-                    <Route path='/signup' element={<SignUp/>}/>
-                    <Route path='/social-app' element={<StartPage/>}/>
-                    <Route path='home' element={<HomePageContainer/>}/>
-                    <Route path='/post/:postId' element={<PostContainer/>}/>
-                    <Route path='message' element={<MessageContainer/>}/>
-                    <Route path='user-chat' element={<ChatMessageContainer/>}/>
-                    <Route path='user-profile' element={<UserProfileContainer/>}/>
+                    <Route
+                        path="/setting-profile"
+                        element={<SettingProfile />}
+                    />
+                    <Route path="/auth" element={<SignIn />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/social-app" element={<StartPage />} />
+                    <Route path="home" element={<HomePageContainer />} />
+                    <Route path="/post/:postId" element={<PostContainer />} />
+                    <Route path="message" element={<MessageContainer />} />
+                    <Route
+                        path="user-chat"
+                        element={<ChatMessageContainer />}
+                    />
+                    <Route
+                        path="user-profile"
+                        element={<UserProfileContainer />}
+                    />
                 </Routes>
-            </div>
-        </div>
+            </AppContainer>
+        </AppWrapper>
     );
 }
+
+const AppWrapper = styled.div`
+    background: rgba(136, 139, 244, 0.19);
+`;
+
+const AppContainer = styled.div`
+    max-width: 768px;
+    margin: 0 auto;
+`;
 
 export default App;

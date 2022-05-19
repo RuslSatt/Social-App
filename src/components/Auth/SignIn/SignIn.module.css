@@ -30,21 +30,21 @@
     padding: 40px 30px 5px 30px;
 }
 
-.sing__input {
+.sign__input {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-.sing__input input {
+.sign__input input {
     background: #f3f5f7;
     border-radius: 30px;
     width: 315px;
     padding: 13px 20px;
 }
 
-.sing__input input::placeholder {
+.sign__input input::placeholder {
     font-size: 16px;
     line-height: 150%;
     display: flex;
@@ -71,18 +71,18 @@
     text-transform: uppercase;
 }
 
-.sing__log_in {
+.sign__log_in {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
-.sing__up {
+.sign__up {
     margin-top: 40px;
 }
 
-.sing__log_in button {
+.sign__log_in button {
     width: 315px;
     padding: 14px 24px;
     background: linear-gradient(270.95deg, #888bf4 0%, #5151c6 100%);

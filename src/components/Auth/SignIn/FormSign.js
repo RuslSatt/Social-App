@@ -42,14 +42,14 @@ const FormSign = () => {
                         ) : (
                             ""
                         )}
-                        <div className={SignInStyle.sing__input}>
+                        <div className={SignInStyle.sign__input}>
                             <Field
                                 type="email"
                                 placeholder="Email"
                                 name="email"
                             />
                         </div>
-                        <div className={SignInStyle.sing__input}>
+                        <div className={SignInStyle.sign__input}>
                             <Field
                                 type="password"
                                 placeholder="Password"
@@ -61,7 +61,7 @@ const FormSign = () => {
                                 FORGOT PASSWORD
                             </NavLink>
                         </div>
-                        <div className={SignInStyle.sing__log_in}>
+                        <div className={SignInStyle.sign__log_in}>
                             <button type="submit">LOG IN</button>
                         </div>
                     </Form>

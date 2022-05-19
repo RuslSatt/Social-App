@@ -46,21 +46,21 @@ const FormSignUp = () => {
                         ) : (
                             ""
                         )}
-                        <div className={SignInStyle.sing__input}>
+                        <div className={SignInStyle.sign__input}>
                             <Field
                                 placeholder="Email"
                                 type="email"
                                 name="email"
                             />
                         </div>
-                        <div className={SignInStyle.sing__input}>
+                        <div className={SignInStyle.sign__input}>
                             <Field
                                 placeholder="Password"
                                 type="password"
                                 name="password"
                             />
                         </div>
-                        <div className={SignInStyle.sing__input}>
+                        <div className={SignInStyle.sign__input}>
                             <Field
                                 placeholder="Confirm password"
                                 type="password"
@@ -68,7 +68,7 @@ const FormSignUp = () => {
                             />
                         </div>
                         <div
-                            className={`${SignInStyle.sing__log_in} + ${SignInStyle.sing__up}`}
+                            className={`${SignInStyle.sign__log_in} + ${SignInStyle.sign__up}`}
                         >
                             <button type="submit" disabled={isSubmitting}>
                                 SIGN UP
