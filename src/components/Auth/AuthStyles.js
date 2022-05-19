@@ -31,49 +31,6 @@ const SignInForm = styled(SignUpForm)`
     padding: 40px 30px;
 `;
 
-const InputWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    input {
-        background: #f3f5f7;
-        border-radius: 30px;
-        width: 315px;
-        padding: 13px 20px;
-        ::placeholder {
-            font-size: 16px;
-            line-height: 150%;
-            display: flex;
-            align-items: center;
-            letter-spacing: -0.2px;
-            color: #bdbdbd;
-        }
-    }
-`;
-
-const ButtonWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    button {
-        width: 315px;
-        padding: 14px 24px;
-        background: linear-gradient(270.95deg, #888bf4 0%, #5151c6 100%);
-        border-radius: 30px;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 150%;
-        letter-spacing: 0.6px;
-        color: #ffffff;
-    }
-`;
-
-const ButtonWrapperUp = styled(ButtonWrapper)`
-    margin-top: 40px;
-`;
-
 const NotHaveAccount = styled.p`
     font-size: 16px;
     line-height: 150%;
@@ -122,9 +79,6 @@ export {
     Image,
     SignUpForm,
     SignInForm,
-    InputWrapper,
-    ButtonWrapper,
-    ButtonWrapperUp,
     NotHaveAccount,
     HaveAccount,
     Error,

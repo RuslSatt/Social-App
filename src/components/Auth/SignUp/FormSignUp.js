@@ -4,14 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../../redux/AuthReducer";
 import { Preload } from "../../Common/Preload/Preload";
 import { Formik, Form, Field } from "formik";
-import {
-    SignUpForm,
-    InputWrapper,
-    ButtonWrapperUp,
-    HaveAccount,
-    Error,
-    Preloader,
-} from "../AuthStyles";
+import { SignUpForm, HaveAccount, Error, Preloader } from "../AuthStyles";
+import { InputWrapper, ButtonWrapperUp } from "../../Style/StyleForm";
 
 const FormSignUp = () => {
     const createUserDispatch = useDispatch();

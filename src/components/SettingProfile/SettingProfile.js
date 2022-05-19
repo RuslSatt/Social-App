@@ -1,15 +1,20 @@
 import React from "react";
-import {HeaderSettingProfile} from "./HeaderSettingProfile/HeaderSettingProfile";
-import SettingProfileStyle from './SettingProfile.module.css'
-import {FormSettingProfile} from "./FormSettingProfile/FormSettingProfile";
+import { HeaderSettingProfile } from "./HeaderSettingProfile/HeaderSettingProfile";
+import { FormSettingProfile } from "./FormSettingProfile/FormSettingProfile";
+import styled from "styled-components";
 
 const SettingProfile = () => {
     return (
-        <div className={SettingProfileStyle.setting}>
-            <HeaderSettingProfile/>
-            <FormSettingProfile/>
-        </div>
+        <Wrapper>
+            <HeaderSettingProfile />
+            <FormSettingProfile />
+        </Wrapper>
     );
-}
+};
 
-export {SettingProfile};
+const Wrapper = styled.div`
+    min-height: 100vh;
+    overflow: hidden;
+`;
+
+export { SettingProfile };

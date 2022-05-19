@@ -4,13 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Preload } from "../../Common/Preload/Preload";
 import { Navigate, NavLink } from "react-router-dom";
 import { Field, Form, Formik } from "formik";
-import {
-    SignInForm,
-    InputWrapper,
-    ButtonWrapper,
-    Error,
-    Preloader,
-} from "../AuthStyles";
+import { SignInForm, Error, Preloader } from "../AuthStyles";
+import { InputWrapper, ButtonWrapper } from "../../Style/StyleForm";
 import styled from "styled-components";
 
 const FormSign = () => {
