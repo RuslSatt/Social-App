@@ -2,25 +2,17 @@ import React from "react";
 import SignInStyle from "../SignIn/SignIn.module.css";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser, cleanForm } from "../../../redux/AuthReducer";
+import { createUser } from "../../../redux/AuthReducer";
 import { Preload } from "../../Common/Preload/Preload";
 import { Formik, Form, Field } from "formik";
 
 const FormSignUp = () => {
     const createUserDispatch = useDispatch();
-    const cleanFormDispatch = useDispatch();
 
     const auth = useSelector((state) => state.auth);
 
-    const callCreateUser = (email, password, confirmPassword) => {
-        createUserDispatch(createUser(email, password, confirmPassword));
-    };
-    const callCleanForm = () => {
-        cleanFormDispatch(cleanForm());
-    };
-
     return (
-        <div className={`${SignInStyle.sign} + ${SignInStyle.signup}`}>
+        <div className={`${SignInStyle.sign} + ${SignInStyle.sign_up}`}>
             <Formik
                 initialValues={{
                     email: "",
@@ -28,10 +20,12 @@ const FormSignUp = () => {
                     confirmPassword: "",
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    callCreateUser(
-                        values.email,
-                        values.password,
-                        values.confirmPassword,
+                    createUserDispatch(
+                        createUser(
+                            values.email,
+                            values.password,
+                            values.confirmPassword,
+                        ),
                     );
                     setSubmitting(false);
                 }}
@@ -83,9 +77,7 @@ const FormSignUp = () => {
                         <p className={SignInStyle.other__yes_account}>
                             Already have account?
                             <span>
-                                <NavLink onClick={callCleanForm} to="/auth">
-                                    SIGN IN
-                                </NavLink>
+                                <NavLink to="/auth">SIGN IN</NavLink>
                             </span>
                         </p>
                     </Form>

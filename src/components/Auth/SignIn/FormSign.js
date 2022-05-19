@@ -1,82 +1,73 @@
-import React, { useRef } from "react";
+import React from "react";
 import SignInStyle from "./SignIn.module.css";
-import { signIn, updateFormSignIn } from "../../../redux/AuthReducer";
+import { signIn } from "../../../redux/AuthReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { Preload } from "../../Common/Preload/Preload";
-import { Navigate } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
+import { Field, Form, Formik } from "formik";
 
 const FormSign = () => {
     const auth = useSelector((state) => state.auth);
 
-    const updateFormDispatch = useDispatch();
     const signInDispatch = useDispatch();
-
-    let emailRef = useRef();
-    let passwordRef = useRef();
-
-    const callUpdateForm = () => {
-        updateFormDispatch(
-            updateFormSignIn(emailRef.current.value, passwordRef.current.value),
-        );
-    };
-
-    const callSignIn = () => {
-        signInDispatch(
-            signIn(emailRef.current.value, passwordRef.current.value),
-        );
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    };
 
     if (auth.userId !== null) {
         return <Navigate to="/setting-profile" />;
     }
 
     return (
-        <form onSubmit={handleSubmit} className={SignInStyle.sign}>
-            {auth.error !== "" ? (
-                <div className={SignInStyle.error}>
-                    <span>{auth.error}</span>
-                </div>
-            ) : (
-                ""
-            )}
-            {auth.isPreload === true ? (
-                <div className={SignInStyle.preload}>
-                    <Preload />
-                </div>
-            ) : (
-                ""
-            )}
-            <div className={SignInStyle.sing__input}>
-                <input
-                    ref={emailRef}
-                    onChange={callUpdateForm}
-                    value={auth.userEmailUpdate}
-                    type="email"
-                    placeholder="Email"
-                ></input>
-            </div>
-            <div className={SignInStyle.sing__input}>
-                <input
-                    ref={passwordRef}
-                    onChange={callUpdateForm}
-                    value={auth.userPasswordUpdate}
-                    type="password"
-                    placeholder="Password"
-                ></input>
-            </div>
-            <div className={SignInStyle.sign__forgot_password}>
-                <button>FORGOT PASSWORD</button>
-            </div>
-            <div className={SignInStyle.sing__log_in}>
-                <button onClick={callSignIn} type="submit">
-                    LOG IN
-                </button>
-            </div>
-        </form>
+        <div className={SignInStyle.sign}>
+            <Formik
+                initialValues={{
+                    email: "",
+                    password: "",
+                }}
+                onSubmit={(values) => {
+                    signInDispatch(signIn(values.email, values.password));
+                }}
+            >
+                {() => (
+                    <Form>
+                        {auth.error !== "" ? (
+                            <div className={SignInStyle.error}>
+                                <span>{auth.error}</span>
+                            </div>
+                        ) : (
+                            ""
+                        )}
+                        {auth.isPreload === true ? (
+                            <div className={SignInStyle.preload}>
+                                <Preload />
+                            </div>
+                        ) : (
+                            ""
+                        )}
+                        <div className={SignInStyle.sing__input}>
+                            <Field
+                                type="email"
+                                placeholder="Email"
+                                name="email"
+                            />
+                        </div>
+                        <div className={SignInStyle.sing__input}>
+                            <Field
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                            />
+                        </div>
+                        <div className={SignInStyle.sign__forgot_password}>
+                            <NavLink to="/forgotPassword">
+                                FORGOT PASSWORD
+                            </NavLink>
+                        </div>
+                        <div className={SignInStyle.sing__log_in}>
+                            <button type="submit">LOG IN</button>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
+        </div>
     );
 };
 

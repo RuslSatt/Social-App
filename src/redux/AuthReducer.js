@@ -1,40 +1,16 @@
 import { authApi } from "../API/API";
 import { auth } from "../data/firebase";
 
-const ADD_FORM_SIGN_IN = "ADD_FORM_SIGN_IN";
-const UPDATE_FORM_SIGN_IN = "UPDATE_FORM_SIGN_IN";
-const ADD_FORM_SIGN_UP = "ADD_FORM_SIGN_UP";
-const UPDATE_FORM_SIGN_UP = "UPDATE_FORM_SIGN_UP";
 const ERROR_TYPE = "ERROR_TYPE";
 const PRELOAD_TYPE = "PRELOAD_TYPE";
 const REGISTER_TYPE = "REGISTER_TYPE";
-const REMOVE_TYPE = "REMOVE_TYPE";
 const GET_USER_ID = "GET_USER_ID";
-
-const addFormSignIn = () => ({ type: ADD_FORM_SIGN_IN });
-
-const updateFormSignIn = (email, password) => ({
-    type: UPDATE_FORM_SIGN_IN,
-    email,
-    password,
-});
-
-const addFormSignUp = () => ({ type: ADD_FORM_SIGN_UP });
-
-const updateFormSignUp = (email, password, confirmPassword) => ({
-    type: UPDATE_FORM_SIGN_UP,
-    email,
-    password,
-    confirmPassword,
-});
 
 const errorAuth = (error) => ({ type: ERROR_TYPE, error });
 
 const preload = (value) => ({ type: PRELOAD_TYPE, value });
 
 const registerUser = (valueReg) => ({ type: REGISTER_TYPE, valueReg });
-
-const cleanForm = () => ({ type: REMOVE_TYPE });
 
 const getUserId = (id) => ({ type: GET_USER_ID, id });
 
@@ -48,32 +24,6 @@ let initialState = {
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case REMOVE_TYPE: {
-            return {
-                ...state,
-                userEmailUpdate: "",
-                userPasswordUpdate: "",
-                confirmPasswordUpdate: "",
-                error: "",
-            };
-        }
-        case ADD_FORM_SIGN_IN: {
-            return {
-                ...state,
-                userEmail: state.userEmailUpdate,
-                userPassword: state.userPasswordUpdate,
-                userEmailUpdate: "",
-                userPasswordUpdate: "",
-                error: "",
-            };
-        }
-        case UPDATE_FORM_SIGN_IN: {
-            return {
-                ...state,
-                userEmailUpdate: action.email,
-                userPasswordUpdate: action.password,
-            };
-        }
         case PRELOAD_TYPE: {
             return {
                 ...state,
@@ -147,12 +97,4 @@ const signIn = (email, password) => {
     };
 };
 
-export {
-    authReducer,
-    updateFormSignUp,
-    createUser,
-    registerUser,
-    cleanForm,
-    updateFormSignIn,
-    signIn,
-};
+export { authReducer, createUser, registerUser, signIn };
