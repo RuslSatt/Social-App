@@ -1,25 +1,26 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../../../redux/AuthReducer";
-import { Preload } from "../../Common/Preload/Preload";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { SignUpForm, HaveAccount, Error, Preloader } from "../AuthStyles";
-import { InputWrapper, ButtonWrapperUp } from "../../Style/StyleForm";
-import { SignUpSchema } from "../../Validate/Validate";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { createUser } from '../../../redux/AuthReducer'
+import { Preload } from '../../Common/Preload/Preload'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { Error, HaveAccount, Preloader, SignUpForm } from '../AuthStyles'
+import { ButtonWrapperUp, InputWrapper } from '../../Style/StyleForm'
+import { SignUpSchema } from '../../Validate/Validate'
 
 const FormSignUp = () => {
-    const createUserDispatch = useDispatch();
+    const createUserDispatch = useDispatch()
 
-    const auth = useSelector((state) => state.auth);
+    const auth = useSelector((state) => state.auth)
 
     return (
         <SignUpForm>
             <Formik
                 initialValues={{
-                    email: "",
-                    password: "",
-                    confirmPassword: "",
+                    email: '',
+                    password: '',
+                    confirmPassword: '',
+                    name: '',
                 }}
                 validationSchema={SignUpSchema}
                 onSubmit={(values, { setSubmitting }) => {
@@ -27,30 +28,30 @@ const FormSignUp = () => {
                         createUser(
                             values.email,
                             values.password,
-                            values.confirmPassword,
-                        ),
-                    );
-                    setSubmitting(false);
+                            values.confirmPassword
+                        )
+                    )
+                    setSubmitting(false)
                 }}
             >
                 {({ errors, touched, isSubmitting }) => (
                     <Form>
-                        {auth.error !== "" ? (
+                        {auth.error !== '' ? (
                             <Error>
                                 <span>{auth.error}</span>
                             </Error>
                         ) : (
-                            ""
+                            ''
                         )}
                         {auth.isPreload === true ? (
                             <Preloader>
                                 <Preload />
                             </Preloader>
                         ) : (
-                            ""
+                            ''
                         )}
                         <InputWrapper
-                            error={errors.email && touched.email ? true : ""}
+                            error={errors.email && touched.email ? true : ''}
                         >
                             <Field
                                 placeholder="Email"
@@ -61,7 +62,7 @@ const FormSignUp = () => {
                         </InputWrapper>
                         <InputWrapper
                             error={
-                                errors.password && touched.password ? true : ""
+                                errors.password && touched.password ? true : ''
                             }
                         >
                             <Field
@@ -76,7 +77,7 @@ const FormSignUp = () => {
                                 errors.confirmPassword &&
                                 touched.confirmPassword
                                     ? true
-                                    : ""
+                                    : ''
                             }
                         >
                             <Field
@@ -104,7 +105,7 @@ const FormSignUp = () => {
                 )}
             </Formik>
         </SignUpForm>
-    );
-};
+    )
+}
 
-export { FormSignUp };
+export { FormSignUp }

@@ -1,9 +1,9 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
-import {homePageReducer} from "./HomePageReducer";
-import {messagePageReducer} from "./MessagePageReducer";
-import {userProfileReducer} from "./UserProfileReducer";
-import {authReducer} from "./AuthReducer";
-import thunkMiddleware from 'redux-thunk'
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { homePageReducer } from './HomePageReducer';
+import { messagePageReducer } from './MessagePageReducer';
+import { userProfileReducer } from './UserProfileReducer';
+import { authReducer } from './AuthReducer';
+import thunkMiddleware from 'redux-thunk';
 
 let reducers = combineReducers({
     homePage: homePageReducer,
@@ -14,4 +14,4 @@ let reducers = combineReducers({
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
-export {store};
+export { store };
