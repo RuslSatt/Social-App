@@ -15,6 +15,7 @@ let initialState = {
     id: '',
     tag: '',
     name: '',
+    email: '',
     location: '',
     followers: null,
     following: null,

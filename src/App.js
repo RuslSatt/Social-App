@@ -11,13 +11,18 @@ import { SignIn } from './components/Auth/SignIn/SignIn'
 import { SignUp } from './components/Auth/SignUp/SignUp'
 import { StartProfile } from './components/StartProfile/StartProfile'
 import styled from 'styled-components'
+import { SettingProfile } from './components/SettingProfile/SettingProfile'
 
 function App() {
     return (
         <AppWrapper>
             <AppContainer>
                 <Routes>
-                    <Route path="/setting-profile" element={<StartProfile />} />
+                    <Route path="/start-profile" element={<StartProfile />} />
+                    <Route
+                        path="/setting-profile"
+                        element={<SettingProfile />}
+                    />
                     <Route path="/auth" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/social-app" element={<StartPage />} />
@@ -43,7 +48,7 @@ const AppWrapper = styled.div`
 `
 
 const AppContainer = styled.div`
-    max-width: 768px;
+    max-width: 500px;
     margin: 0 auto;
 `
 

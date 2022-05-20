@@ -1,48 +1,48 @@
-import React from "react";
-import { signIn } from "../../../redux/AuthReducer";
-import { useDispatch, useSelector } from "react-redux";
-import { Preload } from "../../Common/Preload/Preload";
-import { Navigate, NavLink } from "react-router-dom";
-import { Field, Form, Formik } from "formik";
-import { SignInForm, Error, Preloader } from "../AuthStyles";
-import { InputWrapper, ButtonWrapper } from "../../Style/StyleForm";
-import styled from "styled-components";
+import React from 'react'
+import { signIn } from '../../../redux/AuthReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { Preload } from '../../Common/Preload/Preload'
+import { Navigate, NavLink } from 'react-router-dom'
+import { Field, Form, Formik } from 'formik'
+import { Error, Preloader, SignInForm } from '../AuthStyles'
+import { ButtonWrapper, InputWrapper } from '../../Style/StyleForm'
+import styled from 'styled-components'
 
 const FormSign = () => {
-    const auth = useSelector((state) => state.auth);
+    const auth = useSelector((state) => state.auth)
 
-    const signInDispatch = useDispatch();
+    const signInDispatch = useDispatch()
 
     if (auth.userId !== null) {
-        return <Navigate to="/setting-profile" />;
+        return <Navigate to="/start-profile" />
     }
 
     return (
         <SignInForm>
             <Formik
                 initialValues={{
-                    email: "",
-                    password: "",
+                    email: '',
+                    password: '',
                 }}
                 onSubmit={(values) => {
-                    signInDispatch(signIn(values.email, values.password));
+                    signInDispatch(signIn(values.email, values.password))
                 }}
             >
                 {() => (
                     <Form>
-                        {auth.error !== "" ? (
+                        {auth.error !== '' ? (
                             <Error>
                                 <span>{auth.error}</span>
                             </Error>
                         ) : (
-                            ""
+                            ''
                         )}
                         {auth.isPreload === true ? (
                             <Preloader>
                                 <Preload />
                             </Preloader>
                         ) : (
-                            ""
+                            ''
                         )}
                         <InputWrapper>
                             <Field
@@ -70,8 +70,8 @@ const FormSign = () => {
                 )}
             </Formik>
         </SignInForm>
-    );
-};
+    )
+}
 
 const ForgotPassword = styled.div`
     margin-top: 40px;
@@ -85,6 +85,6 @@ const ForgotPassword = styled.div`
     line-height: 120%;
     letter-spacing: 2px;
     text-transform: uppercase;
-`;
+`
 
-export { FormSign };
+export { FormSign }

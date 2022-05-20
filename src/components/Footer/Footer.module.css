@@ -1,5 +1,5 @@
 .Footer {
-    max-width: 768px;
+    max-width: 500px;
     background: url("../../assets/images/Surface.svg") center no-repeat;
     background-size: cover;
     box-shadow: 0 -1px 30px rgba(138, 149, 158, 0.2);
@@ -16,24 +16,6 @@
 
 .btnAdd {
     transform: translate( 0, -35%);
-    height: 100px;
-    width: 100px;
-}
-@media (max-width: 600px) {
-    .btnAdd {
-        height: 80px;
-        width: 80px;
-    }
-}
-@media (max-width: 500px) {
-    .btnAdd {
-        height: 70px;
-        width: 70px;
-    }
-}
-@media (max-width: 413px) {
-    .btnAdd {
-        height: 60px;
-        width: 60px;
-    }
+    height: 60px;
+    width: 60px;
 }
