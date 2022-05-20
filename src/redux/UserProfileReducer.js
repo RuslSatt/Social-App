@@ -1,33 +1,38 @@
-const  userProfileType = 'NEW_SHOTS';
+import { userApi } from '../API/API'
+import { auth } from '../data/firebase'
+import { preload } from './AuthReducer'
 
-const userProfileCreator = () => ({
-    type: userProfileType,
-});
+const SET_DATA_USER = 'SET_DATA_USER'
+
+const setDataUser = (name, tag, userId) => ({
+    type: SET_DATA_USER,
+    name,
+    tag,
+    userId,
+})
 
 let initialState = {
-    userData: {
-        id: 0,
-        tag: '@RusDarth',
-        name: 'Ruslan',
-        location: 'Russia, Ufa',
-        followers: 150,
-        following: 100,
-        shots: [
-        ],
-        collections: [
-
-        ],
-        linkWeb: '',
-        linkInst: '',
-        linkFace: '',
-    }
+    id: '',
+    tag: '',
+    name: '',
+    location: '',
+    followers: null,
+    following: null,
+    shots: [],
+    collections: [],
+    linkWeb: '',
+    linkInst: '',
+    linkFace: '',
 }
 
 const userProfileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case userProfileType:
+        case SET_DATA_USER:
             return {
                 ...state,
+                id: action.userId,
+                tag: action.tag,
+                name: action.name,
             }
         default:
             return {
@@ -36,4 +41,14 @@ const userProfileReducer = (state = initialState, action) => {
     }
 }
 
-export {userProfileReducer, userProfileCreator}
+const setUser = (name, tag) => {
+    return async (dispatch) => {
+        dispatch(preload(true))
+        const user = auth.currentUser
+        await userApi.setUser(name, tag, user.uid)
+        dispatch(setDataUser(name, tag, user.uid))
+        dispatch(preload(false))
+    }
+}
+
+export { userProfileReducer, setUser }

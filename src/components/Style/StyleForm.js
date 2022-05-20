@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const InputWrapper = styled.div`
     display: flex;
@@ -14,7 +14,8 @@ const InputWrapper = styled.div`
         border-radius: 30px;
         width: 315px;
         padding: 13px 20px;
-        border: ${(props) => (props.error ? "2px solid #ff0000" : "0px solid")};
+        border: ${(props) => (props.error ? '2px solid #ff0000' : '0px solid')};
+
         ::placeholder {
             font-size: 16px;
             line-height: 150%;
@@ -34,8 +35,9 @@ const InputWrapper = styled.div`
         padding: 10px;
         position: relative;
         border-radius: 20px;
+
         &:after {
-            content: "";
+            content: '';
             position: absolute;
             top: -10px;
             left: 40%;
@@ -48,17 +50,18 @@ const InputWrapper = styled.div`
             border-bottom: 10px solid #ff0000;
         }
     }
-`;
+`
 
 const InputWrapperSP = styled(InputWrapper)`
     display: block;
-`;
+`
 
 const ButtonWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+
     button {
         width: 315px;
         padding: 14px 24px;
@@ -70,11 +73,11 @@ const ButtonWrapper = styled.div`
         letter-spacing: 0.6px;
         color: #ffffff;
     }
-`;
+`
 
 const ButtonWrapperUp = styled(ButtonWrapper)`
     margin-top: 40px;
-`;
+`
 
 const ButtonWrapperSP = styled(ButtonWrapper)`
     button {
@@ -85,7 +88,7 @@ const ButtonWrapperSP = styled(ButtonWrapper)`
             position: relative;
         }
     }
-`;
+`
 
 export {
     InputWrapper,
@@ -93,4 +96,4 @@ export {
     ButtonWrapperUp,
     InputWrapperSP,
     ButtonWrapperSP,
-};
+}

@@ -1,10 +1,10 @@
-import React from "react";
-import HeaderBack from "../../../assets/images/header-background.png";
-import Avatar from "../../../assets/images/posts/Post-3.png";
-import addPhoto from "../../../assets/images/addPhoto.svg";
-import styled from "styled-components";
+import React from 'react'
+import HeaderBack from '../../../assets/images/header-background.png'
+import Avatar from '../../../assets/images/posts/Post-3.png'
+import addPhoto from '../../../assets/images/addPhoto.svg'
+import styled from 'styled-components'
 
-const HeaderSettingProfile = () => {
+const HeaderStartProfile = () => {
     return (
         <Header>
             <Body>
@@ -15,13 +15,13 @@ const HeaderSettingProfile = () => {
             </Body>
             <Image src={HeaderBack} alt="background" />
         </Header>
-    );
-};
+    )
+}
 
 const Header = styled.div`
     min-height: 150px;
     position: relative;
-`;
+`
 
 const Body = styled.div`
     padding-top: 30px;
@@ -45,7 +45,7 @@ const Body = styled.div`
         top: 155px;
         z-index: 10;
     }
-`;
+`
 
 const Image = styled.img`
     position: absolute;
@@ -53,7 +53,7 @@ const Image = styled.img`
     top: 0;
     width: 100%;
     height: 100%;
-`;
+`
 
 const ImageA = styled.img`
     position: absolute;
@@ -61,7 +61,7 @@ const ImageA = styled.img`
     width: 100px;
     height: 100px;
     border-radius: 50px;
-`;
+`
 
 const ImageAdd = styled.img`
     position: absolute;
@@ -69,6 +69,6 @@ const ImageAdd = styled.img`
     top: 155px;
     width: 30px;
     height: 30px;
-`;
+`
 
-export { HeaderSettingProfile };
+export { HeaderStartProfile }

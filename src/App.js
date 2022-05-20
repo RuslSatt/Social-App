@@ -1,26 +1,23 @@
-import "./normalize.css";
-import "./fonts.css";
-import { Routes, Route } from "react-router-dom";
-import { HomePageContainer } from "./components/HomePage/HomePageContainer";
-import { PostContainer } from "./components/Post/PostContainer";
-import { MessageContainer } from "./components/Message/MessageContainer";
-import { ChatMessageContainer } from "./components/Message/ChatMessage/ChatMessageContainer";
-import { UserProfileContainer } from "./components/UserProfile/UserProfileContainer";
-import { StartPage } from "./components/StartPage/StartPage";
-import { SignIn } from "./components/Auth/SignIn/SignIn";
-import { SignUp } from "./components/Auth/SignUp/SignUp";
-import { SettingProfile } from "./components/SettingProfile/SettingProfile";
-import styled from "styled-components";
+import './normalize.css'
+import './fonts.css'
+import { Route, Routes } from 'react-router-dom'
+import { HomePageContainer } from './components/HomePage/HomePageContainer'
+import { PostContainer } from './components/Post/PostContainer'
+import { MessageContainer } from './components/Message/MessageContainer'
+import { ChatMessageContainer } from './components/Message/ChatMessage/ChatMessageContainer'
+import { UserProfileContainer } from './components/UserProfile/UserProfileContainer'
+import { StartPage } from './components/StartPage/StartPage'
+import { SignIn } from './components/Auth/SignIn/SignIn'
+import { SignUp } from './components/Auth/SignUp/SignUp'
+import { StartProfile } from './components/StartProfile/StartProfile'
+import styled from 'styled-components'
 
 function App() {
     return (
         <AppWrapper>
             <AppContainer>
                 <Routes>
-                    <Route
-                        path="/setting-profile"
-                        element={<SettingProfile />}
-                    />
+                    <Route path="/setting-profile" element={<StartProfile />} />
                     <Route path="/auth" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/social-app" element={<StartPage />} />
@@ -38,16 +35,16 @@ function App() {
                 </Routes>
             </AppContainer>
         </AppWrapper>
-    );
+    )
 }
 
 const AppWrapper = styled.div`
     background: rgba(136, 139, 244, 0.19);
-`;
+`
 
 const AppContainer = styled.div`
     max-width: 768px;
     margin: 0 auto;
-`;
+`
 
-export default App;
+export default App

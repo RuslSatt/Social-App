@@ -1,20 +1,18 @@
-import {connect} from "react-redux";
-import {UserProfile} from "./UserProfile";
-
+import { connect } from 'react-redux'
+import { UserProfile } from './UserProfile'
 
 const mapStateToProps = (state) => {
     return {
-        tag: state.userProfile.userData.tag,
-        name: state.userProfile.userData.name,
-        location: state.userProfile.userData.location,
-        followers: state.userProfile.userData.followers,
-        following: state.userProfile.userData.following,
-        shots: state.userProfile.userData.shots,
-        collections: state.userProfile.userData.collections,
+        tag: state.userProfile.tag,
+        name: state.userProfile.name,
+        location: state.userProfile.location,
+        followers: state.userProfile.followers,
+        following: state.userProfile.following,
+        shots: state.userProfile.shots,
+        collections: state.userProfile.collections,
     }
 }
 
+const UserProfileContainer = connect(mapStateToProps)(UserProfile)
 
-const UserProfileContainer = connect(mapStateToProps)(UserProfile);
-
-export {UserProfileContainer};
+export { UserProfileContainer }
