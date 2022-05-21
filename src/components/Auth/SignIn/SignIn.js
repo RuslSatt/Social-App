@@ -1,8 +1,8 @@
-import React from "react";
-import { HeaderSign } from "./HeaderSign";
-import { FormSign } from "./FormSign";
-import { OtherSign } from "./OtherSign";
-import { AuthWrapper } from "../AuthStyles";
+import React from 'react'
+import { HeaderSign } from './HeaderSign'
+import { FormSign } from './FormSign'
+import { OtherSign } from './OtherSign'
+import { AuthWrapper } from '../AuthStyles'
 
 const SignIn = (props) => {
     return (
@@ -11,7 +11,7 @@ const SignIn = (props) => {
             <FormSign />
             <OtherSign />
         </AuthWrapper>
-    );
-};
+    )
+}
 
-export { SignIn };
+export { SignIn }

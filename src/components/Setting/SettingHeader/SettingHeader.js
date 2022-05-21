@@ -1,12 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
 import Chev from '../../../assets/images/chevron-right 3.svg'
 import Ava from '../../../assets/images/avatar3.png'
 
-const HeaderSettingProfile = () => {
-    const user = useSelector((state) => state.userProfile)
-
+const SettingHeader = () => {
     return (
         <Header>
             <Body>
@@ -32,7 +29,7 @@ const Header = styled.div`
     text-align: center;
     position: relative;
     z-index: 1;
-    margin: 0 20px;
+    margin: 0 20px 25px 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 `
@@ -77,4 +74,4 @@ const Chevron = styled.img`
     right: 10px;
 `
 
-export { HeaderSettingProfile }
+export { SettingHeader }

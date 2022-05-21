@@ -2,12 +2,14 @@ import React from 'react'
 import { Footer } from '../Footer/Footer'
 import styled from 'styled-components'
 import SettingBackground from '../../assets/images/setting-background.png'
-import { HeaderSettingProfile } from './HeaderSettingProfile/HeaderSettingProfile'
+import { SettingHeader } from './SettingHeader/SettingHeader'
+import { SettingMenu } from './SettingMenu/SettingMenu'
 
-const SettingProfile = () => {
+const Setting = () => {
     return (
         <Wrapper>
-            <HeaderSettingProfile />
+            <SettingHeader />
+            <SettingMenu />
             <Image src={SettingBackground} alt="Background" />
             <Footer />
         </Wrapper>
@@ -33,4 +35,4 @@ const Image = styled.img`
     object-fit: cover;
 `
 
-export { SettingProfile }
+export { Setting }

@@ -17,7 +17,6 @@ const getUserId = (id) => ({ type: GET_USER_ID, id })
 let initialState = {
     userId: null,
     isRegister: false,
-    isLogIn: false,
     isPreload: false,
     error: '',
 }
@@ -37,7 +36,6 @@ const authReducer = (state = initialState, action) => {
             }
         }
         case GET_USER_ID: {
-            debugger
             return {
                 ...state,
                 userId: action.id,

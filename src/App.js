@@ -11,18 +11,23 @@ import { SignIn } from './components/Auth/SignIn/SignIn'
 import { SignUp } from './components/Auth/SignUp/SignUp'
 import { StartProfile } from './components/StartProfile/StartProfile'
 import styled from 'styled-components'
-import { SettingProfile } from './components/SettingProfile/SettingProfile'
+import { Setting } from './components/Setting/Setting'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { initializeUser } from './redux/AppReducer'
 
 function App() {
+    const initializeUserDispatch = useDispatch()
+    useEffect(() => {
+        initializeUserDispatch(initializeUser())
+    })
+
     return (
         <AppWrapper>
             <AppContainer>
                 <Routes>
                     <Route path="/start-profile" element={<StartProfile />} />
-                    <Route
-                        path="/setting-profile"
-                        element={<SettingProfile />}
-                    />
+                    <Route path="/setting-profile" element={<Setting />} />
                     <Route path="/auth" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/social-app" element={<StartPage />} />
