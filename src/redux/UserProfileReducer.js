@@ -45,10 +45,12 @@ const userProfileReducer = (state = initialState, action) => {
 const setUser = (name, tag) => {
     return async (dispatch) => {
         dispatch(changeIsPreload(true))
-        const user = auth.currentUser
-        await userApi.setUser(name, tag, user.uid)
-        dispatch(setDataUser(name, tag, user.uid))
-        dispatch(changeIsPreload(false))
+        await userApi.updateUser(name).then(() => {
+            const user = auth.currentUser
+            userApi.setUser(name, tag, user.uid)
+            dispatch(setDataUser(name, tag, user.uid))
+            dispatch(changeIsPreload(false))
+        })
     }
 }
 

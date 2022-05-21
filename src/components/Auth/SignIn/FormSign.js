@@ -13,10 +13,10 @@ const FormSign = () => {
     const app = useSelector((state) => state.app)
     const auth = useSelector((state) => state.auth)
 
-    if (!auth.displayName) {
+    if (app.isLogin && app.displayName === null) {
         return <Navigate to="/start-profile" />
     }
-    if (app.isLogin) {
+    if (app.isLogin && app.displayName !== null) {
         return <Navigate to="/home" />
     }
 

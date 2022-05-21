@@ -36,7 +36,7 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userId: action.id,
-                displayName: action.displayName,
+                displayName: action.name,
             }
         }
         default:
@@ -58,4 +58,10 @@ const initializeUser = () => {
     }
 }
 
-export { appReducer, initializeUser, changeIsLogin, changeIsNavigate }
+export {
+    appReducer,
+    initializeUser,
+    changeIsLogin,
+    changeIsNavigate,
+    getUserData,
+}

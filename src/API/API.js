@@ -3,6 +3,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
+    updateProfile,
 } from 'firebase/auth'
 import {
     arrayUnion,
@@ -55,6 +56,11 @@ export const userApi = {
             name: name,
             tag: tag,
             id: userId,
+        })
+    },
+    updateUser(displayName) {
+        return updateProfile(auth.currentUser, {
+            displayName: displayName,
         })
     },
 }

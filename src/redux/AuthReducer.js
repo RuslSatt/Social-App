@@ -1,5 +1,6 @@
 import { authApi } from '../API/API'
 import { auth } from '../data/firebase'
+import { changeIsLogin, getUserData } from './AppReducer'
 
 const ERROR_TYPE = 'ERROR_TYPE'
 const PRELOAD_TYPE = 'PRELOAD_TYPE'
@@ -82,6 +83,8 @@ const signIn = (email, password) => {
                 const user = auth.currentUser
                 if (user) {
                     dispatch(getUserId(user.uid))
+                    dispatch(getUserData(user.uid, user.displayName))
+                    dispatch(changeIsLogin(true))
                     dispatch(changeIsPreload(false))
                 } else {
                     dispatch(getError('No user is signed in.'))

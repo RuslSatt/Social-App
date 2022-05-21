@@ -11,8 +11,13 @@ import { Preload } from '../../Common/Preload/Preload'
 const FormStartProfile = () => {
     const setUserDispatch = useDispatch()
 
+    const app = useSelector((state) => state.app)
     const user = useSelector((state) => state.userProfile)
     const auth = useSelector((state) => state.auth)
+
+    if (app.isNavigate) {
+        return <Navigate to="/auth" />
+    }
 
     if (user.name !== '') {
         return <Navigate to="/home" />
