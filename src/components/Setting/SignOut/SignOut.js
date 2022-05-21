@@ -1,11 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 import Logout from '../../../assets/images/Logout.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { signOut } from '../../../redux/SettingReducer'
+import { Navigate } from 'react-router-dom'
 
-const LogOut = () => {
+const SignOut = () => {
+    const signOutDispatch = useDispatch()
+    const app = useSelector((state) => state.app)
+
+    if (app.isNavigate) {
+        return <Navigate to="/auth" />
+    }
+
+    const callSignOut = () => {
+        signOutDispatch(signOut())
+    }
+
     return (
         <Wrapper>
-            <Button>
+            <Button onClick={callSignOut}>
                 <Image src={Logout} alt="Logout" />
                 <p>Log out</p>
             </Button>
@@ -33,4 +47,4 @@ const Button = styled.button`
 
 const Image = styled.img``
 
-export { LogOut }
+export { SignOut }

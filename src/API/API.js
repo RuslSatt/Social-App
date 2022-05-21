@@ -2,6 +2,7 @@ import { auth } from '../data/firebase'
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    signOut,
 } from 'firebase/auth'
 import {
     arrayUnion,
@@ -20,6 +21,9 @@ export const authApi = {
     },
     signInDb(email, password) {
         return signInWithEmailAndPassword(auth, email, password)
+    },
+    signOut() {
+        return signOut(auth)
     },
 }
 

@@ -7,6 +7,7 @@ import { AuthWrapper } from '../AuthStyles'
 
 const SignUp = () => {
     const isRegister = useSelector((state) => state.auth.isRegister)
+
     if (isRegister) {
         return <Navigate to="/auth" />
     }

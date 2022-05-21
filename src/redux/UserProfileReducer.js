@@ -1,6 +1,6 @@
 import { userApi } from '../API/API'
 import { auth } from '../data/firebase'
-import { preload } from './AuthReducer'
+import { changeIsPreload } from './AuthReducer'
 
 const SET_DATA_USER = 'SET_DATA_USER'
 
@@ -44,11 +44,11 @@ const userProfileReducer = (state = initialState, action) => {
 
 const setUser = (name, tag) => {
     return async (dispatch) => {
-        dispatch(preload(true))
+        dispatch(changeIsPreload(true))
         const user = auth.currentUser
         await userApi.setUser(name, tag, user.uid)
         dispatch(setDataUser(name, tag, user.uid))
-        dispatch(preload(false))
+        dispatch(changeIsPreload(false))
     }
 }
 

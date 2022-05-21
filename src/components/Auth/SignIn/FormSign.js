@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { signIn } from '../../../redux/AuthReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { Preload } from '../../Common/Preload/Preload'
@@ -7,26 +7,17 @@ import { Field, Form, Formik } from 'formik'
 import { Error, Preloader, SignInForm } from '../AuthStyles'
 import { ButtonWrapper, InputWrapper } from '../../Style/StyleForm'
 import styled from 'styled-components'
-import { initializeUser } from '../../../redux/AppReducer'
 
 const FormSign = () => {
     const signInDispatch = useDispatch()
-    const initializeUserDispatch = useDispatch()
     const app = useSelector((state) => state.app)
     const auth = useSelector((state) => state.auth)
 
-    useEffect(() => {
-        debugger
-        if (!app.isLogin) {
-            initializeUserDispatch(initializeUser())
-        }
-    })
-
+    if (!auth.displayName) {
+        return <Navigate to="/start-profile" />
+    }
     if (app.isLogin) {
         return <Navigate to="/home" />
-    }
-    if (auth.userId !== null) {
-        return <Navigate to="/start-profile" />
     }
 
     return (

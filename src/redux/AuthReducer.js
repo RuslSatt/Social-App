@@ -6,11 +6,11 @@ const PRELOAD_TYPE = 'PRELOAD_TYPE'
 const REGISTER_TYPE = 'REGISTER_TYPE'
 const GET_USER_ID = 'GET_USER_ID'
 
-const errorAuth = (error) => ({ type: ERROR_TYPE, error })
+const getError = (error) => ({ type: ERROR_TYPE, error })
 
-const preload = (value) => ({ type: PRELOAD_TYPE, value })
+const changeIsPreload = (value) => ({ type: PRELOAD_TYPE, value })
 
-const registerUser = (valueReg) => ({ type: REGISTER_TYPE, valueReg })
+const changeIsRegister = (valueReg) => ({ type: REGISTER_TYPE, valueReg })
 
 const getUserId = (id) => ({ type: GET_USER_ID, id })
 
@@ -54,45 +54,45 @@ const authReducer = (state = initialState, action) => {
 
 const createUser = (email, password, passwordConfirm) => {
     return async (dispatch) => {
-        dispatch(preload(true))
+        dispatch(changeIsPreload(true))
         if (password === passwordConfirm) {
             await authApi
                 .createUserDb(email, password)
                 .then(() => {
-                    dispatch(preload(false))
-                    dispatch(registerUser(true))
+                    dispatch(changeIsPreload(false))
+                    dispatch(changeIsRegister(true))
                 })
                 .catch((error) => {
-                    dispatch(errorAuth(error.message))
-                    dispatch(preload(false))
+                    dispatch(getError(error.message))
+                    dispatch(changeIsPreload(false))
                 })
         } else {
-            dispatch(errorAuth('Password is not right'))
-            dispatch(preload(false))
+            dispatch(getError('Password is not right'))
+            dispatch(changeIsPreload(false))
         }
     }
 }
 
 const signIn = (email, password) => {
     return async (dispatch) => {
-        dispatch(preload(true))
+        dispatch(changeIsPreload(true))
         await authApi
             .signInDb(email, password)
             .then(() => {
                 const user = auth.currentUser
                 if (user) {
                     dispatch(getUserId(user.uid))
-                    dispatch(preload(false))
+                    dispatch(changeIsPreload(false))
                 } else {
-                    dispatch(errorAuth('No user is signed in.'))
-                    dispatch(preload(false))
+                    dispatch(getError('No user is signed in.'))
+                    dispatch(changeIsPreload(false))
                 }
             })
             .catch(() => {
-                dispatch(errorAuth('Not right login or password'))
-                dispatch(preload(false))
+                dispatch(getError('Not right login or password'))
+                dispatch(changeIsPreload(false))
             })
     }
 }
 
-export { authReducer, createUser, registerUser, signIn, preload }
+export { authReducer, createUser, changeIsRegister, signIn, changeIsPreload }

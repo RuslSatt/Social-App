@@ -1,17 +1,17 @@
-import React from "react";
-import Google from "../../../assets/images/google.svg";
-import Facebook from "../../../assets/images/facebook-sign.svg";
-import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../../../redux/AuthReducer";
-import { NotHaveAccount } from "../AuthStyles";
-import styled from "styled-components";
+import React from 'react'
+import Google from '../../../assets/images/google.svg'
+import Facebook from '../../../assets/images/facebook-sign.svg'
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { changeIsRegister } from '../../../redux/AuthReducer'
+import { NotHaveAccount } from '../AuthStyles'
+import styled from 'styled-components'
 
 const OtherSign = () => {
-    const isRegisterDispatch = useDispatch();
+    const isRegisterDispatch = useDispatch()
     const navigate = () => {
-        isRegisterDispatch(registerUser(false));
-    };
+        isRegisterDispatch(changeIsRegister(false))
+    }
 
     return (
         <Wrapper>
@@ -33,12 +33,12 @@ const OtherSign = () => {
                 </span>
             </NotHaveAccount>
         </Wrapper>
-    );
-};
+    )
+}
 
 const Wrapper = styled.div`
     text-align: center;
-`;
+`
 
 const Title = styled.p`
     line-height: 120%;
@@ -46,7 +46,7 @@ const Title = styled.p`
     text-transform: uppercase;
     color: #606060;
     margin-bottom: 14px;
-`;
+`
 
 const Providers = styled.div`
     display: flex;
@@ -59,6 +59,6 @@ const Providers = styled.div`
         height: 40px;
         border-radius: 50%;
     }
-`;
+`
 
-export { OtherSign };
+export { OtherSign }
