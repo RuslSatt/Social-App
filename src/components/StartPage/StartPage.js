@@ -10,8 +10,8 @@ import { useSelector } from 'react-redux'
 const StartPage = () => {
     const app = useSelector((state) => state.app)
 
-    if (app.isNavigate) {
-        return <Navigate to="/auth" />
+    if (app.isLogin) {
+        return <Navigate to="/home" />
     }
 
     return (

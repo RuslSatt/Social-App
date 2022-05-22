@@ -8,24 +8,26 @@ import { DescriptionPost } from './DescriptionPost/DescriptionPost'
 import { CommentsPost } from './CommentsPost/CommentsPost'
 import { AddCommentPostContainer } from './AddCommentPost/AddCommentPostContainer'
 import { Navigate, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCommentPosts, getPosts } from '../../redux/HomePageReducer'
 
 const Post = (props) => {
     const params = useParams()
+    const app = useSelector((state) => state.app)
+    const posts = useSelector((state) => state.homePage.Posts)
+    const dispatch = useDispatch()
     const postId = params.postId
 
     useEffect(() => {
-        if (props.Posts.length === 0) {
-            props.getPosts()
+        if (posts.length === 0) {
+            dispatch(getPosts())
         }
-        if (props.Posts.length === 0) {
-            props.Posts.map((elem) =>
-                elem.id === postId ? props.getCommentPosts(elem) : ''
+        if (posts.length === 0) {
+            posts.map((elem) =>
+                elem.id === postId ? dispatch(getCommentPosts(elem)) : ''
             )
         }
     })
-
-    const app = useSelector((state) => state.app)
 
     if (app.isNavigate) {
         return <Navigate to="/auth" />
@@ -33,7 +35,7 @@ const Post = (props) => {
 
     return (
         <div>
-            {props.Posts.map((post) => {
+            {posts.map((post) => {
                 if (post.id === postId) {
                     return (
                         <div key={post.id} className={PostsStyle.Posts}>
