@@ -5,15 +5,20 @@ import { OtherSign } from './OtherSign'
 import { AuthWrapper } from '../AuthStyles'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+import {
+    getDisplayName,
+    getIsAuth,
+} from '../../../redux/Selectors/AppSelectors'
 
 const SignIn = () => {
-    const app = useSelector((state) => state.app)
+    const displayName = useSelector(getDisplayName)
+    const isAuth = useSelector(getIsAuth)
 
-    if (app.isLogin && app.displayName === null) {
+    if (isAuth && displayName === null) {
         return <Navigate to="/start-profile" />
     }
 
-    if (app.isLogin && app.displayName !== null) {
+    if (isAuth && displayName !== null) {
         return <Navigate to="/home" />
     }
 

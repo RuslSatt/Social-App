@@ -6,11 +6,12 @@ import Images3 from '../../assets/images/mask-group-3.png'
 import Images4 from '../../assets/images/mask-group-4.png'
 import { Navigate, NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { getIsAuth } from '../../redux/Selectors/AppSelectors'
 
 const StartPage = () => {
-    const app = useSelector((state) => state.app)
+    const isAuth = useSelector(getIsAuth)
 
-    if (app.isLogin) {
+    if (isAuth) {
         return <Navigate to="/home" />
     }
 

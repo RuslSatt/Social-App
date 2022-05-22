@@ -4,16 +4,21 @@ import { FormSignUp } from './FormSignUp'
 import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { AuthWrapper } from '../AuthStyles'
+import {
+    getDisplayName,
+    getIsAuth,
+} from '../../../redux/Selectors/AppSelectors'
 
 const SignUp = () => {
     const isRegister = useSelector((state) => state.auth.isRegister)
-    const app = useSelector((state) => state.app)
+    const displayName = useSelector(getDisplayName)
+    const isAuth = useSelector(getIsAuth)
 
     if (isRegister) {
         return <Navigate to="/auth" />
     }
 
-    if (app.isLogin && app.displayName !== null) {
+    if (isAuth && displayName !== null) {
         return <Navigate to="/home" />
     }
 

@@ -7,11 +7,12 @@ import { PostsHome } from './PostsHome/PostsHome'
 import { Preload } from '../Common/Preload/Preload'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+import { getIsNavigate } from '../../redux/Selectors/AppSelectors'
 
 const HomePage = (props) => {
-    const app = useSelector((state) => state.app)
+    const isNavigate = useSelector(getIsNavigate)
 
-    if (app.isNavigate) {
+    if (isNavigate) {
         return <Navigate to="/auth" />
     }
 

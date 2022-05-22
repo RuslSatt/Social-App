@@ -1,17 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import Logout from '../../../assets/images/Logout.svg'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { signOut } from '../../../redux/SettingReducer'
-import { Navigate } from 'react-router-dom'
 
 const SignOut = () => {
     const dispatch = useDispatch()
-    const app = useSelector((state) => state.app)
-
-    if (app.isNavigate) {
-        return <Navigate to="/auth" />
-    }
 
     const callSignOut = () => {
         dispatch(signOut())

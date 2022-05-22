@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom'
 import { HomePageContainer } from './components/HomePage/HomePageContainer'
 import { MessageContainer } from './components/Message/MessageContainer'
 import { ChatMessageContainer } from './components/Message/ChatMessage/ChatMessageContainer'
-import { UserProfileContainer } from './components/UserProfile/UserProfileContainer'
 import { StartPage } from './components/StartPage/StartPage'
 import { SignIn } from './components/Auth/SignIn/SignIn'
 import { SignUp } from './components/Auth/SignUp/SignUp'
@@ -16,6 +15,7 @@ import { initializeUser } from './redux/AppReducer'
 import { Preload, PreloadContainer } from './components/Common/Preload/Preload'
 import { Setting } from './components/Setting/Setting'
 import { Post } from './components/Post/Post'
+import { UserProfile } from './components/UserProfile/UserProfile'
 
 function App() {
     const dispatch = useDispatch()
@@ -48,10 +48,7 @@ function App() {
                         path="user-chat"
                         element={<ChatMessageContainer />}
                     />
-                    <Route
-                        path="user-profile"
-                        element={<UserProfileContainer />}
-                    />
+                    <Route path="user-profile" element={<UserProfile />} />
                 </Routes>
             </AppContainer>
         </AppWrapper>

@@ -10,10 +10,11 @@ import { AddCommentPostContainer } from './AddCommentPost/AddCommentPostContaine
 import { Navigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCommentPosts, getPosts } from '../../redux/HomePageReducer'
+import { getIsNavigate } from '../../redux/Selectors/AppSelectors'
 
-const Post = (props) => {
+const Post = () => {
     const params = useParams()
-    const app = useSelector((state) => state.app)
+    const isNavigate = useSelector(getIsNavigate)
     const posts = useSelector((state) => state.homePage.Posts)
     const dispatch = useDispatch()
     const postId = params.postId
@@ -29,7 +30,7 @@ const Post = (props) => {
         }
     })
 
-    if (app.isNavigate) {
+    if (isNavigate) {
         return <Navigate to="/auth" />
     }
 

@@ -9,27 +9,23 @@ import { TabsUserProfile } from './TabsUserProfile/TabsUserProfile'
 import { ShotsUserProfile } from './ShotsUserProfile/ShotsUserProfile'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+import { getIsNavigate } from '../../redux/Selectors/AppSelectors'
 
-const UserProfile = (props) => {
-    const app = useSelector((state) => state.app)
+const UserProfile = () => {
+    const isNavigate = useSelector(getIsNavigate)
 
-    if (app.isNavigate) {
+    if (isNavigate) {
         return <Navigate to="/auth" />
     }
+
     return (
         <div className={UserProfileStyle.User}>
-            <HeaderUserProfile tag={props.tag} />
-            <SelfUserProfile name={props.name} location={props.location} />
-            <FollowUserProfile
-                followers={props.followers}
-                following={props.following}
-            />
+            <HeaderUserProfile />
+            <SelfUserProfile />
+            <FollowUserProfile />
             <LinksUserProfile />
-            <TabsUserProfile
-                shots={props.shots}
-                collections={props.collections}
-            />
-            <ShotsUserProfile shots={props.shots} />
+            <TabsUserProfile />
+            <ShotsUserProfile />
             <Footer />
         </div>
     )

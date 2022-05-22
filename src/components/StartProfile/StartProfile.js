@@ -4,16 +4,18 @@ import { FormStartProfile } from './FormStartProfile/FormStartProfile'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+import { getIsNavigate } from '../../redux/Selectors/AppSelectors'
+import { getName } from '../../redux/Selectors/UserProfileSelectors'
 
 const StartProfile = () => {
-    const app = useSelector((state) => state.app)
-    const user = useSelector((state) => state.userProfile)
+    const isNavigate = useSelector(getIsNavigate)
+    const name = useSelector(getName)
 
-    if (app.isNavigate) {
+    if (isNavigate) {
         return <Navigate to="/auth" />
     }
 
-    if (user.name !== '') {
+    if (name !== '') {
         return <Navigate to="/home" />
     }
 

@@ -4,11 +4,12 @@ import { HeaderMessage } from './HeaderMessage/HeaderMessage'
 import { UserMessage } from './UserMessage/UserMessage'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+import { getIsNavigate } from '../../redux/Selectors/AppSelectors'
 
 const Message = (props) => {
-    const app = useSelector((state) => state.app)
+    const isNavigate = useSelector(getIsNavigate)
 
-    if (app.isNavigate) {
+    if (isNavigate) {
         return <Navigate to="/auth" />
     }
 

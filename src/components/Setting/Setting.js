@@ -8,9 +8,16 @@ import { SettingMenu } from './SettingMenu/SettingMenu'
 import { SignOut } from './SignOut/SignOut'
 import { Preload, PreloadContainer } from '../Common/Preload/Preload'
 import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
+import { getIsNavigate } from '../../redux/Selectors/AppSelectors'
 
 const Setting = () => {
     const setting = useSelector((state) => state.setting)
+    const isNavigate = useSelector(getIsNavigate)
+
+    if (isNavigate) {
+        return <Navigate to="/auth" />
+    }
 
     return (
         <Wrapper>
