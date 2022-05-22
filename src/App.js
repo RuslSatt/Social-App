@@ -16,10 +16,12 @@ import { Preload, PreloadContainer } from './components/Common/Preload/Preload'
 import { Setting } from './components/Setting/Setting'
 import { Post } from './components/Post/Post'
 import { UserProfile } from './components/UserProfile/UserProfile'
+import { getIsInitialize } from './redux/Selectors/AppSelectors'
 
 function App() {
     const dispatch = useDispatch()
-    const isInitialize = useSelector((state) => state.app.isInitialize)
+    const isInitialize = useSelector(getIsInitialize)
+
     useEffect(() => {
         dispatch(initializeUser())
     })

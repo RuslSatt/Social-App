@@ -8,9 +8,9 @@ import { NotHaveAccount } from '../AuthStyles'
 import styled from 'styled-components'
 
 const OtherSign = () => {
-    const isRegisterDispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = () => {
-        isRegisterDispatch(changeIsRegister(false))
+        dispatch(changeIsRegister(false))
     }
 
     return (

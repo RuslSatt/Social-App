@@ -7,10 +7,12 @@ import { Field, Form, Formik } from 'formik'
 import { Error, Preloader, SignInForm } from '../AuthStyles'
 import { ButtonWrapper, InputWrapper } from '../../Style/StyleForm'
 import styled from 'styled-components'
+import { getError, getIsPreload } from '../../../redux/Selectors/AppSelectors'
 
 const FormSign = () => {
     const dispatch = useDispatch()
-    const auth = useSelector((state) => state.auth)
+    const error = useSelector(getError)
+    const isPreload = useSelector(getIsPreload)
 
     return (
         <SignInForm>
@@ -25,14 +27,14 @@ const FormSign = () => {
             >
                 {() => (
                     <Form>
-                        {auth.error !== '' ? (
+                        {error !== '' ? (
                             <Error>
-                                <span>{auth.error}</span>
+                                <span>{error}</span>
                             </Error>
                         ) : (
                             ''
                         )}
-                        {auth.isPreload === true ? (
+                        {isPreload === true ? (
                             <Preloader>
                                 <Preload />
                             </Preloader>

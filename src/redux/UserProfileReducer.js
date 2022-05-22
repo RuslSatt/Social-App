@@ -1,6 +1,6 @@
 import { userApi } from '../API/API'
 import { auth } from '../data/firebase'
-import { changeIsPreload } from './AuthReducer'
+import { changeIsPreload } from './AppReducer'
 
 const SET_DATA_USER = 'SET_DATA_USER'
 

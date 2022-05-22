@@ -8,9 +8,10 @@ import {
     getDisplayName,
     getIsAuth,
 } from '../../../redux/Selectors/AppSelectors'
+import { getIsRegister } from '../../../redux/Selectors/AuthSelectors'
 
 const SignUp = () => {
-    const isRegister = useSelector((state) => state.auth.isRegister)
+    const isRegister = useSelector(getIsRegister)
     const displayName = useSelector(getDisplayName)
     const isAuth = useSelector(getIsAuth)
 

@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from '../../../redux/UserProfileReducer'
 import { Preloader } from '../../Auth/AuthStyles'
 import { Preload } from '../../Common/Preload/Preload'
+import { getIsPreload } from '../../../redux/Selectors/AppSelectors'
 
 const FormStartProfile = () => {
     const dispatch = useDispatch()
-    const auth = useSelector((state) => state.auth)
+    const isPreload = useSelector(getIsPreload)
 
     return (
         <Wrapper>
@@ -24,7 +25,7 @@ const FormStartProfile = () => {
             >
                 {() => (
                     <Form>
-                        {auth.isPreload === true ? (
+                        {isPreload === true ? (
                             <Preloader>
                                 <Preload />
                             </Preloader>

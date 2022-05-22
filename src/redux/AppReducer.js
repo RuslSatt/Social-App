@@ -1,10 +1,16 @@
 import { auth } from '../data/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 
+const ERROR_TYPE = 'ERROR_TYPE'
+const PRELOAD_TYPE = 'PRELOAD_TYPE'
 const GET_USER_ID = 'GET_USER_ID'
 const IS_AUTH = 'IS_AUTH'
 const IS_NAVIGATE = 'IS_NAVIGATE'
 const IS_INITIALIZE = 'IS_INITIALIZE'
+
+const getError = (error) => ({ type: ERROR_TYPE, error })
+
+const changeIsPreload = (value) => ({ type: PRELOAD_TYPE, value })
 
 const getUserData = (id, name) => ({ type: GET_USER_ID, id, name })
 
@@ -20,10 +26,24 @@ let initialState = {
     isAuth: false,
     isNavigate: false,
     isInitialize: false,
+    isPreload: false,
+    error: '',
 }
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ERROR_TYPE: {
+            return {
+                ...state,
+                error: action.error,
+            }
+        }
+        case PRELOAD_TYPE: {
+            return {
+                ...state,
+                isPreload: action.value,
+            }
+        }
         case IS_AUTH: {
             return {
                 ...state,
@@ -80,4 +100,6 @@ export {
     changeIsLogin,
     changeIsNavigate,
     getUserData,
+    changeIsPreload,
+    getError,
 }

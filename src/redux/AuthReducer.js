@@ -1,15 +1,14 @@
 import { authApi } from '../API/API'
 import { auth } from '../data/firebase'
-import { changeIsLogin, getUserData } from './AppReducer'
+import {
+    changeIsLogin,
+    changeIsPreload,
+    getError,
+    getUserData,
+} from './AppReducer'
 
-const ERROR_TYPE = 'ERROR_TYPE'
-const PRELOAD_TYPE = 'PRELOAD_TYPE'
 const REGISTER_TYPE = 'REGISTER_TYPE'
 const GET_USER_ID = 'GET_USER_ID'
-
-const getError = (error) => ({ type: ERROR_TYPE, error })
-
-const changeIsPreload = (value) => ({ type: PRELOAD_TYPE, value })
 
 const changeIsRegister = (valueReg) => ({ type: REGISTER_TYPE, valueReg })
 
@@ -18,18 +17,10 @@ const getUserId = (id) => ({ type: GET_USER_ID, id })
 let initialState = {
     userId: null,
     isRegister: false,
-    isPreload: false,
-    error: '',
 }
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case PRELOAD_TYPE: {
-            return {
-                ...state,
-                isPreload: action.value,
-            }
-        }
         case REGISTER_TYPE: {
             return {
                 ...state,
@@ -40,12 +31,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userId: action.id,
-            }
-        }
-        case ERROR_TYPE: {
-            return {
-                ...state,
-                error: action.error,
             }
         }
         default:
@@ -98,4 +83,4 @@ const signIn = (email, password) => {
     }
 }
 
-export { authReducer, createUser, changeIsRegister, signIn, changeIsPreload }
+export { authReducer, createUser, changeIsRegister, signIn }

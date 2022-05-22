@@ -7,10 +7,12 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Error, HaveAccount, Preloader, SignUpForm } from '../AuthStyles'
 import { ButtonWrapperUp, InputWrapper } from '../../Style/StyleForm'
 import { SignUpSchema } from '../../Validate/Validate'
+import { getError, getIsPreload } from '../../../redux/Selectors/AppSelectors'
 
 const FormSignUp = () => {
     const dispatch = useDispatch()
-    const auth = useSelector((state) => state.auth)
+    const error = useSelector(getError)
+    const isPreload = useSelector(getIsPreload)
 
     return (
         <SignUpForm>
@@ -35,14 +37,14 @@ const FormSignUp = () => {
             >
                 {({ errors, touched, isSubmitting }) => (
                     <Form>
-                        {auth.error !== '' ? (
+                        {error !== '' ? (
                             <Error>
-                                <span>{auth.error}</span>
+                                <span>{error}</span>
                             </Error>
                         ) : (
                             ''
                         )}
-                        {auth.isPreload === true ? (
+                        {isPreload === true ? (
                             <Preloader>
                                 <Preload />
                             </Preloader>
