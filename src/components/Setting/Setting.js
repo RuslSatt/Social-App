@@ -6,7 +6,7 @@ import SettingImage from '../../assets/images/setting-image-2.png'
 import { SettingHeader } from './SettingHeader/SettingHeader'
 import { SettingMenu } from './SettingMenu/SettingMenu'
 import { SignOut } from './SignOut/SignOut'
-import { Preload } from '../Common/Preload/Preload'
+import { Preload, PreloadContainer } from '../Common/Preload/Preload'
 import { useSelector } from 'react-redux'
 
 const Setting = () => {
@@ -30,17 +30,6 @@ const Setting = () => {
         </Wrapper>
     )
 }
-
-const PreloadContainer = styled.div`
-    min-height: 100vh;
-    overflow: hidden;
-    background: rgba(197, 197, 253, 0.37);
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
 
 const Wrapper = styled.div`
     min-height: 100vh;

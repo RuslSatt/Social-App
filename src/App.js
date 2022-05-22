@@ -11,16 +11,26 @@ import { SignIn } from './components/Auth/SignIn/SignIn'
 import { SignUp } from './components/Auth/SignUp/SignUp'
 import { StartProfile } from './components/StartProfile/StartProfile'
 import styled from 'styled-components'
-import { Setting } from './components/Setting/Setting'
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { initializeUser } from './redux/AppReducer'
+import { Preload, PreloadContainer } from './components/Common/Preload/Preload'
+import { Setting } from './components/Setting/Setting'
 
 function App() {
-    const initializeUserDispatch = useDispatch()
+    const dispatch = useDispatch()
+    const isInitialize = useSelector((state) => state.app.isInitialize)
     useEffect(() => {
-        initializeUserDispatch(initializeUser())
+        dispatch(initializeUser())
     })
+
+    if (!isInitialize) {
+        return (
+            <PreloadContainer>
+                <Preload />
+            </PreloadContainer>
+        )
+    }
 
     return (
         <AppWrapper>

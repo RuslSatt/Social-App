@@ -7,8 +7,15 @@ import { Footer } from '../Footer/Footer'
 import { LinksUserProfile } from './LinksUserProfile/LinksUserProfile'
 import { TabsUserProfile } from './TabsUserProfile/TabsUserProfile'
 import { ShotsUserProfile } from './ShotsUserProfile/ShotsUserProfile'
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 
 const UserProfile = (props) => {
+    const app = useSelector((state) => state.app)
+
+    if (app.isNavigate) {
+        return <Navigate to="/auth" />
+    }
     return (
         <div className={UserProfileStyle.User}>
             <HeaderUserProfile tag={props.tag} />

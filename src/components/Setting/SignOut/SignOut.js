@@ -6,7 +6,7 @@ import { signOut } from '../../../redux/SettingReducer'
 import { Navigate } from 'react-router-dom'
 
 const SignOut = () => {
-    const signOutDispatch = useDispatch()
+    const dispatch = useDispatch()
     const app = useSelector((state) => state.app)
 
     if (app.isNavigate) {
@@ -14,7 +14,7 @@ const SignOut = () => {
     }
 
     const callSignOut = () => {
-        signOutDispatch(signOut())
+        dispatch(signOut())
     }
 
     return (

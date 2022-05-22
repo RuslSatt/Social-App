@@ -9,8 +9,7 @@ import { ButtonWrapperUp, InputWrapper } from '../../Style/StyleForm'
 import { SignUpSchema } from '../../Validate/Validate'
 
 const FormSignUp = () => {
-    const createUserDispatch = useDispatch()
-
+    const dispatch = useDispatch()
     const auth = useSelector((state) => state.auth)
 
     return (
@@ -24,7 +23,7 @@ const FormSignUp = () => {
                 }}
                 validationSchema={SignUpSchema}
                 onSubmit={(values, { setSubmitting }) => {
-                    createUserDispatch(
+                    dispatch(
                         createUser(
                             values.email,
                             values.password,

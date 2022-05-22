@@ -2,23 +2,15 @@ import React from 'react'
 import { signIn } from '../../../redux/AuthReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { Preload } from '../../Common/Preload/Preload'
-import { Navigate, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Field, Form, Formik } from 'formik'
 import { Error, Preloader, SignInForm } from '../AuthStyles'
 import { ButtonWrapper, InputWrapper } from '../../Style/StyleForm'
 import styled from 'styled-components'
 
 const FormSign = () => {
-    const signInDispatch = useDispatch()
-    const app = useSelector((state) => state.app)
+    const dispatch = useDispatch()
     const auth = useSelector((state) => state.auth)
-
-    if (app.isLogin && app.displayName === null) {
-        return <Navigate to="/start-profile" />
-    }
-    if (app.isLogin && app.displayName !== null) {
-        return <Navigate to="/home" />
-    }
 
     return (
         <SignInForm>
@@ -28,7 +20,7 @@ const FormSign = () => {
                     password: '',
                 }}
                 onSubmit={(values) => {
-                    signInDispatch(signIn(values.email, values.password))
+                    dispatch(signIn(values.email, values.password))
                 }}
             >
                 {() => (
