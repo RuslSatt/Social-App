@@ -39,10 +39,10 @@ const authReducer = (state = initialState, action) => {
 }
 
 const createUser = (email, password, passwordConfirm) => {
-    return async (dispatch) => {
+    return (dispatch) => {
         dispatch(changeIsPreload(true))
         if (password === passwordConfirm) {
-            await authApi
+            authApi
                 .createUserDb(email, password)
                 .then(() => {
                     dispatch(changeIsPreload(false))
@@ -60,9 +60,9 @@ const createUser = (email, password, passwordConfirm) => {
 }
 
 const signIn = (email, password) => {
-    return async (dispatch) => {
+    return (dispatch) => {
         dispatch(changeIsPreload(true))
-        await authApi
+        authApi
             .signInDb(email, password)
             .then(() => {
                 const user = auth.currentUser

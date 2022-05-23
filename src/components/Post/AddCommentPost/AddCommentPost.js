@@ -1,19 +1,19 @@
-import React, {useRef} from 'react';
+import React, { useRef, useState } from 'react'
 import AddCommentPostStyle from './AddCommentPost.module.css'
 import Avatar from '../../../assets/images/ava-192.png'
-import {useParams} from "react-router-dom";
-
+import { useParams } from 'react-router-dom'
 
 const AddCommentPost = (props) => {
-    const params = useParams();
-    const postId = params.postId;
+    const params = useParams()
+    const postId = params.postId
+    const [text, setText] = useState('')
 
-    let inputCommentValue = useRef();
+    let inputCommentValue = useRef()
 
     let addComment = () => {
-        let text = inputCommentValue.current.value;
+        let text = inputCommentValue.current.value
         if (text !== '') {
-            props.Posts.map(elem => {
+            props.Posts.map((elem) => {
                 if (elem.id === postId) {
                     props.addNewComment(elem, postId, props.createdComment)
                 }
@@ -22,25 +22,28 @@ const AddCommentPost = (props) => {
     }
 
     let updateTextAndCreateComment = (e) => {
-        let text = e.target.value;
-        props.updateTextForComment(text);
-        props.createComment(postId);
+        let value = e.target.value
+        setText(value)
+        props.createComment(postId)
     }
 
     return (
         <div className={AddCommentPostStyle.AddComment}>
             <div className={AddCommentPostStyle.comment}>
-                <img src={Avatar} alt=""/>
-                <input onChange={updateTextAndCreateComment} type="text"
-                       ref={inputCommentValue}
-                       value={props.newCommentText}
-                       placeholder='Add a comment'/>
+                <img src={Avatar} alt="" />
+                <input
+                    onChange={updateTextAndCreateComment}
+                    type="text"
+                    ref={inputCommentValue}
+                    value={text}
+                    placeholder="Add a comment"
+                />
             </div>
             <button onClick={addComment} className={AddCommentPostStyle.btn}>
                 Send
             </button>
         </div>
-    );
-};
+    )
+}
 
-export {AddCommentPost};
+export { AddCommentPost }

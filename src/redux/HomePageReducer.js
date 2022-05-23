@@ -1,41 +1,41 @@
-import {postApi} from "../API/API";
+import { postApi } from '../API/API'
 
-const addCommentAT = 'ADD-COMMENT';
-const updateTextForCommentAT = 'UPDATE-COMMENT';
-const setPostAT = 'URL-IMAGE';
-const setCommentAT = 'SET-COMMENT';
+const addCommentAT = 'ADD-COMMENT'
+const updateTextForCommentAT = 'UPDATE-COMMENT'
+const setPostAT = 'URL-IMAGE'
+const setCommentAT = 'SET-COMMENT'
 const updateFetchingAT = 'UPDATE-FETCHING'
 const CREATE_COMMENT = 'CREATE_COMMENT'
 
 const createComment = (postId) => ({
     type: CREATE_COMMENT,
-    postId
+    postId,
 })
 
 const addComment = (postId, createdComment) => ({
     type: addCommentAT,
     postId,
-    createdComment
-});
+    createdComment,
+})
 
 const setComment = (comments) => ({
     type: setCommentAT,
-    comments
-});
+    comments,
+})
 
 const updateTextForComment = (text) => ({
     type: updateTextForCommentAT,
-    text
-});
+    text,
+})
 
 const setPost = (post) => ({
     type: setPostAT,
-    post
-});
+    post,
+})
 
 const updateFetching = (value) => ({
     type: updateFetchingAT,
-    value
+    value,
 })
 
 let initialState = {
@@ -50,14 +50,16 @@ const homePageReducer = (state = initialState, action) => {
         case CREATE_COMMENT: {
             let id = 0
             const createId = () => {
-                state.Posts.map(elem => {
-                    if (elem.id === action.postId && elem.newComment.length > 0) {
+                state.Posts.map((elem) => {
+                    if (
+                        elem.id === action.postId &&
+                        elem.newComment.length > 0
+                    ) {
                         id = elem.newComment.length
                     }
-
                 })
             }
-            createId();
+            createId()
             const newComment = {
                 id: id,
                 name: state.Posts[0].name,
@@ -66,26 +68,31 @@ const homePageReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                createdComment: newComment
+                createdComment: newComment,
             }
         }
         case addCommentAT:
             return {
                 ...state,
                 newCommentText: '',
-                Posts: state.Posts.map(elem => {
+                Posts: state.Posts.map((elem) => {
                     if (elem.id === action.postId) {
                         return {
-                            ...elem, newComment: [...elem.newComment, action.createdComment]
+                            ...elem,
+                            newComment: [
+                                ...elem.newComment,
+                                action.createdComment,
+                            ],
                         }
                     } else if (action.type === setCommentAT) {
                         return {
-                            ...elem, newComment: [...elem.newComment, action.comment]
+                            ...elem,
+                            newComment: [...elem.newComment, action.comment],
                         }
                     } else {
-                        return elem;
+                        return elem
                     }
-                })
+                }),
             }
         case updateTextForCommentAT:
             return {
@@ -94,36 +101,38 @@ const homePageReducer = (state = initialState, action) => {
             }
         case setPostAT:
             const cleanPost = () => {
-                state.Posts.length = 0;
+                state.Posts.length = 0
             }
-            cleanPost();
+            cleanPost()
             return {
                 ...state,
-                Posts: [...state.Posts, action.post].flat()
+                Posts: [...state.Posts, action.post].flat(),
             }
         case updateFetchingAT:
             return {
                 ...state,
-                isFetching: action.value
+                isFetching: action.value,
             }
         default:
-            return state;
+            return state
     }
 }
 
 const getPosts = () => {
-    return async (dispatch) => {
-        dispatch(updateFetching(true));
-        await postApi.getPostsDb().then((data) => {
-            dispatch(setPost(data.docs.map(doc => ({...doc.data(), id: doc.id}))))
-            dispatch(updateFetching(false));
+    return (dispatch) => {
+        dispatch(updateFetching(true))
+        postApi.getPostsDb().then((data) => {
+            dispatch(
+                setPost(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+            )
+            dispatch(updateFetching(false))
         })
     }
 }
 
 const getCommentPosts = (elem) => {
-    return async (dispatch) => {
-        await postApi.getCommentPostsDb(elem).then(comments => {
+    return (dispatch) => {
+        postApi.getCommentPostsDb(elem).then((comments) => {
             dispatch(setComment(comments))
         })
     }
@@ -137,7 +146,6 @@ const addNewComment = (elem, postId, createdComment) => {
     }
 }
 
-
 export {
     homePageReducer,
     addComment,
@@ -148,5 +156,5 @@ export {
     getPosts,
     getCommentPosts,
     createComment,
-    addNewComment
-};
+    addNewComment,
+}
