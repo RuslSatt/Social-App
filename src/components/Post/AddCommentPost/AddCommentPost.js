@@ -18,13 +18,14 @@ const AddCommentPost = (props) => {
                     props.addNewComment(elem, postId, props.createdComment)
                 }
             })
+            setText('')
         }
     }
 
     let updateTextAndCreateComment = (e) => {
         let value = e.target.value
         setText(value)
-        props.createComment(postId)
+        props.createComment(postId, value)
     }
 
     return (

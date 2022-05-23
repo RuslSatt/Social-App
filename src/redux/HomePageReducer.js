@@ -1,15 +1,15 @@
 import { postApi } from '../API/API'
 
 const addCommentAT = 'ADD-COMMENT'
-const updateTextForCommentAT = 'UPDATE-COMMENT'
 const setPostAT = 'URL-IMAGE'
 const setCommentAT = 'SET-COMMENT'
 const updateFetchingAT = 'UPDATE-FETCHING'
 const CREATE_COMMENT = 'CREATE_COMMENT'
 
-const createComment = (postId) => ({
+const createComment = (postId, text) => ({
     type: CREATE_COMMENT,
     postId,
+    text,
 })
 
 const addComment = (postId, createdComment) => ({
@@ -21,11 +21,6 @@ const addComment = (postId, createdComment) => ({
 const setComment = (comments) => ({
     type: setCommentAT,
     comments,
-})
-
-const updateTextForComment = (text) => ({
-    type: updateTextForCommentAT,
-    text,
 })
 
 const setPost = (post) => ({
@@ -40,7 +35,6 @@ const updateFetching = (value) => ({
 
 let initialState = {
     Posts: [],
-    newCommentText: '',
     isFetching: false,
     createdComment: '',
 }
@@ -63,7 +57,7 @@ const homePageReducer = (state = initialState, action) => {
             const newComment = {
                 id: id,
                 name: state.Posts[0].name,
-                comment: state.newCommentText,
+                comment: action.text,
                 time: state.Posts[0].time,
             }
             return {
@@ -74,7 +68,6 @@ const homePageReducer = (state = initialState, action) => {
         case addCommentAT:
             return {
                 ...state,
-                newCommentText: '',
                 Posts: state.Posts.map((elem) => {
                     if (elem.id === action.postId) {
                         return {
@@ -93,11 +86,6 @@ const homePageReducer = (state = initialState, action) => {
                         return elem
                     }
                 }),
-            }
-        case updateTextForCommentAT:
-            return {
-                ...state,
-                newCommentText: action.text,
             }
         case setPostAT:
             const cleanPost = () => {
@@ -131,10 +119,9 @@ const getPosts = () => {
 }
 
 const getCommentPosts = (elem) => {
-    return (dispatch) => {
-        postApi.getCommentPostsDb(elem).then((comments) => {
-            dispatch(setComment(comments))
-        })
+    return async (dispatch) => {
+        const comments = await postApi.getCommentPostsDb(elem)
+        dispatch(setComment(comments))
     }
 }
 
@@ -149,7 +136,6 @@ const addNewComment = (elem, postId, createdComment) => {
 export {
     homePageReducer,
     addComment,
-    updateTextForComment,
     setPost,
     setComment,
     updateFetching,
