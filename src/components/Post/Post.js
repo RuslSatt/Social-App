@@ -3,7 +3,7 @@ import PostsStyle from './Post.module.css'
 import { HeaderPost } from './HeaderPost/HeaderPost'
 import { HeaderPostHome } from '../HomePage/PostsHome/HeaderPostHome/HeaderPostHome'
 import { PosterPostHome } from '../HomePage/PostsHome/PosterPostHome/PosterPostHome'
-import { NavPost } from './NavPost/NavPost'
+import { PostNav } from './PostNav/PostNav'
 import { DescriptionPost } from './DescriptionPost/DescriptionPost'
 import { PostComment } from './PostComment/PostComment'
 import { Navigate, useParams } from 'react-router-dom'
@@ -48,7 +48,7 @@ const Post = () => {
                                 time={post.time}
                             />
                             <PosterPostHome poster={post.poster} />
-                            <NavPost
+                            <PostNav
                                 countWatch={post.countWatch}
                                 countComment={post.countComment}
                                 countLikes={post.countLikes}
