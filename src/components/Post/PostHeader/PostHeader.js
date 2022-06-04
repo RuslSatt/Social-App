@@ -1,5 +1,4 @@
 import React from 'react'
-import HeaderPostStyle from './HeaderPost.module.css'
 import { ReactComponent as ArrowIcon } from '../../../assets/images/arrow-back.svg'
 import { ReactComponent as HeartIcon } from '../../../assets/images/heart-2.svg'
 import { ReactComponent as PlusIcon } from '../../../assets/images/plus-2.svg'
@@ -9,11 +8,11 @@ import styled from 'styled-components'
 
 const PostHeader = () => {
     return (
-        <Header className={HeaderPostStyle.Header}>
+        <Header>
             <NavLink to="/home">
                 <ArrowIcon />
             </NavLink>
-            <Icons className={HeaderPostStyle.icons}>
+            <Icons>
                 <button>
                     <HeartIcon />
                 </button>

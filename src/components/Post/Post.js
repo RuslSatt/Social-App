@@ -4,7 +4,7 @@ import { PostHeader } from './PostHeader/PostHeader'
 import { HeaderPostHome } from '../HomePage/PostsHome/HeaderPostHome/HeaderPostHome'
 import { PosterPostHome } from '../HomePage/PostsHome/PosterPostHome/PosterPostHome'
 import { PostNav } from './PostNav/PostNav'
-import { DescriptionPost } from './DescriptionPost/DescriptionPost'
+import { PostDescription } from './PostDescription/PostDescription'
 import { PostComment } from './PostComment/PostComment'
 import { Navigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -53,7 +53,7 @@ const Post = () => {
                                 countComment={post.countComment}
                                 countLikes={post.countLikes}
                             />
-                            <DescriptionPost
+                            <PostDescription
                                 title={post.title}
                                 description={post.description}
                             />
