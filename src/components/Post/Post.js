@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import PostsStyle from './Post.module.css'
-import { HeaderPost } from './HeaderPost/HeaderPost'
+import styled from 'styled-components'
+import { PostHeader } from './PostHeader/PostHeader'
 import { HeaderPostHome } from '../HomePage/PostsHome/HeaderPostHome/HeaderPostHome'
 import { PosterPostHome } from '../HomePage/PostsHome/PosterPostHome/PosterPostHome'
 import { PostNav } from './PostNav/PostNav'
@@ -40,8 +40,8 @@ const Post = () => {
             {posts.map((post) => {
                 if (post.id === postId) {
                     return (
-                        <div key={post.id} className={PostsStyle.Posts}>
-                            <HeaderPost />
+                        <Posts key={post.id}>
+                            <PostHeader />
                             <HeaderPostHome
                                 avatar={post.avatar}
                                 name={post.name}
@@ -57,11 +57,11 @@ const Post = () => {
                                 title={post.title}
                                 description={post.description}
                             />
-                            <div className={PostsStyle.comments}>
+                            <Comment>
                                 <PostComment newComment={post.newComment} />
-                            </div>
+                            </Comment>
                             <PostCommentEntryFiled />
-                        </div>
+                        </Posts>
                     )
                 } else {
                     return ''
@@ -70,5 +70,14 @@ const Post = () => {
         </div>
     )
 }
+
+const Posts = styled.div`
+    min-height: 100vh;
+    overflow: hidden;
+`
+
+const Comment = styled.div`
+    margin-bottom: 60px;
+`
 
 export { Post }

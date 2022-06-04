@@ -1,5 +1,4 @@
 import React from 'react'
-import NavPostStyle from './NavPost.module.css'
 import { ReactComponent as EyeIcon } from '../../../assets/images/eye.svg'
 import { ReactComponent as CommentIcon } from '../../../assets/images/Chat.svg'
 import { ReactComponent as HeartIcon } from '../../../assets/images/heart.svg'
@@ -7,16 +6,16 @@ import styled from 'styled-components'
 
 const PostNav = (props) => {
     return (
-        <Nav className={NavPostStyle.Nav}>
-            <Watch className={NavPostStyle.watch}>
+        <Nav>
+            <Watch>
                 <p>{props.countWatch}</p>
                 <EyeIcon />
             </Watch>
-            <Comment className={NavPostStyle.comment}>
+            <Comment>
                 <p>{props.countComment}</p>
                 <CommentIcon />
             </Comment>
-            <Likes className={NavPostStyle.likes}>
+            <Likes>
                 <p>{props.countLikes}</p>
                 <HeartIcon />
             </Likes>
