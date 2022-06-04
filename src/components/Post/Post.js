@@ -5,17 +5,18 @@ import { HeaderPostHome } from '../HomePage/PostsHome/HeaderPostHome/HeaderPostH
 import { PosterPostHome } from '../HomePage/PostsHome/PosterPostHome/PosterPostHome'
 import { NavPost } from './NavPost/NavPost'
 import { DescriptionPost } from './DescriptionPost/DescriptionPost'
-import { CommentsPost } from './CommentsPost/CommentsPost'
-import { AddCommentPostContainer } from './AddCommentPost/AddCommentPostContainer'
+import { PostComment } from './PostComment/PostComment'
 import { Navigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCommentPosts, getPosts } from '../../redux/HomePageReducer'
 import { getIsNavigate } from '../../redux/Selectors/AppSelectors'
+import { PostCommentEntryFiled } from './PostCommentEntryFiled/PostCommentEntryFiled'
+import { getPostsSt } from '../../redux/Selectors/PostCommentSelector'
 
 const Post = () => {
     const params = useParams()
     const isNavigate = useSelector(getIsNavigate)
-    const posts = useSelector((state) => state.homePage.Posts)
+    const posts = useSelector(getPostsSt)
     const dispatch = useDispatch()
     const postId = params.postId
 
@@ -57,9 +58,9 @@ const Post = () => {
                                 description={post.description}
                             />
                             <div className={PostsStyle.comments}>
-                                <CommentsPost newComment={post.newComment} />
+                                <PostComment newComment={post.newComment} />
                             </div>
-                            <AddCommentPostContainer />
+                            <PostCommentEntryFiled />
                         </div>
                     )
                 } else {

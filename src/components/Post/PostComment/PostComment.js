@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import Avatar from '../../../assets/images/ava-192.png'
 
-const CommentsPost = () => {
+const PostComment = (props) => {
     return (
         <div>
-            {this.props.newComment?.map((comment) => {
+            {props.newComment?.map((comment) => {
                 return (
                     <Comment key={comment.id}>
                         <CommentBody>
@@ -68,4 +68,4 @@ const Info = styled.div`
     }
 `
 
-export { CommentsPost }
+export { PostComment }
