@@ -1,7 +1,6 @@
 import './normalize.css'
 import './fonts.css'
 import { Route, Routes } from 'react-router-dom'
-import { HomePageContainer } from './components/HomePage/HomePageContainer'
 import { MessageContainer } from './components/Message/MessageContainer'
 import { ChatMessageContainer } from './components/Message/ChatMessage/ChatMessageContainer'
 import { StartPage } from './components/StartPage/StartPage'
@@ -17,6 +16,7 @@ import { Setting } from './components/Setting/Setting'
 import { Post } from './components/Post/Post'
 import { UserProfile } from './components/UserProfile/UserProfile'
 import { getIsInitialize } from './redux/Selectors/AppSelectors'
+import { HomePage } from './components/HomePage/HomePage'
 
 function App() {
     const dispatch = useDispatch()
@@ -43,7 +43,7 @@ function App() {
                     <Route path="/auth" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/" element={<StartPage />} />
-                    <Route path="home" element={<HomePageContainer />} />
+                    <Route path="home" element={<HomePage />} />
                     <Route path="/post/:postId" element={<Post />} />
                     <Route path="message" element={<MessageContainer />} />
                     <Route
