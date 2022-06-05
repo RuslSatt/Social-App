@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeaderPostHome } from './HeaderPostHome/HeaderPostHome'
+import { HomePagePostHeader } from './HomePagePostHeader/HomePagePostHeader'
 import { HomePagePostPoster } from './HomePagePostPoster/HomePagePostPoster'
 import { HomePagePostNav } from './HomePagePostNav/HomePagePostNav'
 import { NavLink } from 'react-router-dom'
@@ -16,7 +16,7 @@ const HomePagePost = (props) => {
                 return (
                     <Post onClick={scrollTo} key={post.id}>
                         <NavLink to={`/post/` + post.id}>
-                            <HeaderPostHome
+                            <HomePagePostHeader
                                 avatar={post.avatar}
                                 name={post.name}
                                 time={post.time}

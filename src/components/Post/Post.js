@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { PostHeader } from './PostHeader/PostHeader'
-import { HeaderPostHome } from '../HomePage/PostsHome/HeaderPostHome/HeaderPostHome'
+import { HomePagePostHeader } from '../HomePage/PostsHome/HomePagePostHeader/HomePagePostHeader'
 import { HomePagePostPoster } from '../HomePage/PostsHome/HomePagePostPoster/HomePagePostPoster'
 import { PostNav } from './PostNav/PostNav'
 import { PostDescription } from './PostDescription/PostDescription'
@@ -42,7 +42,7 @@ const Post = () => {
                     return (
                         <Posts key={post.id}>
                             <PostHeader />
-                            <HeaderPostHome
+                            <HomePagePostHeader
                                 avatar={post.avatar}
                                 name={post.name}
                                 time={post.time}
