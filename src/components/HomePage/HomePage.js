@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
-import HomePageStyle from './HomePage.module.css'
 import { Footer } from '../Footer/Footer'
 import { Search } from '../Search/Search'
 import { NavHome } from './NavHome/NavHome'
-import { PostsHome } from './PostsHome/PostsHome'
+import { HomePagePost } from './PostsHome/HomePagePost'
 import { Preload } from '../Common/Preload/Preload'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
@@ -11,6 +10,7 @@ import { getIsNavigate } from '../../redux/Selectors/AppSelectors'
 import { getIsFetching } from '../../redux/Selectors/HomePageSelectors'
 import { getPostsSt } from '../../redux/Selectors/PostCommentSelector'
 import { getPosts } from '../../redux/HomePageReducer'
+import styled from 'styled-components'
 
 const HomePage = () => {
     const isNavigate = useSelector(getIsNavigate)
@@ -27,19 +27,40 @@ const HomePage = () => {
     }
 
     return (
-        <div className={HomePageStyle.HomePage}>
+        <Wrapper>
             <Search />
             <NavHome />
             {isFetching ? (
                 <Preload />
             ) : (
-                <div className={HomePageStyle.Posts}>
-                    <PostsHome Posts={posts} />
-                </div>
+                <Posts>
+                    <HomePagePost Posts={posts} />
+                </Posts>
             )}
             <Footer />
-        </div>
+        </Wrapper>
     )
 }
+
+const Wrapper = styled.div`
+    background: rgba(136, 139, 244, 0);
+    min-height: 100vh;
+    overflow: hidden;
+    animation: home 1s ease-in-out;
+
+    @keyframes home {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+`
+
+const Posts = styled.div`
+    padding: 20px;
+    margin-bottom: 71px;
+`
 
 export { HomePage }
