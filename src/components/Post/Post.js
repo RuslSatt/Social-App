@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { PostHeader } from './PostHeader/PostHeader'
 import { HeaderPostHome } from '../HomePage/PostsHome/HeaderPostHome/HeaderPostHome'
-import { PosterPostHome } from '../HomePage/PostsHome/PosterPostHome/PosterPostHome'
+import { HomePagePostPoster } from '../HomePage/PostsHome/HomePagePostPoster/HomePagePostPoster'
 import { PostNav } from './PostNav/PostNav'
 import { PostDescription } from './PostDescription/PostDescription'
 import { PostComment } from './PostComment/PostComment'
@@ -47,7 +47,7 @@ const Post = () => {
                                 name={post.name}
                                 time={post.time}
                             />
-                            <PosterPostHome poster={post.poster} />
+                            <HomePagePostPoster poster={post.poster} />
                             <PostNav
                                 countWatch={post.countWatch}
                                 countComment={post.countComment}

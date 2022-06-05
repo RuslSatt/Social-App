@@ -1,6 +1,6 @@
 import React from 'react'
 import { HeaderPostHome } from './HeaderPostHome/HeaderPostHome'
-import { PosterPostHome } from './PosterPostHome/PosterPostHome'
+import { HomePagePostPoster } from './HomePagePostPoster/HomePagePostPoster'
 import { NavPostHome } from './NavPostHome/NavPostHome'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
@@ -22,7 +22,7 @@ const HomePagePost = (props) => {
                                 time={post.time}
                             />
                         </NavLink>
-                        <PosterPostHome poster={post.poster} />
+                        <HomePagePostPoster poster={post.poster} />
                         <NavPostHome
                             countComment={post.countComment}
                             countLikes={post.countLikes}
