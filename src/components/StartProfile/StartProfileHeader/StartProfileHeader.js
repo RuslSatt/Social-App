@@ -4,7 +4,7 @@ import Avatar from '../../../assets/images/posts/Post-3.png'
 import addPhoto from '../../../assets/images/addPhoto.svg'
 import styled from 'styled-components'
 
-const HeaderStartProfile = () => {
+const StartProfileHeader = () => {
     return (
         <Header>
             <Body>
@@ -71,4 +71,4 @@ const ImageAdd = styled.img`
     height: 30px;
 `
 
-export { HeaderStartProfile }
+export { StartProfileHeader }

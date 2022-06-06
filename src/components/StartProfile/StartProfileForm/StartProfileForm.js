@@ -8,7 +8,7 @@ import { Preloader } from '../../Auth/AuthStyles'
 import { Preload } from '../../Common/Preload/Preload'
 import { getIsPreload } from '../../../redux/Selectors/AppSelectors'
 
-const FormStartProfile = () => {
+const StartProfileForm = () => {
     const dispatch = useDispatch()
     const isPreload = useSelector(getIsPreload)
 
@@ -70,4 +70,4 @@ const Title = styled.p`
     font-weight: 500;
 `
 
-export { FormStartProfile }
+export { StartProfileForm }

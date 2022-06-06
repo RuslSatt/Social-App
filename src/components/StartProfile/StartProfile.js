@@ -1,6 +1,6 @@
 import React from 'react'
-import { HeaderStartProfile } from './HeaderStartProfile/HeaderStartProfile'
-import { FormStartProfile } from './FormStartProfile/FormStartProfile'
+import { StartProfileHeader } from './StartProfileHeader/StartProfileHeader'
+import { StartProfileForm } from './StartProfileForm/StartProfileForm'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
@@ -21,8 +21,8 @@ const StartProfile = () => {
 
     return (
         <Wrapper>
-            <HeaderStartProfile />
-            <FormStartProfile />
+            <StartProfileHeader />
+            <StartProfileForm />
         </Wrapper>
     )
 }
