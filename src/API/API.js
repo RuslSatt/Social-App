@@ -31,18 +31,17 @@ export const authApi = {
 export const postApi = {
     getPostsDb() {
         const db = getFirestore()
-        return getDocs(collection(db, 'users'))
+        return getDocs(collection(db, 'posts'))
     },
     getCommentPostsDb(elem) {
         const db = getFirestore()
-        return onSnapshot(doc(db, 'users', elem.id), (doc) => {
+        return onSnapshot(doc(db, 'posts', elem.id), (doc) => {
             return doc.data().newComment
         })
     },
     addCommentPostsDb(elem, createdComment) {
         const db = getFirestore()
-        const commentRef = doc(db, 'users', elem.id)
-
+        const commentRef = doc(db, 'posts', elem.id)
         return updateDoc(commentRef, {
             newComment: arrayUnion(createdComment),
         })
