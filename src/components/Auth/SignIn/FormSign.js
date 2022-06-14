@@ -56,9 +56,7 @@ const FormSign = () => {
                             />
                         </InputWrapper>
                         <ForgotPassword>
-                            <NavLink to="/forgotPassword">
-                                FORGOT PASSWORD
-                            </NavLink>
+                            <NavLink to="/forgot">FORGOT PASSWORD</NavLink>
                         </ForgotPassword>
                         <ButtonWrapper>
                             <button type="submit">LOG IN</button>

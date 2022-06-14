@@ -13,10 +13,9 @@ const ForgotPassword = () => {
                 <Image src={Back} alt="back" />
             </AuthHeader>
             <ForgotForm>
-                <Title>VERIFICATION</Title>
+                <Title>TYPE YOUR EMAIL</Title>
                 <Message>
-                    A message with verification code was sent to your mobile
-                    phone.
+                    We will send you instruction on how to reset your password
                 </Message>
                 <Formik
                     initialValues={{
@@ -38,7 +37,7 @@ const ForgotPassword = () => {
                             </InputWrapper>
 
                             <ButtonWrapperFP>
-                                <button>VERIFY</button>
+                                <button>SEND</button>
                             </ButtonWrapperFP>
                         </Form>
                     )}
@@ -69,6 +68,7 @@ const Message = styled.div`
     font-size: 15px;
     line-height: 150%;
     margin-bottom: 40px;
+    width: 100%;
 `
 
 const GroupImg = styled.div`
