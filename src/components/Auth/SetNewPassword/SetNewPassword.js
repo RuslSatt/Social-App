@@ -14,11 +14,8 @@ const SetNewPassword = () => {
                 <Image src={Back} alt="back" />
             </AuthHeader>
             <NewPasswordForm>
-                <Title>VERIFICATION</Title>
-                <Message>
-                    A message with verification code was sent to your mobile
-                    phone.
-                </Message>
+                <Title>SET NEW PASSWORD</Title>
+                <Message>Type your new password</Message>
                 <Formik
                     initialValues={{
                         password: '',
@@ -36,7 +33,7 @@ const SetNewPassword = () => {
                                     type="password"
                                     name="password"
                                 />
-                                <img src={Show} alt="show" />
+                                <ShowIcon src={Show} alt="show" />
                                 <ErrorMessage name="email" component="div" />
                             </InputWrapper>
                             <InputWrapper>
@@ -45,7 +42,7 @@ const SetNewPassword = () => {
                                     type="password"
                                     name="confirmPassword"
                                 />
-                                <img src={Show} alt="show" />
+                                <ShowIcon src={Show} alt="show" />
                                 <ErrorMessage name="email" component="div" />
                             </InputWrapper>
                             <ButtonWrapperNP>
@@ -80,6 +77,10 @@ const Message = styled.div`
     font-size: 15px;
     line-height: 150%;
     margin-bottom: 40px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 `
 
 const GroupImg = styled.div`
@@ -89,6 +90,11 @@ const GroupImg = styled.div`
     margin-top: -70px;
     position: relative;
     z-index: 1;
+`
+
+const ShowIcon = styled.img`
+    position: absolute;
+    right: 5%;
 `
 
 export { SetNewPassword }
