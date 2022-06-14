@@ -79,6 +79,10 @@ const ButtonWrapperUp = styled(ButtonWrapper)`
     margin-top: 40px;
 `
 
+const ButtonWrapperNP = styled(ButtonWrapper)`
+    margin-top: 40px;
+`
+
 const ButtonWrapperSP = styled(ButtonWrapper)`
     button {
         position: fixed;
@@ -96,4 +100,5 @@ export {
     ButtonWrapperUp,
     InputWrapperSP,
     ButtonWrapperSP,
+    ButtonWrapperNP,
 }

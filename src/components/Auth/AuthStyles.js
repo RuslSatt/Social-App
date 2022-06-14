@@ -1,21 +1,21 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const AuthWrapper = styled.div`
     min-height: 100vh;
     overflow: hidden;
     background: #ffffff;
     padding-bottom: 56px;
-`;
+`
 const AuthHeader = styled.div`
     width: 100%;
     min-height: 321px;
-`;
+`
 
 const Image = styled.img`
     object-fit: cover;
     width: 100%;
     min-height: 321px;
-`;
+`
 
 const SignUpForm = styled.div`
     background: #ffffff;
@@ -28,11 +28,18 @@ const SignUpForm = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-`;
+`
 
 const SignInForm = styled(SignUpForm)`
     padding: 40px 30px;
-`;
+`
+
+const NewPasswordForm = styled(SignUpForm)`
+    margin-top: -140px;
+    padding-bottom: 100px;
+    padding-top: 0;
+    flex-direction: column;
+`
 
 const NotHaveAccount = styled.p`
     font-size: 16px;
@@ -45,12 +52,12 @@ const NotHaveAccount = styled.p`
         margin-left: 5px;
         letter-spacing: 0.2px;
     }
-`;
+`
 
 const HaveAccount = styled(NotHaveAccount)`
     text-align: center;
     margin-top: 40px;
-`;
+`
 
 const Error = styled.div`
     display: flex;
@@ -69,12 +76,12 @@ const Error = styled.div`
         width: 315px;
         text-align: center;
     }
-`;
+`
 
 const Preloader = styled.div`
     margin-top: -70px;
     margin-bottom: 15px;
-`;
+`
 
 export {
     AuthHeader,
@@ -86,4 +93,5 @@ export {
     HaveAccount,
     Error,
     Preloader,
-};
+    NewPasswordForm,
+}
