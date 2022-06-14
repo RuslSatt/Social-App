@@ -90,10 +90,15 @@ const ButtonWrapperSP = styled(ButtonWrapper)`
     }
 `
 
+const ButtonWrapperFP = styled(ButtonWrapper)`
+    margin-top: 50px;
+`
+
 export {
     InputWrapper,
     ButtonWrapper,
     ButtonWrapperUp,
     InputWrapperSP,
     ButtonWrapperSP,
+    ButtonWrapperFP,
 }

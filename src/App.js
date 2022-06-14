@@ -17,6 +17,7 @@ import { Post } from './components/Post/Post'
 import { UserProfile } from './components/UserProfile/UserProfile'
 import { getIsInitialize } from './redux/Selectors/AppSelectors'
 import { HomePage } from './components/HomePage/HomePage'
+import { ForgotPassword } from './components/Auth/ForgotPassword/ForgotPassword'
 
 function App() {
     const dispatch = useDispatch()
@@ -41,6 +42,7 @@ function App() {
                     <Route path="/start-profile" element={<StartProfile />} />
                     <Route path="/setting-profile" element={<Setting />} />
                     <Route path="/auth" element={<SignIn />} />
+                    <Route path="/forgot" element={<ForgotPassword />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/" element={<StartPage />} />
                     <Route path="home" element={<HomePage />} />
