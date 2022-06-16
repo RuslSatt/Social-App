@@ -5,8 +5,12 @@ import Back from '../../../assets/images/auth-another-back.png'
 import Group from '../../../assets/images/group-other-auth.png'
 import styled from 'styled-components'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { resetPassword } from '../../../redux/AuthReducer'
 
 const ForgotPassword = () => {
+    const dispatch = useDispatch()
+
     return (
         <AuthWrapper>
             <AuthHeader>
@@ -22,14 +26,15 @@ const ForgotPassword = () => {
                         email: '',
                     }}
                     onSubmit={(values) => {
-                        console.log(values)
+                        console.log(values.email)
+                        dispatch(resetPassword(values.email))
                     }}
                 >
                     {() => (
                         <Form>
                             <InputWrapper>
                                 <Field
-                                    placeholder="Type verification code"
+                                    placeholder="Email"
                                     type="email"
                                     name="email"
                                 />
@@ -37,7 +42,7 @@ const ForgotPassword = () => {
                             </InputWrapper>
 
                             <ButtonWrapperFP>
-                                <button>SEND</button>
+                                <button type="submit">SEND</button>
                             </ButtonWrapperFP>
                         </Form>
                     )}

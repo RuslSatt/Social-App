@@ -1,6 +1,7 @@
 import { auth } from '../data/firebase'
 import {
     createUserWithEmailAndPassword,
+    sendPasswordResetEmail,
     signInWithEmailAndPassword,
     signOut,
     updateProfile,
@@ -25,6 +26,9 @@ export const authApi = {
     },
     signOut() {
         return signOut(auth)
+    },
+    resetPassword(email) {
+        return sendPasswordResetEmail(auth, email)
     },
 }
 
