@@ -6,8 +6,11 @@ import Group from '../../../assets/images/group-other-auth.png'
 import Show from '../../../assets/images/show.svg'
 import styled from 'styled-components'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { updateUserPassword } from '../../../redux/AuthReducer'
 
 const SetNewPassword = () => {
+    const dispatch = useDispatch()
     return (
         <AuthWrapper>
             <AuthHeader>
@@ -22,7 +25,7 @@ const SetNewPassword = () => {
                         confirmPassword: '',
                     }}
                     onSubmit={(values) => {
-                        console.log(values)
+                        dispatch(updateUserPassword(values.password))
                     }}
                 >
                     {() => (
