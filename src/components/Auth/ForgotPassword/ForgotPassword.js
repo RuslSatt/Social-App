@@ -26,7 +26,6 @@ const ForgotPassword = () => {
                         email: '',
                     }}
                     onSubmit={(values) => {
-                        console.log(values.email)
                         dispatch(resetPassword(values.email))
                     }}
                 >

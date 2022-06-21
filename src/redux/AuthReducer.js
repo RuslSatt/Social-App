@@ -89,9 +89,7 @@ const resetPassword = (email) => {
         authApi
             .resetPassword(email)
             .then(() => {})
-            .catch((error) => {
-                console.log(error.message)
-            })
+            .catch(() => {})
     }
 }
 
