@@ -18,6 +18,7 @@ import { UserProfile } from './components/UserProfile/UserProfile'
 import { getIsInitialize } from './redux/Selectors/AppSelectors'
 import { HomePage } from './components/HomePage/HomePage'
 import { Verify } from './components/Auth/Verify/Verify'
+import { VerifyPhone } from './components/Auth/Verify/VerifyPhone'
 
 function App() {
     const dispatch = useDispatch()
@@ -44,6 +45,7 @@ function App() {
                     <Route path="/auth" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/verify" element={<Verify />} />
+                    <Route path="/verify-phone" element={<VerifyPhone />} />
                     <Route path="/" element={<StartPage />} />
                     <Route path="home" element={<HomePage />} />
                     <Route path="/post/:postId" element={<Post />} />
