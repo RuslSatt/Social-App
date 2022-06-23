@@ -4,7 +4,7 @@ import Back from '../../../assets/images/auth-another-back.png'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { ButtonWrapper, InputWrapper } from '../../Style/StyleForm'
 import Group from '../../../assets/images/group-other-auth.png'
-import { ButtonContainer, GroupImg, Message, Title } from './Verify'
+import { GroupImg, Message, Title } from './Verify'
 
 const VerifyPhone = () => {
     return (
@@ -13,14 +13,11 @@ const VerifyPhone = () => {
                 <Image src={Back} alt="back" />
             </AuthHeader>
             <VerifyForm>
-                <Title>VERIFICATION</Title>
-                <Message>
-                    A message with verification code was sent to your mobile
-                    phone.
-                </Message>
+                <Title>PHONE</Title>
+                <Message>Sent your mobile phone for sent code</Message>
                 <Formik
                     initialValues={{
-                        code: '',
+                        phone: '',
                     }}
                     onSubmit={(values) => {
                         console.log(values)
@@ -30,19 +27,15 @@ const VerifyPhone = () => {
                         <Form>
                             <InputWrapper>
                                 <Field
-                                    placeholder="Type verification code"
-                                    type="text"
-                                    name="code"
+                                    placeholder="Phone number"
+                                    type="tel"
+                                    name="phone"
                                 />
-                                <ErrorMessage name="email" component="div" />
+                                <ErrorMessage name="phone" component="div" />
                             </InputWrapper>
 
-                            <ButtonContainer>
-                                <button>Don't receive the code</button>
-                            </ButtonContainer>
-
                             <ButtonWrapper>
-                                <button>VERIFY</button>
+                                <button>SEND</button>
                             </ButtonWrapper>
                         </Form>
                     )}
