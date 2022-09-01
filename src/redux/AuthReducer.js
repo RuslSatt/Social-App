@@ -108,6 +108,11 @@ const resetPassword = (email) => {
     }
 }
 
-export { authReducer, createUser, changeIsRegister, signIn, updateUserPassword }
-
-export { authReducer, createUser, changeIsRegister, signIn, resetPassword }
+export {
+    authReducer,
+    createUser,
+    changeIsRegister,
+    signIn,
+    updateUserPassword,
+    resetPassword,
+}
