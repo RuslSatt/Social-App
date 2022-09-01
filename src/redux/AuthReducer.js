@@ -98,5 +98,16 @@ const updateUserPassword = (password) => {
             })
     }
 }
+const resetPassword = (email) => {
+    return (dispatch) => {
+        dispatch(changeIsPreload(true))
+        authApi
+            .resetPassword(email)
+            .then(() => {})
+            .catch(() => {})
+    }
+}
 
 export { authReducer, createUser, changeIsRegister, signIn, updateUserPassword }
+
+export { authReducer, createUser, changeIsRegister, signIn, resetPassword }

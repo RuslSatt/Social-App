@@ -20,6 +20,7 @@ import { HomePage } from './components/HomePage/HomePage'
 import { Verify } from './components/Auth/Verify/Verify'
 import { VerifyPhone } from './components/Auth/Verify/VerifyPhone'
 import { SetNewPassword } from './components/Auth/SetNewPassword/SetNewPassword'
+import { ForgotPassword } from './components/Auth/ForgotPassword/ForgotPassword'
 
 function App() {
     const dispatch = useDispatch()
@@ -45,6 +46,7 @@ function App() {
                     <Route path="/setting-profile" element={<Setting />} />
                     <Route path="/auth" element={<SignIn />} />
                     <Route path="/new-password" element={<SetNewPassword />} />
+                    <Route path="/forgot" element={<ForgotPassword />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/verify" element={<Verify />} />
                     <Route path="/verify-phone" element={<VerifyPhone />} />

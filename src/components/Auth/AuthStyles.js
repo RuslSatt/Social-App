@@ -30,6 +30,13 @@ const SignUpForm = styled.div`
     justify-content: center;
 `
 
+const ForgotForm = styled(SignUpForm)`
+    margin-top: -100px;
+    padding-bottom: 100px;
+    padding-top: 0;
+    flex-direction: column;
+`
+
 const SignInForm = styled(SignUpForm)`
     padding: 40px 30px;
 `
@@ -94,4 +101,6 @@ export {
     Error,
     Preloader,
     NewPasswordForm,
+}
+    ForgotForm,
 }
