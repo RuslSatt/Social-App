@@ -83,4 +83,20 @@ const signIn = (email, password) => {
     }
 }
 
-export { authReducer, createUser, changeIsRegister, signIn }
+const updateUserPassword = (password) => {
+    return (dispatch) => {
+        dispatch(changeIsPreload(true))
+        let user = auth.currentUser
+        authApi
+            .updateUserPassword(user, password)
+            .then(() => {
+                dispatch(changeIsPreload(false))
+            })
+            .catch((error) => {
+                dispatch(getError(error.message))
+                dispatch(changeIsPreload(false))
+            })
+    }
+}
+
+export { authReducer, createUser, changeIsRegister, signIn, updateUserPassword }

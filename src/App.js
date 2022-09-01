@@ -19,6 +19,7 @@ import { getIsInitialize } from './redux/Selectors/AppSelectors'
 import { HomePage } from './components/HomePage/HomePage'
 import { Verify } from './components/Auth/Verify/Verify'
 import { VerifyPhone } from './components/Auth/Verify/VerifyPhone'
+import { SetNewPassword } from './components/Auth/SetNewPassword/SetNewPassword'
 
 function App() {
     const dispatch = useDispatch()
@@ -43,6 +44,7 @@ function App() {
                     <Route path="/start-profile" element={<StartProfile />} />
                     <Route path="/setting-profile" element={<Setting />} />
                     <Route path="/auth" element={<SignIn />} />
+                    <Route path="/new-password" element={<SetNewPassword />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/verify" element={<Verify />} />
                     <Route path="/verify-phone" element={<VerifyPhone />} />

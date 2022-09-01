@@ -34,8 +34,8 @@ const SignInForm = styled(SignUpForm)`
     padding: 40px 30px;
 `
 
-const VerifyForm = styled(SignUpForm)`
-    margin-top: -100px;
+const NewPasswordForm = styled(SignUpForm)`
+    margin-top: -140px;
     padding-bottom: 100px;
     padding-top: 0;
     flex-direction: column;
@@ -93,5 +93,5 @@ export {
     HaveAccount,
     Error,
     Preloader,
-    VerifyForm,
+    NewPasswordForm,
 }
