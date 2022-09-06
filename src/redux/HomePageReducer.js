@@ -107,14 +107,13 @@ const homePageReducer = (state = initialState, action) => {
 }
 
 const getPosts = () => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(updateFetching(true))
-        postApi.getPostsDb().then((data) => {
-            dispatch(
-                setPost(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-            )
-            dispatch(updateFetching(false))
-        })
+        const data = await postApi.getPostsDb()
+        dispatch(
+            setPost(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+        )
+        dispatch(updateFetching(false))
     }
 }
 
@@ -126,10 +125,9 @@ const getCommentPosts = (elem) => {
 }
 
 const addNewComment = (elem, postId, createdComment) => {
-    return (dispatch) => {
-        postApi.addCommentPostsDb(elem, createdComment).then(() => {
-            dispatch(addComment(postId, createdComment))
-        })
+    return async (dispatch) => {
+        await postApi.addCommentPostsDb(elem, createdComment)
+        dispatch(addComment(postId, createdComment))
     }
 }
 
