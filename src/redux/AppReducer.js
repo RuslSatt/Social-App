@@ -1,12 +1,12 @@
 import { auth } from '../data/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 
-const ERROR_TYPE = 'ERROR_TYPE'
-const PRELOAD_TYPE = 'PRELOAD_TYPE'
-const GET_USER_ID = 'GET_USER_ID'
-const IS_AUTH = 'IS_AUTH'
-const IS_NAVIGATE = 'IS_NAVIGATE'
-const IS_INITIALIZE = 'IS_INITIALIZE'
+const ERROR_TYPE = 'APP/ERROR_TYPE'
+const PRELOAD_TYPE = 'APP/PRELOAD_TYPE'
+const GET_USER_ID = 'APP/GET_USER_ID'
+const IS_AUTH = 'APP/IS_AUTH'
+const IS_NAVIGATE = 'APP/IS_NAVIGATE'
+const IS_INITIALIZE = 'APP/IS_INITIALIZE'
 
 const getError = (error) => ({ type: ERROR_TYPE, error })
 

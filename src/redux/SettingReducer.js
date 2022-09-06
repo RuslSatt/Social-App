@@ -1,8 +1,8 @@
 import { authApi } from '../API/API'
 import { changeIsLogin, changeIsNavigate } from './AppReducer'
 
-const PRELOAD_TYPE = 'PRELOAD_TYPE'
-const ERROR_TYPE = 'ERROR_TYPE'
+const PRELOAD_TYPE = 'SETTING/PRELOAD_TYPE'
+const ERROR_TYPE = 'SETTING/ERROR_TYPE'
 
 const getError = (error) => ({ type: ERROR_TYPE, error })
 
@@ -35,17 +35,15 @@ const settingReducer = (state = initialState, action) => {
 const signOut = () => {
     return async (dispatch) => {
         dispatch(changeIsPreload(true))
-        await authApi
-            .signOut()
-            .then(() => {
-                dispatch(changeIsLogin(false))
-                dispatch(changeIsNavigate(true))
-                dispatch(changeIsPreload(false))
-            })
-            .catch((error) => {
-                dispatch(getError(error.value))
-                dispatch(changeIsPreload(false))
-            })
+        try {
+            await authApi.signOut()
+            dispatch(changeIsLogin(false))
+            dispatch(changeIsNavigate(true))
+            dispatch(changeIsPreload(false))
+        } catch (e) {
+            dispatch(getError(error.value))
+            dispatch(changeIsPreload(false))
+        }
     }
 }
 

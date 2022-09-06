@@ -1,5 +1,5 @@
-const updateMessageAT = 'UPDATE-MESSAGE'
-const addMessageAT = 'ADD-MESSAGE'
+const updateMessageAT = 'MESSAGE_PAGE/UPDATE_MESSAGE'
+const addMessageAT = 'MESSAGE_PAGE/ADD_MESSAGE'
 
 const addMessage = () => ({
     type: addMessageAT,

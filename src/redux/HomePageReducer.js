@@ -1,10 +1,10 @@
 import { postApi } from '../API/API'
 
-const addCommentAT = 'ADD-COMMENT'
-const setPostAT = 'URL-IMAGE'
-const setCommentAT = 'SET-COMMENT'
-const updateFetchingAT = 'UPDATE-FETCHING'
-const CREATE_COMMENT = 'CREATE_COMMENT'
+const addCommentAT = 'HOME_PAGE/ADD_COMMENT'
+const setPostAT = 'HOME_PAGE/URL_IMAGE'
+const setCommentAT = 'HOME_PAGE/SET_COMMENT'
+const updateFetchingAT = 'HOME_PAGE/UPDATE_FETCHING'
+const CREATE_COMMENT = 'HOME_PAGE/CREATE_COMMENT'
 
 const createComment = (postId, text) => ({
     type: CREATE_COMMENT,

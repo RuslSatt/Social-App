@@ -2,7 +2,7 @@ import { userApi } from '../API/API'
 import { auth } from '../data/firebase'
 import { changeIsPreload } from './AppReducer'
 
-const SET_DATA_USER = 'SET_DATA_USER'
+const SET_DATA_USER = 'USER_PROFILE/SET_DATA_USER'
 
 const setDataUser = (name, tag, userId) => ({
     type: SET_DATA_USER,

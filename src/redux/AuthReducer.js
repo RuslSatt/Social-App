@@ -7,8 +7,8 @@ import {
     getUserData,
 } from './AppReducer'
 
-const REGISTER_TYPE = 'REGISTER_TYPE'
-const GET_USER_ID = 'GET_USER_ID'
+const REGISTER_TYPE = 'AUTH/REGISTER_TYPE'
+const GET_USER_ID = 'AUTH/GET_USER_ID'
 
 const changeIsRegister = (valueReg) => ({ type: REGISTER_TYPE, valueReg })
 
