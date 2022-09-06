@@ -39,19 +39,17 @@ const authReducer = (state = initialState, action) => {
 }
 
 const createUser = (email, password, passwordConfirm) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(changeIsPreload(true))
         if (password === passwordConfirm) {
-            authApi
-                .createUserDb(email, password)
-                .then(() => {
-                    dispatch(changeIsPreload(false))
-                    dispatch(changeIsRegister(true))
-                })
-                .catch((error) => {
-                    dispatch(getError(error.message))
-                    dispatch(changeIsPreload(false))
-                })
+            try {
+                await authApi.createUserDb(email, password)
+                dispatch(changeIsPreload(false))
+                dispatch(changeIsRegister(true))
+            } catch (error) {
+                dispatch(getError(error.message))
+                dispatch(changeIsPreload(false))
+            }
         } else {
             dispatch(getError('Password is not right'))
             dispatch(changeIsPreload(false))
@@ -60,51 +58,46 @@ const createUser = (email, password, passwordConfirm) => {
 }
 
 const signIn = (email, password) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(changeIsPreload(true))
-        authApi
-            .signInDb(email, password)
-            .then(() => {
-                const user = auth.currentUser
-                if (user) {
-                    dispatch(getUserId(user.uid))
-                    dispatch(getUserData(user.uid, user.displayName))
-                    dispatch(changeIsLogin(true))
-                    dispatch(changeIsPreload(false))
-                } else {
-                    dispatch(getError('No user is signed in.'))
-                    dispatch(changeIsPreload(false))
-                }
-            })
-            .catch(() => {
-                dispatch(getError('Not right login or password'))
+        try {
+            await authApi.signInDb(email, password)
+            const user = auth.currentUser
+            if (user) {
+                dispatch(getUserId(user.uid))
+                dispatch(getUserData(user.uid, user.displayName))
+                dispatch(changeIsLogin(true))
                 dispatch(changeIsPreload(false))
-            })
+            } else {
+                dispatch(getError('No user is signed in.'))
+                dispatch(changeIsPreload(false))
+            }
+        } catch (e) {
+            dispatch(getError('Not right login or password'))
+            dispatch(changeIsPreload(false))
+        }
     }
 }
 
 const updateUserPassword = (password) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(changeIsPreload(true))
-        let user = auth.currentUser
-        authApi
-            .updateUserPassword(user, password)
-            .then(() => {
-                dispatch(changeIsPreload(false))
-            })
-            .catch((error) => {
-                dispatch(getError(error.message))
-                dispatch(changeIsPreload(false))
-            })
+        try {
+            let user = auth.currentUser
+            await authApi.updateUserPassword(user, password)
+            dispatch(changeIsPreload(false))
+        } catch (e) {
+            dispatch(getError(error.message))
+            dispatch(changeIsPreload(false))
+        }
     }
 }
 const resetPassword = (email) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(changeIsPreload(true))
-        authApi
-            .resetPassword(email)
-            .then(() => {})
-            .catch(() => {})
+        try {
+            await authApi.resetPassword(email)
+        } catch (e) {}
     }
 }
 
