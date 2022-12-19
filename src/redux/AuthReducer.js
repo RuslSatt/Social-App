@@ -87,8 +87,8 @@ const updateUserPassword = (password) => {
             await authApi.updateUserPassword(user, password)
             dispatch(changeIsPreload(false))
         } catch (e) {
-            dispatch(getError(error.message))
-            dispatch(changeIsPreload(false))
+            // dispatch(getError(error.message))
+            // dispatch(changeIsPreload(false))
         }
     }
 }
@@ -107,5 +107,5 @@ export {
     changeIsRegister,
     signIn,
     updateUserPassword,
-    resetPassword,
+    resetPassword
 }

@@ -41,8 +41,8 @@ const signOut = () => {
             dispatch(changeIsNavigate(true))
             dispatch(changeIsPreload(false))
         } catch (e) {
-            dispatch(getError(error.value))
-            dispatch(changeIsPreload(false))
+            // dispatch(getError(error))
+            // dispatch(changeIsPreload(false))
         }
     }
 }
